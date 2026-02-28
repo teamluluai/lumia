@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMIA - 네 팔로워가 수익이 된다</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --bg: #F7F8FC;
+            --card: #FFFFFF;
+            --text-primary: #111827;
+            --brand-navy: #2F3A8F;
+            --accent-purple: #7C3AED;
+            --highlight-teal: #14B8A6;
+            --text-secondary: #6B7280;
+            --success: #10B981;
+            --warning: #EF4444;
+        }
+
+        /* ===== Reset & Base ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--bg);
+        }
+
+        /* ===== Animation Keyframes ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes floatBg {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(20px, -20px) scale(1.05);
+            }
+            50% {
+                transform: translate(-10px, 10px) scale(0.95);
+            }
+            75% {
+                transform: translate(-20px, -10px) scale(1.02);
+            }
+        }
+
+        @keyframes growWidth {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100px;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* ===== Animation Classes ===== */
+        .animate-fadeInUp {
+            opacity: 0;
+        }
+        .slide.active .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .animate-fadeInLeft {
+            opacity: 0;
+        }
+        .slide.active .animate-fadeInLeft {
+            animation: fadeInLeft 0.6s ease forwards;
+        }
+
+        .animate-fadeInRight {
+            opacity: 0;
+        }
+        .slide.active .animate-fadeInRight {
+            animation: fadeInRight 0.6s ease forwards;
+        }
+
+        .animate-scaleIn {
+            opacity: 0;
+        }
+        .slide.active .animate-scaleIn {
+            animation: scaleIn 0.5s ease forwards;
+        }
+
+        .animate-bounceIn {
+            opacity: 0;
+        }
+        .slide.active .animate-bounceIn {
+            animation: bounceIn 0.6s ease forwards;
+        }
+
+        /* Stagger delays */
+        .delay-1 { animation-delay: 0.1s !important; }
+        .delay-2 { animation-delay: 0.2s !important; }
+        .delay-3 { animation-delay: 0.3s !important; }
+        .delay-4 { animation-delay: 0.4s !important; }
+        .delay-5 { animation-delay: 0.5s !important; }
+
+        /* ===== Presentation Container ===== */
+        .presentation {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* ===== Background Decorations ===== */
+        .bg-decoration {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-decoration.circle-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(47, 58, 143, 0.08) 0%, rgba(124, 58, 237, 0.05) 100%);
+            top: -100px;
+            right: -100px;
+            animation: floatBg 15s ease-in-out infinite;
+        }
+
+        .bg-decoration.circle-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.06) 0%, rgba(20, 184, 166, 0.04) 100%);
+            bottom: -50px;
+            left: -50px;
+            animation: floatBg 12s ease-in-out infinite reverse;
+        }
+
+        /* ===== Progress Bar ===== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-navy) 0%, var(--accent-purple) 100%);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        /* ===== Page Number ===== */
+        .page-number {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            z-index: 100;
+            font-weight: 500;
+        }
+
+        .page-number .current {
+            color: var(--brand-navy);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* ===== Navigation Dots ===== */
+        .nav-dots {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(47, 58, 143, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-dot:hover {
+            background: rgba(47, 58, 143, 0.4);
+            transform: scale(1.2);
+        }
+
+        .nav-dot.active {
+            background: var(--brand-navy);
+            transform: scale(1.3);
+        }
+
+        .nav-dot .tooltip {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-primary);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dot:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ===== Navigation Arrows ===== */
+        .nav-arrows {
+            position: fixed;
+            bottom: 25px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .nav-arrow {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid rgba(47, 58, 143, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--brand-navy);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .nav-arrow:hover {
+            background: var(--brand-navy);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-arrow:disabled:hover {
+            background: white;
+            color: var(--brand-navy);
+            transform: scale(1);
+        }
+
+        /* ===== Keyboard Hint ===== */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .keyboard-hint.visible {
+            opacity: 1;
+        }
+
+        .keyboard-hint span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .keyboard-hint kbd {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-family: inherit;
+            font-size: 11px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* ===== Slides Container ===== */
+        .slides-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ===== Slide Base ===== */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.5s ease;
+            z-index: 1;
+            background: var(--bg);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 10;
+        }
+
+        .slide.prev {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+
+        /* ===== Typography ===== */
+        h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5em;
+            text-align: center;
+        }
+
+        p {
+            font-weight: 400;
+            color: var(--text-secondary);
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--brand-navy);
+            font-weight: 700;
+        }
+
+        .highlight-accent {
+            color: var(--warning);
+            font-weight: 700;
+        }
+
+        /* ===== Slide 1: Cover - Split Layout ===== */
+        .cover-slide {
+            flex-direction: row;
+            padding: 0;
+            background: linear-gradient(135deg, var(--brand-navy) 0%, var(--accent-purple) 100%);
+        }
+
+        .cover-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+        }
+
+        .cover-logo {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+        }
+
+        .cover-divider {
+            width: 0;
+            height: 2px;
+            background: rgba(255,255,255,0.5);
+            margin: 20px 0;
+        }
+
+        .slide.active .cover-divider {
+            animation: growWidth 0.8s ease 0.3s forwards;
+        }
+
+        .cover-right {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+        }
+
+        .cover-right h1 {
+            color: white;
+            font-size: 3.8em;
+            text-align: left;
+            margin-bottom: 0.3em;
+        }
+
+        .cover-right .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.5em;
+            font-weight: 300;
+            text-align: left;
+        }
+
+        /* ===== Slide 2: Question ===== */
+        .question-slide h2 {
+            font-size: 3em;
+            color: var(--text-primary);
+        }
+
+        .question-slide .sub-questions {
+            margin-top: 60px;
+        }
+
+        .question-slide .sub-questions p {
+            font-size: 1.6em;
+            color: var(--text-secondary);
+            margin: 25px 0;
+        }
+
+        /* ===== Card Container ===== */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 30px;
+            width: 300px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+            border: 1px solid #E2E8F0;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card.problem {
+            border-top: 4px solid var(--warning);
+        }
+
+        .card.success {
+            border-top: 4px solid var(--success);
+        }
+
+        .card.solution {
+            border-top: 4px solid var(--brand-navy);
+        }
+
+        .card h3 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .card p {
+            font-size: 1em;
+            color: var(--text-secondary);
+        }
+
+        .card .icon {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+
+        /* ===== Platform List ===== */
+        .platform-list {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .platform-item {
+            text-align: center;
+        }
+
+        .platform-item .icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+
+        .platform-item .name {
+            font-size: 1.15em;
+            color: var(--text-secondary);
+        }
+
+        /* ===== Condition List ===== */
+        .condition-list {
+            text-align: left;
+            max-width: 750px;
+            margin: 50px auto;
+        }
+
+        .condition-item {
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            background: #FEF2F2;
+            border-radius: 16px;
+            margin-bottom: 18px;
+        }
+
+        .condition-item .icon {
+            font-size: 1.8em;
+            margin-right: 25px;
+            color: var(--warning);
+        }
+
+        .condition-item p {
+            margin: 0;
+            font-size: 1.25em;
+            color: var(--text-primary);
+        }
+
+        .condition-item strong {
+            color: var(--warning);
+        }
+
+        /* ===== Empathy Slide ===== */
+        .empathy-slide {
+            background: linear-gradient(180deg, var(--bg) 0%, #EEF2FF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .empathy-slide .float-bg {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(47, 58, 143, 0.05) 100%);
+            animation: floatBg 10s ease-in-out infinite;
+        }
+
+        .empathy-slide .float-bg.bg-1 {
+            top: -100px;
+            right: -50px;
+        }
+
+        .empathy-slide .float-bg.bg-2 {
+            bottom: -100px;
+            left: -50px;
+            animation-delay: -5s;
+        }
+
+        .empathy-slide h2 {
+            color: var(--accent-purple);
+            font-size: 2.4em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .empathy-list {
+            max-width: 650px;
+            margin: 60px auto;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .empathy-item {
+            font-size: 1.5em;
+            color: var(--text-secondary);
+            margin: 30px 0;
+            padding-left: 35px;
+            border-left: 4px solid var(--accent-purple);
+        }
+
+        .empathy-item strong {
+            color: var(--accent-purple);
+        }
+
+        /* ===== Solution Slide ===== */
+        .solution-slide {
+            background: linear-gradient(135deg, var(--brand-navy) 0%, var(--accent-purple) 100%);
+        }
+
+        .solution-slide h2 {
+            color: white;
+            font-size: 2.8em;
+        }
+
+        .solution-slide .benefits {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .solution-slide .benefit {
+            background: rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 30px 45px;
+            color: white;
+            font-size: 1.4em;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ===== Flow Diagram ===== */
+        .flow-container {
+            max-width: 850px;
+            margin: 40px auto;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+        }
+
+        .flow-number {
+            width: 55px;
+            height: 55px;
+            background: var(--brand-navy);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4em;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .flow-content {
+            margin-left: 30px;
+            text-align: left;
+        }
+
+        .flow-content h4 {
+            margin: 0;
+            font-size: 1.3em;
+            color: var(--text-primary);
+        }
+
+        .flow-content p {
+            margin: 8px 0 0 0;
+            font-size: 1em;
+        }
+
+        /* ===== Comment Types ===== */
+        .comment-types {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .comment-type {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            width: 280px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .comment-type:hover {
+            transform: translateY(-5px);
+        }
+
+        .comment-type.free {
+            border: 2px solid var(--success);
+        }
+
+        .comment-type.paid {
+            border: 2px solid var(--brand-navy);
+        }
+
+        .comment-type.secret {
+            border: 2px solid var(--accent-purple);
+        }
+
+        .comment-type .type-icon {
+            font-size: 2.8em;
+            margin-bottom: 18px;
+        }
+
+        .comment-type h4 {
+            margin: 0 0 12px 0;
+            font-size: 1.4em;
+            color: var(--text-primary);
+        }
+
+        .comment-type p {
+            font-size: 1em;
+            margin: 0;
+        }
+
+        /* ===== Fan Needs ===== */
+        .needs-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .need-item {
+            text-align: center;
+            padding: 35px;
+        }
+
+        .need-item .icon {
+            font-size: 3.5em;
+            margin-bottom: 18px;
+        }
+
+        .need-item h4 {
+            font-size: 1.4em;
+            color: var(--brand-navy);
+            margin-bottom: 12px;
+        }
+
+        .need-item p {
+            font-size: 1.1em;
+        }
+
+        /* ===== Value Exchange - Enhanced ===== */
+        .value-exchange {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .value-box {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 45px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+            min-width: 280px;
+            transition: transform 0.3s ease;
+        }
+
+        .value-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-box.fan {
+            border-bottom: 4px solid var(--highlight-teal);
+        }
+
+        .value-box.creator {
+            border-bottom: 4px solid var(--accent-purple);
+        }
+
+        .value-box h4 {
+            font-size: 1.2em;
+            color: var(--brand-navy);
+            margin-bottom: 25px;
+        }
+
+        .value-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .value-box li {
+            padding: 10px 0;
+            color: var(--text-primary);
+            font-size: 1.15em;
+        }
+
+        .exchange-arrow {
+            font-size: 3.5em;
+            color: var(--accent-purple);
+        }
+
+        .value-message {
+            margin-top: 50px;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, var(--brand-navy) 0%, var(--accent-purple) 100%);
+            border-radius: 16px;
+            color: white;
+            font-size: 1.3em;
+        }
+
+        /* ===== Summary Slide ===== */
+        .summary-slide h2 {
+            color: var(--brand-navy);
+            font-size: 2.6em;
+        }
+
+        .summary-points {
+            max-width: 750px;
+            margin: 50px auto;
+            text-align: left;
+        }
+
+        .summary-point {
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            margin-bottom: 18px;
+            background: #F0FDF4;
+            border-radius: 16px;
+        }
+
+        .summary-point .check {
+            color: var(--success);
+            font-size: 1.7em;
+            margin-right: 25px;
+        }
+
+        .summary-point p {
+            margin: 0;
+            font-size: 1.25em;
+            color: var(--text-primary);
+        }
+
+        /* ===== Support Comparison - Enhanced Role Cards ===== */
+        .support-comparison {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            margin-top: 50px;
+        }
+
+        .role-card {
+            text-align: center;
+            padding: 45px;
+            border-radius: 20px;
+            min-width: 320px;
+            transition: all 0.3s ease;
+        }
+
+        .role-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .role-card.lumia {
+            background: linear-gradient(135deg, var(--brand-navy) 0%, var(--accent-purple) 100%);
+            color: white;
+            box-shadow: 0 10px 40px rgba(47, 58, 143, 0.3);
+        }
+
+        .role-card.you {
+            background: white;
+            border: 2px solid var(--brand-navy);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .role-card h4 {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .role-card.lumia h4 {
+            color: white;
+        }
+
+        .role-card.you h4 {
+            color: var(--brand-navy);
+        }
+
+        .role-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .role-card li {
+            padding: 12px 0;
+            font-size: 1.15em;
+        }
+
+        .role-card.lumia li {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .role-card.you li {
+            color: var(--text-primary);
+        }
+
+        /* ===== CTA Slide ===== */
+        .cta-slide {
+            background: linear-gradient(135deg, var(--brand-navy) 0%, #312E81 100%);
+        }
+
+        .cta-slide h2 {
+            color: white;
+            font-size: 3.5em;
+        }
+
+        .cta-slide p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.5em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-purple);
+            color: white;
+            padding: 22px 55px;
+            border-radius: 50px;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(124,58,237,0.5);
+            background: #8B5CF6;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .cover-slide {
+                flex-direction: column;
+            }
+
+            .cover-left, .cover-right {
+                padding: 40px;
+            }
+
+            .cover-right h1 {
+                font-size: 2.5em;
+                text-align: center;
+            }
+
+            .cover-right .subtitle {
+                text-align: center;
+            }
+
+            .card-container, .platform-list, .comment-types, .needs-container, .value-exchange, .support-comparison {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card, .comment-type, .role-card {
+                width: 90%;
+                max-width: 350px;
+            }
+
+            .nav-dots {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            .slide {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Decorations -->
+    <div class="bg-decoration circle-1"></div>
+    <div class="bg-decoration circle-2"></div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Page Number -->
+    <div class="page-number">
+        <span class="current" id="currentPage">1</span> / <span id="totalPages">14</span>
+    </div>
+
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint" id="keyboardHint">
+        <span><kbd>←</kbd> <kbd>→</kbd> 이동</span>
+        <span><kbd>Space</kbd> 다음</span>
+    </div>
+
+    <!-- Presentation Container -->
+    <div class="presentation">
+        <div class="slides-container" id="slidesContainer">
+
+            <!-- Slide 1: Cover - Split Layout -->
+            <div class="slide" data-slide="1" data-title="표지">
+                <div class="cover-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex;">
+                    <div class="cover-left">
+                        <div class="cover-logo animate-fadeInUp">LUMIA</div>
+                        <div class="cover-divider"></div>
+                    </div>
+                    <div class="cover-right">
+                        <h1 class="animate-fadeInUp delay-1">네 팔로워가<br>수익이 된다</h1>
+                        <p class="subtitle animate-fadeInUp delay-2">영상 없이, 라이브 없이, 후원받는 법</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Problem -->
+            <div class="slide question-slide" data-slide="2" data-title="문제 제기">
+                <h2 class="animate-fadeInUp">10만 팔로워,<br>수익은 만족스러워?</h2>
+                <div class="sub-questions">
+                    <p class="animate-fadeInUp delay-1">광고 없는 달, 수익은?</p>
+                    <p class="animate-fadeInUp delay-2">협찬 끊기면?</p>
+                </div>
+            </div>
+
+            <!-- Slide 3: Red Ocean -->
+            <div class="slide" data-slide="3" data-title="광고 시장 레드오션">
+                <h2 class="animate-fadeInUp">광고 시장은 <span class="highlight-accent">레드오션</span></h2>
+                <div class="card-container">
+                    <div class="card problem animate-fadeInUp delay-1">
+                        <div class="icon">📉</div>
+                        <h3>직접 수익 불가</h3>
+                        <p>조회수로는 돈이 안 됨</p>
+                    </div>
+                    <div class="card problem animate-fadeInUp delay-2">
+                        <div class="icon">⚔️</div>
+                        <h3>경쟁 심화</h3>
+                        <p>광고 단가 계속 하락</p>
+                    </div>
+                    <div class="card problem animate-fadeInUp delay-3">
+                        <div class="icon">🎲</div>
+                        <h3>외부 변수</h3>
+                        <p>알고리즘에 좌우됨</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Donation Market -->
+            <div class="slide" data-slide="4" data-title="후원 시장 성행">
+                <h2 class="animate-fadeInUp"><span class="highlight">후원 시장</span>은 성행 중</h2>
+                <div class="platform-list">
+                    <div class="platform-item animate-scaleIn delay-1">
+                        <div class="icon">🎬</div>
+                        <div class="name">유튜브 슈퍼챗</div>
+                    </div>
+                    <div class="platform-item animate-scaleIn delay-2">
+                        <div class="icon">⭐</div>
+                        <div class="name">아프리카TV 별풍선</div>
+                    </div>
+                    <div class="platform-item animate-scaleIn delay-3">
+                        <div class="icon">💜</div>
+                        <div class="name">트위치 도네이션</div>
+                    </div>
+                </div>
+                <p class="animate-fadeInUp delay-4" style="font-size: 1.5em; color: var(--text-primary); font-weight: 500;">
+                    팬이 돈 내는 문화는 <span class="highlight">검증됨</span>
+                </p>
+            </div>
+
+            <!-- Slide 5: Entry Barriers -->
+            <div class="slide" data-slide="5" data-title="진입 조건">
+                <h2 class="animate-fadeInUp">후원 시장 진입 조건</h2>
+                <div class="condition-list">
+                    <div class="condition-item animate-fadeInUp delay-1">
+                        <span class="icon">🎥</span>
+                        <p>특화 콘텐츠로 <strong>영상 제작</strong></p>
+                    </div>
+                    <div class="condition-item animate-fadeInUp delay-2">
+                        <span class="icon">📺</span>
+                        <p>이미지 소비하며 <strong>라이브 방송</strong></p>
+                    </div>
+                    <div class="condition-item animate-fadeInUp delay-3">
+                        <span class="icon">💪</span>
+                        <p><strong>제작 능력</strong> + <strong>소통 역량</strong> 필요</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Empathy -->
+            <div class="slide empathy-slide" data-slide="6" data-title="공감">
+                <div class="float-bg bg-1"></div>
+                <div class="float-bg bg-2"></div>
+                <h2 class="animate-fadeInUp">당신에겐 맞지 않았다</h2>
+                <div class="empathy-list">
+                    <div class="empathy-item animate-fadeInUp delay-1">영상 제작? <strong>부담</strong></div>
+                    <div class="empathy-item animate-fadeInUp delay-2">라이브 방송? <strong>부담</strong></div>
+                    <div class="empathy-item animate-fadeInUp delay-3">그래서 <strong>진입 못함</strong></div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Solution -->
+            <div class="slide solution-slide" data-slide="7" data-title="LUMIA 솔루션">
+                <h2 class="animate-fadeInUp">LUMIA는 당신을 위한 것</h2>
+                <div class="benefits">
+                    <div class="benefit animate-bounceIn delay-1">✓ 영상 없이</div>
+                    <div class="benefit animate-bounceIn delay-2">✓ 라이브 없이</div>
+                    <div class="benefit animate-bounceIn delay-3">✓ 후원 진입</div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Flow -->
+            <div class="slide" data-slide="8" data-title="LUMIA 플로우">
+                <h2 class="animate-fadeInUp">LUMIA 플로우</h2>
+                <div class="flow-container">
+                    <div class="flow-step animate-fadeInUp delay-1">
+                        <div class="flow-number">1</div>
+                        <div class="flow-content">
+                            <h4>유튜브 영상 선택</h4>
+                            <p>관심 있는 영상을 고른다</p>
+                        </div>
+                    </div>
+                    <div class="flow-step animate-fadeInUp delay-2">
+                        <div class="flow-number">2</div>
+                        <div class="flow-content">
+                            <h4>내 코멘트 작성</h4>
+                            <p>나만의 관점을 담아 게시</p>
+                        </div>
+                    </div>
+                    <div class="flow-step animate-fadeInUp delay-3">
+                        <div class="flow-number">3</div>
+                        <div class="flow-content">
+                            <h4>팬들의 호기심 자극</h4>
+                            <p>팬들이 궁금해한다</p>
+                        </div>
+                    </div>
+                    <div class="flow-step animate-fadeInUp delay-4">
+                        <div class="flow-number">4</div>
+                        <div class="flow-content">
+                            <h4>깊은 소통</h4>
+                            <p>대화하고 싶게 만든다</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Comment Types -->
+            <div class="slide" data-slide="9" data-title="소통 방식">
+                <h2 class="animate-fadeInUp">소통은 댓글로</h2>
+                <div class="comment-types">
+                    <div class="comment-type free animate-scaleIn delay-1">
+                        <div class="type-icon">💬</div>
+                        <h4>퍼블릭 댓글</h4>
+                        <p>무료, 공개<br>기본적인 소통</p>
+                    </div>
+                    <div class="comment-type paid animate-scaleIn delay-2">
+                        <div class="type-icon">💎</div>
+                        <h4>유료 댓글</h4>
+                        <p>더 깊은 소통을<br>원하는 팬용</p>
+                    </div>
+                    <div class="comment-type secret animate-scaleIn delay-3">
+                        <div class="type-icon">🔒</div>
+                        <h4>비밀 댓글</h4>
+                        <p>프라이빗한<br>1:1 대화</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Why Fans Pay -->
+            <div class="slide" data-slide="10" data-title="왜 팬이 돈을 내는가">
+                <h2 class="animate-fadeInUp">왜 팬이 돈을 낼까?</h2>
+                <p class="animate-fadeInUp delay-1" style="font-size: 1.3em; margin-bottom: 15px;">팬은 <span class="highlight-accent">더 깊은 소통</span>을 원한다</p>
+                <div class="needs-container">
+                    <div class="need-item animate-bounceIn delay-2">
+                        <div class="icon">⏰</div>
+                        <h4>시간적 교류</h4>
+                        <p>네 시간을 원함</p>
+                    </div>
+                    <div class="need-item animate-bounceIn delay-3">
+                        <div class="icon">🎯</div>
+                        <h4>집중적 교류</h4>
+                        <p>나에게 집중</p>
+                    </div>
+                    <div class="need-item animate-bounceIn delay-4">
+                        <div class="icon">💖</div>
+                        <h4>감정적 교류</h4>
+                        <p>진심 어린 대화</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 11: Value Exchange - Enhanced -->
+            <div class="slide" data-slide="11" data-title="정당한 가치 판매">
+                <h2 class="animate-fadeInUp"><span class="highlight">정당한 가치</span> 판매</h2>
+                <div class="value-exchange">
+                    <div class="value-box fan animate-fadeInLeft delay-1">
+                        <h4>팬이 얻는 것</h4>
+                        <ul>
+                            <li>💬 소통</li>
+                            <li>🤝 교감</li>
+                            <li>✨ 정성 답글</li>
+                        </ul>
+                    </div>
+                    <div class="exchange-arrow animate-scaleIn delay-2">⇄</div>
+                    <div class="value-box creator animate-fadeInRight delay-1">
+                        <h4>네가 제공하는 것</h4>
+                        <ul>
+                            <li>⏰ 시간</li>
+                            <li>💖 감정</li>
+                            <li>⚡ 에너지</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="value-message animate-fadeInUp delay-3">
+                    후원 시장이 <strong>이미 증명</strong>
+                </div>
+            </div>
+
+            <!-- Slide 12: Summary -->
+            <div class="slide summary-slide" data-slide="12" data-title="핵심 정리">
+                <h2 class="animate-fadeInUp">영상/라이브 없이 후원</h2>
+                <div class="summary-points">
+                    <div class="summary-point animate-fadeInUp delay-1">
+                        <span class="check">✓</span>
+                        <p>영상 만들 필요 없음</p>
+                    </div>
+                    <div class="summary-point animate-fadeInUp delay-2">
+                        <span class="check">✓</span>
+                        <p>라이브 할 필요 없음</p>
+                    </div>
+                    <div class="summary-point animate-fadeInUp delay-3">
+                        <span class="check">✓</span>
+                        <p>팔로워에게 직접 후원받음</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 13: LUMIA Support - Enhanced Role Cards -->
+            <div class="slide" data-slide="13" data-title="LUMIA가 해주는 것">
+                <h2 class="animate-fadeInUp">LUMIA가 해주는 것</h2>
+                <div class="support-comparison">
+                    <div class="role-card lumia animate-fadeInLeft delay-1">
+                        <h4>LUMIA의 역할</h4>
+                        <ul>
+                            <li>⚙️ 규칙 설계</li>
+                            <li>🏆 경쟁 구조 제공</li>
+                            <li>💰 수익 환경 구축</li>
+                        </ul>
+                    </div>
+                    <div class="role-card you animate-fadeInRight delay-1">
+                        <h4>너의 역할</h4>
+                        <ul>
+                            <li>💬 깊게 소통</li>
+                            <li>📈 수익 활동</li>
+                            <li>✨ 가치 교류</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 14: CTA -->
+            <div class="slide cta-slide" data-slide="14" data-title="CTA">
+                <h2 class="animate-fadeInUp">시작해볼래?</h2>
+                <p class="animate-fadeInUp delay-1">소통하면서 수익도 만들어봐</p>
+                <a href="#" class="cta-button animate-fadeInUp delay-2">LUMIA 시작하기</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots" id="navDots"></div>
+
+    <!-- Navigation Arrows -->
+    <div class="nav-arrows">
+        <button class="nav-arrow" id="prevBtn" aria-label="이전">←</button>
+        <button class="nav-arrow" id="nextBtn" aria-label="다음">→</button>
+    </div>
+
+    <script>
+        // Presentation State
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // DOM Elements
+        const progressBar = document.getElementById('progressBar');
+        const currentPageEl = document.getElementById('currentPage');
+        const totalPagesEl = document.getElementById('totalPages');
+        const navDots = document.getElementById('navDots');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const keyboardHint = document.getElementById('keyboardHint');
+
+        // Initialize
+        function init() {
+            totalPagesEl.textContent = totalSlides;
+            createNavDots();
+            updateSlide(0);
+            showKeyboardHint();
+            setupEventListeners();
+        }
+
+        // Create Navigation Dots
+        function createNavDots() {
+            slides.forEach((slide, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'nav-dot';
+                dot.dataset.index = index;
+
+                const tooltip = document.createElement('span');
+                tooltip.className = 'tooltip';
+                tooltip.textContent = slide.dataset.title || `슬라이드 ${index + 1}`;
+                dot.appendChild(tooltip);
+
+                dot.addEventListener('click', () => goToSlide(index));
+                navDots.appendChild(dot);
+            });
+        }
+
+        // Update Slide
+        function updateSlide(index) {
+            // Remove active/prev classes
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active', 'prev');
+                if (i < index) {
+                    slide.classList.add('prev');
+                }
+            });
+
+            // Set active slide
+            slides[index].classList.add('active');
+            currentSlide = index;
+
+            // Update progress bar
+            const progress = ((index + 1) / totalSlides) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            // Update page number
+            currentPageEl.textContent = index + 1;
+
+            // Update nav dots
+            document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+
+            // Update nav buttons
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === totalSlides - 1;
+
+            // Hide keyboard hint after first slide
+            if (index > 0) {
+                keyboardHint.classList.remove('visible');
+            }
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+            if (index >= 0 && index < totalSlides) {
+                updateSlide(index);
+            }
+        }
+
+        // Next slide
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                goToSlide(currentSlide + 1);
+            }
+        }
+
+        // Previous slide
+        function prevSlide() {
+            if (currentSlide > 0) {
+                goToSlide(currentSlide - 1);
+            }
+        }
+
+        // Show keyboard hint on first slide
+        function showKeyboardHint() {
+            setTimeout(() => {
+                keyboardHint.classList.add('visible');
+            }, 1000);
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                switch(e.key) {
+                    case 'ArrowRight':
+                    case ' ':
+                        e.preventDefault();
+                        nextSlide();
+                        break;
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        prevSlide();
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        goToSlide(0);
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        goToSlide(totalSlides - 1);
+                        break;
+                }
+            });
+
+            // Button navigation
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+
+            // Touch/Swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            document.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
+                }
+            }
+
+            // Mouse wheel navigation (optional)
+            let wheelTimeout;
+            document.addEventListener('wheel', (e) => {
+                if (wheelTimeout) return;
+
+                wheelTimeout = setTimeout(() => {
+                    wheelTimeout = null;
+                }, 500);
+
+                if (e.deltaY > 0) {
+                    nextSlide();
+                } else if (e.deltaY < 0) {
+                    prevSlide();
+                }
+            }, { passive: true });
+        }
+
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
