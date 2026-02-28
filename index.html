@@ -208,9 +208,12 @@ html, body {
 }
 .cover-bg-circle {
   position: absolute; width: 600px; height: 600px;
-  border: 2px dashed oklch(51.4% .228 277.018 / 0.10);
-  border-radius: 50%; top: 50%; left: 27%;
-  margin-top: -300px; margin-left: -300px;
+  border: 2px dashed oklch(51.4% .228 250 / 0.10);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  margin-top: -300px;
+  margin-left: -480px;
   animation: rotate 20s linear infinite;
   pointer-events: none;
 }
@@ -582,17 +585,112 @@ html, body {
 }
 .paid-q-text { font-size: 12px; color: var(--text-primary); line-height: 1.6; word-break: keep-all; }
 
+
+/* ===== 슬라이드 하단 요약 바 — 통합 가이드 =====
+   공통 테마: background: var(--accent-light) + border: 1px solid var(--accent-border)
+   사용처: .footer-bar(slide 2) · .async-badge(slide 5) · .slide-insight(slide 7, 8)
+   새 하단 요약 바 추가 시 .slide-insight 클래스를 사용하세요.
+   ================================================ */
+.slide-insight {
+  text-align: center; padding: 14px 28px;
+  background: var(--accent-light); border-radius: 12px;
+  border: 1px solid var(--accent-border);
+  max-width: 860px; width: 100%; opacity: 0;
+  font-size: 14px; font-weight: 500; color: var(--text-primary);
+  line-height: 1.6; word-break: keep-all;
+}
+.slide-insight strong { color: var(--accent); }
+
+/* Earn summary box (slide 9 — revenue proof) */
 .earn-summary-box {
   display: flex; align-items: center; gap: 16px;
-  width: 100%; max-width: 860px;
+  width: 100%;
   background: linear-gradient(135deg, #1a0040 0%, var(--accent) 100%);
   border-radius: 12px; padding: 16px 22px; color: white; opacity: 0;
 }
 .earn-summary-icon { font-size: 26px; opacity: 0.9; flex-shrink: 0; }
 .earn-summary-body { flex: 1; }
-.earn-summary-main { font-size: 14px; font-weight: 700; line-height: 1.5; margin-bottom: 5px; word-break: keep-all; }
-.earn-summary-detail { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 12px; opacity: 0.9; }
-.earn-divider { opacity: 0.4; }
+.earn-summary-main { font-size: 14px; font-weight: 700; line-height: 1.5; word-break: keep-all; }
+.earn-summary-main strong { color: white; }
+
+/* Queue board (slide 8 — competition mechanism) */
+.queue-layout {
+  display: flex; gap: 32px; align-items: stretch;
+  max-width: 1060px; width: 100%;
+}
+.queue-board-card { padding: 20px; flex-shrink: 0; }
+.queue-board-card:hover { transform: none; box-shadow: 0 1px 6px var(--shadow); }
+.queue-explain-card {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; padding: 28px;
+}
+.queue-explain-card:hover { transform: none; box-shadow: 0 1px 6px var(--shadow); }
+.queue-explain-card .queue-explain { gap: 16px; }
+.queue-explain-title {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 15px; font-weight: 800; color: var(--accent);
+  padding: 10px 16px; background: var(--accent-light);
+  border-radius: 10px; border: 1px solid var(--accent-border);
+}
+.queue-explain-title i { font-size: 16px; }
+.queue-explain-card .slide-insight { margin-top: auto; }
+.queue-explain-card .slide-insight strong { color: var(--text-primary); }
+.queue-board {
+  max-width: 520px; width: 100%;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.queue-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px; border-radius: 12px;
+  background: var(--card); border: 2px solid var(--border);
+  box-shadow: 0 1px 6px var(--shadow); opacity: 0;
+}
+.queue-item--gold { border-color: #D4A017; background: linear-gradient(135deg, #FFFDF4, #FFF9E6); }
+.queue-item--gold .queue-rank { background: #D4A017; }
+.queue-item--silver { border-color: #9CA3AF; background: linear-gradient(135deg, #FAFAFA, #F3F4F6); }
+.queue-item--silver .queue-rank { background: #9CA3AF; }
+.queue-item--normal .queue-rank { background: var(--accent); }
+/* waiting style removed — all items sorted by price, no cutoff */
+.queue-rank {
+  width: 28px; height: 28px; border-radius: 50%; color: white;
+  font-size: 12px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.queue-price { font-size: 15px; font-weight: 800; color: var(--text-primary); min-width: 70px; }
+.queue-text { font-size: 13px; color: var(--text-secondary); flex: 1; line-height: 1.4; word-break: keep-all; }
+.queue-tag {
+  font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.queue-tag--gold { background: #FEF3C7; color: #92400E; }
+.queue-tag--silver { background: #F3F4F6; color: #4B5563; }
+/* queue-tag--waiting removed — no waiting concept */
+/* cutline removed — no slot deadline concept */
+.queue-explain {
+  display: flex; flex-direction: column; gap: 16px; max-width: 400px;
+}
+.queue-explain-item {
+  display: flex; align-items: flex-start; gap: 10px; opacity: 0;
+}
+.queue-explain-num {
+  width: 24px; height: 24px; border-radius: 50%; background: var(--accent);
+  color: white; font-size: 11px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.queue-explain-text { font-size: 14px; color: var(--text-primary); line-height: 1.55; word-break: keep-all; }
+.slide.active .queue-item { animation: fadeInUp 0.4s ease forwards; }
+.slide.active .queue-item:nth-child(1) { animation-delay: 0.1s; }
+.slide.active .queue-item:nth-child(2) { animation-delay: 0.18s; }
+.slide.active .queue-item:nth-child(3) { animation-delay: 0.26s; }
+.slide.active .queue-item:nth-child(4) { animation-delay: 0.34s; }
+.slide.active .queue-item:nth-child(5) { animation-delay: 0.42s; }
+.slide.active .queue-item:nth-child(6) { animation-delay: 0.50s; }
+.slide.active .queue-explain-item { animation: fadeInUp 0.4s ease forwards; }
+.slide.active .queue-explain-item:nth-child(2) { animation-delay: 0.3s; }
+.slide.active .queue-explain-item:nth-child(3) { animation-delay: 0.4s; }
+.slide.active .queue-explain-item:nth-child(4) { animation-delay: 0.5s; }
+.slide.active .queue-explain-item:nth-child(5) { animation-delay: 0.55s; }
+
 
 /* Grade & commission */
 .commission-trust-row { display: flex; gap: 14px; width: 100%; max-width: 860px; margin-top: 12px; }
@@ -799,12 +897,13 @@ html, body {
 .slide.active .market-stat-item:nth-child(2) { animation: fadeInUp 0.5s ease 0.2s forwards; }
 .slide.active .market-stat-item:nth-child(3) { animation: fadeInUp 0.5s ease 0.3s forwards; }
 .slide.active .async-badge { animation: fadeInUp 0.5s ease 0.4s forwards; }
-/* Slide 7 — 수익 시나리오 */
+/* Slide 9 — 수익 시나리오 */
 .slide.active .curator-post { animation: fadeInLeft 0.5s ease 0.1s forwards; }
 .slide.active .slide-post-img { animation: fadeInLeft 0.5s ease 0.2s forwards; }
 .slide.active .paid-q-item:nth-child(1) { animation: fadeInRight 0.5s ease 0.1s forwards; }
 .slide.active .paid-q-item:nth-child(2) { animation: fadeInRight 0.5s ease 0.2s forwards; }
 .slide.active .paid-q-item:nth-child(3) { animation: fadeInRight 0.5s ease 0.35s forwards; }
+.slide.active .slide-insight { animation: fadeInUp 0.5s ease 0.45s forwards; }
 .slide.active .earn-summary-box { animation: fadeInUp 0.5s ease 0.45s forwards; }
 /* Slide 8 — 팬 유입 경로 */
 .slide.active .fan-flow > .fan-step:nth-child(1) { animation: fadeInUp 0.5s ease 0.1s forwards; }
@@ -1189,8 +1288,117 @@ kbd {
       </div>
     </div>
   </div>
-  <!-- ===== SLIDE 7 — 수익 시나리오 (The Proof) ===== -->
+  <!-- ===== SLIDE 7 — 팬의 결제 명분 (The Fan Psychology) ===== -->
   <div class="slide" id="slide-7">
+    <div class="slide-header">
+      <div class="slide-title">팬이 구매하는 것은 당신과 <span class="highlight">연결될 수 있는 티켓</span>입니다</div>
+      <div class="slide-subtitle">읽히지 않는 수천 건의 DM보다, 단 한 번의 확실한 답장 — 팬들의 갈증을 해결하세요.</div>
+    </div>
+    <div class="slide-content">
+      <!-- AS-IS vs TO-BE 대비 -->
+      <div class="two-col-compare">
+        <div class="card compare-col negative">
+          <div class="compare-col-title"><i class="fas fa-times-circle" style="margin-right:8px; opacity:0.5"></i>무료 DM</div>
+          <div class="compare-divider"></div>
+          <div class="compare-items">
+            <div class="compare-item"><i class="fas fa-heart-broken"></i><span>내가 보낸 메세지, 읽기는 했을까?</span></div>
+            <div class="compare-item"><i class="fas fa-comment"></i><span>가볍고 정제되지 않은 인사와 질문</span></div>
+            <div class="compare-item"><i class="fas fa-hourglass-half"></i><span>기약 없는 기다림</span></div>
+          </div>
+        </div>
+        <div class="card compare-col positive">
+          <div class="compare-col-title"><i class="fas fa-check-circle" style="margin-right:8px"></i>LUMIA 유료 질문</div>
+          <div class="compare-divider"></div>
+          <div class="compare-items">
+            <div class="compare-item"><i class="fas fa-smile-beam"></i><span>나만을 위한 특별한 답장 — 존중받는 경험</span></div>
+            <div class="compare-item"><i class="fas fa-pen-fancy"></i><span>비용을 지불한 만큼 신중하고 정중한 질문</span></div>
+            <div class="compare-item"><i class="fas fa-check-double"></i><span>보장된 답변, 특별한 연결 경험</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- 하단 인사이트 -->
+      <div class="slide-insight">
+        결제는 팬에게 장벽이 아닙니다. <strong>'답변의 확신'</strong>이라는 리워드이자, 당신에게 확실히 닿을 수 있는 가장 합리적인 방법입니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 8 — 경쟁 구조 (The Auction Logic) ===== -->
+  <div class="slide" id="slide-8">
+    <div class="slide-header">
+      <div class="slide-title">당신은 <span class="highlight">응답</span>만 하세요, 가치는 팬들이 결정합니다</div>
+      <div class="slide-subtitle">팬들이 스스로 가치를 입찰(Bidding)하는 구조 — 자연스럽게 경쟁의 선순환이 발생합니다.</div>
+    </div>
+    <div class="slide-content">
+      <div class="queue-layout">
+        <div class="card queue-board-card">
+        <div class="queue-board">
+          <div class="queue-item queue-item--gold">
+            <div class="queue-rank">1</div>
+            <div class="queue-price">₩30,000</div>
+            <div class="queue-text">유럽 한달살기 루트 조언 부탁드려요</div>
+            <div class="queue-tag queue-tag--gold">우선 답변 · 정성 답변</div>
+          </div>
+          <div class="queue-item queue-item--gold">
+            <div class="queue-rank">2</div>
+            <div class="queue-price">₩15,000</div>
+            <div class="queue-text">혼자여행 시 안전 팁 알려주세요</div>
+            <div class="queue-tag queue-tag--gold">우선 답변 · 정성 답변</div>
+          </div>
+          <div class="queue-item queue-item--silver">
+            <div class="queue-rank">3</div>
+            <div class="queue-price">₩10,000</div>
+            <div class="queue-text">현지인처럼 여행하는 법?</div>
+            <div class="queue-tag queue-tag--silver">우선 답변</div>
+          </div>
+          <div class="queue-item queue-item--silver">
+            <div class="queue-rank">4</div>
+            <div class="queue-price">₩7,000</div>
+            <div class="queue-text">짐 싸는 노하우 궁금해요</div>
+            <div class="queue-tag queue-tag--silver">우선 답변</div>
+          </div>
+          <div class="queue-item queue-item--normal">
+            <div class="queue-rank">5</div>
+            <div class="queue-price">₩5,000</div>
+            <div class="queue-text">그 카페 위치 알려주세요</div>
+          </div>
+          <div class="queue-item queue-item--normal">
+            <div class="queue-rank">6</div>
+            <div class="queue-price">₩3,000</div>
+            <div class="queue-text">다음 여행지 추천해주세요</div>
+          </div>
+        </div>
+        </div>
+        <div class="card queue-explain-card">
+        <div class="queue-explain">
+          <div class="queue-explain-title"><i class="fas fa-cogs"></i>시스템이 제공하는 것</div>
+          <div class="queue-explain-item">
+            <div class="queue-explain-num">1</div>
+            <div class="queue-explain-text"><strong>자동 정렬</strong><br>후원 금액이 높을수록 상단에 자동 배치</div>
+          </div>
+          <div class="queue-explain-item">
+            <div class="queue-explain-num">2</div>
+            <div class="queue-explain-text"><strong>우선순위</strong><br>높은 금액의 질문에 우선 답변하며,<br>자연스럽게 더 정성을 담게 됩니다</div>
+          </div>
+          <div class="queue-explain-item">
+            <div class="queue-explain-num">3</div>
+            <div class="queue-explain-text"><strong>경쟁의 선순환</strong><br>정성 어린 답변을 본 팬들은 더 높은 가치를 지불합니다</div>
+          </div>
+          <div class="queue-explain-item">
+            <div class="queue-explain-num">4</div>
+            <div class="queue-explain-text"><strong>미응답 댓글 자동 환불</strong><br>24시간 내 미응답 시 결제 금액 자동 환불하여</br>운영 부담을 최소화 합니다</div>
+          </div>
+          <div class="slide-insight" style="max-width:100%; padding:14px 18px;">
+            <strong>시스템이 정렬하고, 당신은 응답하고, 팬이 가치를 결정</strong>합니다.
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 9 — 수익 시나리오 (The Proof) ===== -->
+  <div class="slide" id="slide-9">
     <div class="slide-header">
       <div class="slide-title">하루 <span class="highlight">답변 3건</span>이 만드는 월 수익</div>
     </div>
@@ -1255,8 +1463,8 @@ kbd {
     </div>
   </div>
 
-  <!-- ===== SLIDE 8 — 팬 유입 경로 (The Fan Journey) ===== -->
-  <div class="slide" id="slide-8">
+  <!-- ===== SLIDE 10 — 팬 유입 경로 (The Fan Journey) ===== -->
+  <div class="slide" id="slide-10">
     <div class="slide-header">
       <div class="slide-title">당신의 팔로워를 LUMIA로 <span class="highlight">초대하세요</span></div>
       <div class="slide-subtitle">팔로워에서 후원 팬으로</div>
@@ -1287,8 +1495,8 @@ kbd {
     </div>
   </div>
 
-  <!-- ===== SLIDE 9 — 역할 분담 (The Peace of Mind) ===== -->
-  <div class="slide" id="slide-9">
+  <!-- ===== SLIDE 11 — 역할 분담 (The Peace of Mind) ===== -->
+  <div class="slide" id="slide-11">
     <div class="slide-header">
       <div class="slide-title">그리고, '<span class="highlight">관계</span>'에 집중하세요</div>
       <div class="slide-subtitle">나머지는 LUMIA가 담당합니다</div>
@@ -1341,8 +1549,8 @@ kbd {
     </div>
   </div>
 
-  <!-- ===== SLIDE 10 — 베타 혜택 (The Exclusive) ===== -->
-  <div class="slide" id="slide-10">
+  <!-- ===== SLIDE 12 — 베타 혜택 (The Exclusive) ===== -->
+  <div class="slide" id="slide-12">
     <div class="accent-dot dot-1"></div>
     <div class="accent-dot dot-2"></div>
     <div class="accent-dot dot-3"></div>
@@ -1383,15 +1591,15 @@ kbd {
         <div class="cta-meta">
           <div class="cta-meta-item">
             <i class="fas fa-envelope"></i>
-            <span>참여 문의: @lumia.com</span>
+            <span>참여 문의: @lumai.com</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ===== SLIDE 11 — 마무리 (The Closing) ===== -->
-  <div class="slide" id="slide-11">
+  <!-- ===== SLIDE 13 — 마무리 (The Closing) ===== -->
+  <div class="slide" id="slide-13">
     <div class="slide-header">
       <div class="slide-title"><span class="highlight">LUMIA</span>와 함께, 지금 시작하세요</div>
     </div>
@@ -1454,10 +1662,10 @@ kbd {
 <script>
 const slideTitles = [
   '표지', '고통', '선언', '시장', '진입 장벽',
-  '서비스 화면', '수익 시나리오', '팬 유입 경로', '역할 분담', '베타 혜택', '마무리'
+  '서비스 화면', '팬 심리', '경쟁 구조', '수익 시나리오', '팬 유입 경로', '역할 분담', '베타 혜택', '마무리'
 ];
 
-const totalSlides = 11;
+const totalSlides = 13;
 let currentSlide = 1;
 let isAnimating = false;
 
