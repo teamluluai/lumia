@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUMIA Influencer Proposal - V2 Responsive</title>
+<title>LUMIA Influencer Proposal</title>
 <meta property="og:title" content="LUMIA Influencer Proposal">
 <meta property="og:description" content="인플루언서를 위한 LUMIA 서비스 제안">
 <meta property="og:type" content="website">
@@ -43,18 +43,11 @@
 html, body {
   width: 100%; height: 100%; overflow: hidden;
   font-family: 'Noto Sans KR', sans-serif;
-  background: #000; /* 축소 시 여백 색상 */
+  background: var(--bg);
 }
 
 .presentation {
-  width: 1280px;  /* 기준 너비 */
-  height: 720px;  /* 기준 높이 */
-  transform-origin: top left;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  background: var(--bg);
+  position: relative; width: 100vw; height: 100vh; overflow: hidden;
 }
 
 /* Slide base */
@@ -983,9 +976,6 @@ kbd {
   border-radius: 4px; font-size: 11px; font-family: monospace;
   box-shadow: 0 1px 2px var(--shadow);
 }
-
-/* ===== VIEWPORT SCALING — Transform Scale Approach ===== */
-/* 기준 해상도: 1280x720 — 모든 해상도에서 동일한 레이아웃 유지 */
 </style>
 </head>
 <body>
@@ -1807,34 +1797,9 @@ function syncCoverCircle() {
   wrap.style.setProperty('--cover-circle-size', size + 'px');
 }
 
-// 뷰포트 스케일링 함수
-function scalePresentation() {
-  const presentation = document.getElementById('presentation');
-  const baseWidth = 1280;
-  const baseHeight = 720;
-
-  const scaleX = window.innerWidth / baseWidth;
-  const scaleY = window.innerHeight / baseHeight;
-  const scale = Math.min(scaleX, scaleY);
-
-  presentation.style.transform = `scale(${scale})`;
-
-  // 중앙 정렬
-  const offsetX = (window.innerWidth - baseWidth * scale) / 2;
-  const offsetY = (window.innerHeight - baseHeight * scale) / 2;
-  presentation.style.left = offsetX + 'px';
-  presentation.style.top = offsetY + 'px';
-}
-
 // 초기화 및 이벤트 바인딩
-window.addEventListener('load', () => {
-  scalePresentation();
-  syncCoverCircle();
-});
-window.addEventListener('resize', () => {
-  scalePresentation();
-  syncCoverCircle();
-});
+window.addEventListener('load', syncCoverCircle);
+window.addEventListener('resize', syncCoverCircle);
 document.fonts.ready.then(syncCoverCircle);
 </script>
 </body>
