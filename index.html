@@ -464,7 +464,7 @@ html, body {
 
 /* Phone frame */
 .phone-mockup {
-  width: 290px; flex-shrink: 0; background: var(--pm-frame); border-radius: 38px; padding: 10px;
+  width: 290px; flex-shrink: 0; background: var(--pm-frame); border-radius: 38px; padding: 6px;
   box-shadow: 0 30px 70px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 .phone-screen {
@@ -805,7 +805,7 @@ html, body {
 .role-card-title { font-size: 18px; font-weight: 700; color: var(--text-primary); }
 .role-divider { height: 1px; background: var(--border); margin-bottom: 16px; }
 .role-items { display: flex; flex-direction: column; gap: 14px; }
-.role-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px; background: var(--bg-subtle); border-radius: 10px; }
+.role-item { display: flex; align-items: center; gap: 14px; padding: 14px; background: var(--bg-subtle); border-radius: 10px; }
 .role-item p { font-size: 14px; color: var(--text-primary); line-height: 1.5; word-break: keep-all; }
 .slide.active .role-card.platform { animation: fadeInLeft 0.5s ease 0.1s forwards; }
 .slide.active .role-card.influencer { animation: fadeInRight 0.5s ease 0.2s forwards; }
@@ -1041,10 +1041,11 @@ kbd {
           <p>영상 제작이나 라이브 스트리밍은<br>진입 장벽이 너무 높습니다</p>
         </div>
       </div>
+        <div class="async-badge">
+          <p>당신의 영향력은 충분합니다. 다만, 그 영향력을 발휘할 구조가 없었을 뿐입니다</p>
+        </div>
     </div>
-    <div class="footer-bar">
-      <p>당신의 영향력은 충분합니다. 다만, 그 영향력을 발휘할 구조가 없었을 뿐입니다</p>
-    </div>
+
   </div>
 
   <!-- ===== SLIDE 3 — 선언 (The Paradigm Shift) ===== -->
