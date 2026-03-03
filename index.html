@@ -227,11 +227,11 @@ html, body {
 }
 .cover-bg-circle {
   position: absolute;
-  width: var(--cover-circle-size, 600px);
-  height: var(--cover-circle-size, 600px);
+  width: 600px;
+  height: 600px;
   border: 2px dashed oklch(51.4% .228 250 / 0.15);
   border-radius: 50%;
-  top: -250%;
+  top: -200%;
   left: -10%;
   transform: translate(-50%, -50%);
   animation: rotate 60s linear infinite;
@@ -1794,19 +1794,6 @@ setTimeout(() => { if (keyboardHint) keyboardHint.style.opacity = '0'; }, 4000);
 
 updateNav(1);
 
-// Cover circle 반응형 크기 조절
-function syncCoverCircle() {
-  const wrap = document.querySelector('.main-message-wrap');
-  const circle = document.querySelector('.cover-bg-circle');
-  if (!wrap || !circle) return;
-
-  const rect = wrap.getBoundingClientRect();
-  const diagonal = Math.sqrt(rect.width ** 2 + rect.height ** 2);
-  const size = diagonal * 1.5; // 텍스트 대각선의 1.5배
-
-  wrap.style.setProperty('--cover-circle-size', size + 'px');
-}
-
 // 뷰포트 스케일링 함수
 function scalePresentation() {
   const presentation = document.getElementById('presentation');
@@ -1827,15 +1814,8 @@ function scalePresentation() {
 }
 
 // 초기화 및 이벤트 바인딩
-window.addEventListener('load', () => {
-  scalePresentation();
-  syncCoverCircle();
-});
-window.addEventListener('resize', () => {
-  scalePresentation();
-  syncCoverCircle();
-});
-document.fonts.ready.then(syncCoverCircle);
+window.addEventListener('load', scalePresentation);
+window.addEventListener('resize', scalePresentation);
 </script>
 </body>
 </html>
