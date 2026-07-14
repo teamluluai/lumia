@@ -862,14 +862,19 @@ body {
 }
 .mini-thumb {
   width: 92px; height: 54px; border-radius: 8px;
-  background: linear-gradient(135deg, #062654, #0A4C8F 50%, #35A3D6);
+  background: linear-gradient(135deg, #0C7F84, #24B3A3);
   position: relative; flex-shrink: 0;
+  overflow: hidden;
 }
-.mini-thumb i {
+.mini-play {
   position: absolute; left: 50%; top: 50%;
   transform: translate(-50%, -50%);
-  color: rgba(255,255,255,0.95); font-size: 15px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 1px 5px rgba(4, 40, 45, 0.35);
 }
+.mini-play i { color: var(--navy); font-size: 8px; margin-left: 1px; }
 .mini-video-info .mv-src { font-size: 10.5px; font-weight: 700; color: #B91C1C; letter-spacing: 0.03em; }
 .mini-video-info .mv-src i { margin-right: 4px; }
 .mini-video-info .mv-title { font-size: 13px; font-weight: 600; color: var(--text-strong); margin-top: 3px; line-height: 1.4; }
@@ -1196,6 +1201,15 @@ body {
 .cover-wave span:nth-child(1), .cover-wave span:nth-child(5) { height: 18px; }
 .cover-wave span:nth-child(2), .cover-wave span:nth-child(4) { height: 34px; }
 .cover-wave span:nth-child(3) { height: 50px; background: var(--navy); }
+
+/* Emerald sea video thumbnail (inline SVG scene) */
+.sea-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 
 /* Phone status bar */
 .pm-status {
@@ -1538,6 +1552,34 @@ body {
               </div>
               <div class="pm-comment">"여러분은 여행 계획할 때 즉흥형인가요, 계획형인가요?"</div>
               <div class="pm-video">
+                <svg class="sea-thumb" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="sea-sky-a" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#E9F7FC"/>
+                      <stop offset="1" stop-color="#C6EBF5"/>
+                    </linearGradient>
+                    <linearGradient id="sea-water-a" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#6FDACD"/>
+                      <stop offset="0.42" stop-color="#24B3A3"/>
+                      <stop offset="1" stop-color="#0B7B81"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="320" height="70" fill="url(#sea-sky-a)"/>
+                  <circle cx="256" cy="30" r="20" fill="#FFF9EA" opacity="0.45"/>
+                  <circle cx="256" cy="30" r="12" fill="#FFFDF4"/>
+                  <path d="M14 70 C34 54 58 54 76 70 Z" fill="#6FA9BE" opacity="0.75"/>
+                  <path d="M82 70 C92 62 104 62 112 70 Z" fill="#8CBECF" opacity="0.6"/>
+                  <rect y="70" width="320" height="110" fill="url(#sea-water-a)"/>
+                  <ellipse cx="256" cy="86" rx="44" ry="6" fill="#FFFFFF" opacity="0.28"/>
+                  <ellipse cx="256" cy="100" rx="28" ry="4" fill="#FFFFFF" opacity="0.2"/>
+                  <ellipse cx="256" cy="112" rx="16" ry="3" fill="#FFFFFF" opacity="0.14"/>
+                  <path d="M0 90 Q40 86 80 90 T160 90 T240 90 T320 90" stroke="#9BEDE1" stroke-width="1.6" fill="none" opacity="0.45"/>
+                  <path d="M0 110 Q50 105 100 110 T200 110 T320 109" stroke="#AFF2E8" stroke-width="2" fill="none" opacity="0.4"/>
+                  <path d="M0 132 Q60 127 120 132 T240 131 T320 130" stroke="#BDF5EC" stroke-width="2.2" fill="none" opacity="0.35"/>
+                  <path d="M0 180 V152 Q80 144 160 152 T320 150 V180 Z" fill="#4BD8C6" opacity="0.5"/>
+                  <path d="M0 164 Q60 158 120 164 T240 163 T320 162" stroke="#FFFFFF" stroke-width="3" fill="none" opacity="0.55" stroke-linecap="round"/>
+                  <path d="M34 174 Q84 170 134 174 T234 173" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.45" stroke-linecap="round"/>
+                </svg>
                 <div class="pm-play"><i class="fa-solid fa-play"></i></div>
                 <div class="pm-video-meta">
                   <span class="pm-duration">08:24</span>
@@ -1690,7 +1732,34 @@ body {
             <p class="cp-body">"같은 코스를 봐도 어디를 갔는지보다 <b>왜 그 길을 택했는지</b>가 더 궁금해지더라고요. 여러분은 여행 계획할 때 즉흥형인가요, 계획형인가요?"</p>
           </div>
           <div class="mini-video a-left d2">
-            <div class="mini-thumb"><i class="fa-solid fa-play"></i></div>
+            <div class="mini-thumb">
+              <svg class="sea-thumb" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                  <linearGradient id="sea-sky-b" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#E9F7FC"/>
+                    <stop offset="1" stop-color="#C6EBF5"/>
+                  </linearGradient>
+                  <linearGradient id="sea-water-b" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#6FDACD"/>
+                    <stop offset="0.42" stop-color="#24B3A3"/>
+                    <stop offset="1" stop-color="#0B7B81"/>
+                  </linearGradient>
+                </defs>
+                <rect width="320" height="70" fill="url(#sea-sky-b)"/>
+                <circle cx="256" cy="30" r="20" fill="#FFF9EA" opacity="0.45"/>
+                <circle cx="256" cy="30" r="12" fill="#FFFDF4"/>
+                <path d="M14 70 C34 54 58 54 76 70 Z" fill="#6FA9BE" opacity="0.75"/>
+                <path d="M82 70 C92 62 104 62 112 70 Z" fill="#8CBECF" opacity="0.6"/>
+                <rect y="70" width="320" height="110" fill="url(#sea-water-b)"/>
+                <ellipse cx="256" cy="86" rx="44" ry="6" fill="#FFFFFF" opacity="0.28"/>
+                <ellipse cx="256" cy="100" rx="28" ry="4" fill="#FFFFFF" opacity="0.2"/>
+                <path d="M0 96 Q40 92 80 96 T160 96 T240 96 T320 96" stroke="#9BEDE1" stroke-width="2.4" fill="none" opacity="0.45"/>
+                <path d="M0 126 Q50 121 100 126 T200 126 T320 125" stroke="#AFF2E8" stroke-width="2.8" fill="none" opacity="0.4"/>
+                <path d="M0 180 V152 Q80 144 160 152 T320 150 V180 Z" fill="#4BD8C6" opacity="0.5"/>
+                <path d="M0 164 Q60 158 120 164 T240 163 T320 162" stroke="#FFFFFF" stroke-width="3.4" fill="none" opacity="0.55" stroke-linecap="round"/>
+              </svg>
+              <span class="mini-play"><i class="fa-solid fa-play"></i></span>
+            </div>
             <div class="mini-video-info">
               <div class="mv-src"><i class="fa-brands fa-youtube"></i>YouTube</div>
               <div class="mv-title">국내에서 가장 아름다운 에메랄드빛 바다 TOP 3</div>
