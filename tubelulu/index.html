@@ -3,1994 +3,1659 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TubeLuLu 서비스 소개서</title>
-<meta name="description" content="TubeLuLu — 큐레이터의 해석을 먼저 읽는 서비스. 유튜브 큐레이션과 유료 질문으로 팬과 더 깊이 연결되는 프리미엄 큐레이션 플랫폼 소개서.">
-<meta property="og:title" content="TubeLuLu 서비스 소개서">
-<meta property="og:description" content="큐레이터의 해석을 먼저 읽고, 원문 영상과 질문·답변 흐름을 이어가는 큐레이션 서비스 TubeLuLu를 소개합니다.">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="https://tubelulu.com/og-image.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Noto+Serif+KR:wght@600;700&display=swap">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<title>TubeLuLu 서비스 소개 — 큐레이터 파트너 제안</title>
+</head>
+<body>
 <style>
 /* ============================================================
-   TubeLuLu Service Introduction — "Ink & Ice"
-   Dark cinematic editorial · headline-as-visual · hairline grid
-   Brand: navy #09347A · sky #3399CC · ice #8ECAE6 · hearts #F1632A
+   TubeLuLu Creator City — isometric pitch deck
+   Palette: Boise navy/blue/sky + warm orange hearts, gold coins
    ============================================================ */
-:root {
-  --ink-0: #030B16;
-  --ink-1: #04101F;
-  --ink-2: #071B36;
-  --ink-3: #0A2B55;
-  --navy: #09347A;
-  --sky: #3399CC;
-  --ice: #8ECAE6;
-  --ice-soft: #C9E8F5;
-  --white: #F4F9FC;
-  --muted: rgba(214, 232, 242, 0.64);
-  --faint: rgba(214, 232, 242, 0.38);
-  --hair: rgba(142, 202, 230, 0.18);
-  --hair-strong: rgba(142, 202, 230, 0.34);
-  --panel: rgba(255, 255, 255, 0.035);
-  --panel-edge: rgba(255, 255, 255, 0.09);
-  --heart: #FF8A5C;
-  --heart-deep: #F1632A;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #09347a;
+  --navy-deep: #062654;
+  --navy-hover: #13478f;
+  --blue: #007dc3;
+  --blue-d: #0169a4;
+  --sky: #3399cc;
+  --wash: #e6f4fb;
+  --heart: #f1632a;
+  --heart-soft: #fdeee6;
+  --gold: #f2b234;
+  --ink: #10233f;
+  --ink-2: #46586f;
+  --ink-3: #8296ab;
+  --paper: #ffffff;
+  --paper-2: #f3f8fc;
+  --line: #dbe7f0;
+  --good: #1d8f74;
+  --font: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
+          "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+}
 
 html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #01050C;
-}
-
-body {
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Noto Sans KR", sans-serif;
-  color: var(--white);
-  letter-spacing: -0.01em;
-  word-break: keep-all;
-  font-feature-settings: "tnum";
+  width: 100%; height: 100%; overflow: hidden;
+  background: #061c3f;
+  font-family: var(--font);
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Stage & slides ---------- */
-.presentation {
-  width: 1280px;
-  height: 720px;
-  position: absolute;
+/* ===== Stage: fixed 1280x720, scaled to viewport ===== */
+.stage {
+  position: absolute; top: 0; left: 0;
+  width: 1280px; height: 720px;
   transform-origin: top left;
   overflow: hidden;
-  background: var(--ink-1);
+  background: linear-gradient(180deg, #bfe0f6 0%, #ddeffa 52%, #eef7fd 100%);
+  color: var(--ink);
 }
 
+/* ============================================================
+   ISOMETRIC CITY
+   ============================================================ */
+.scene { position: absolute; inset: 0; }
+.camera {
+  position: absolute; left: 50%; top: 50%;
+  width: 0; height: 0;
+  transition: transform 1.5s cubic-bezier(0.24, 0.9, 0.32, 1);
+  will-change: transform;
+}
+.world {
+  position: absolute; left: 0; top: 0; width: 0; height: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(60deg) rotateZ(45deg);
+}
+.ground {
+  position: absolute; width: 1640px; height: 1640px; left: -820px; top: -820px;
+  background: #d7e8f2;
+  border-radius: 34px;
+  box-shadow: 0 0 0 12px rgba(9, 52, 122, 0.05), 0 0 0 44px rgba(9, 52, 122, 0.025);
+}
+.block { position: absolute; background: #c9ddec; border-radius: 12px; }
+.block.green { background: #b9dfc2; }
+.block.plaza { background: #dfe9f1; }
+
+.road { position: absolute; background: #47536b; }
+.road.h { height: 52px; left: -820px; width: 1640px; }
+.road.v { width: 52px; top: -820px; height: 1640px; }
+.road.h .lane {
+  position: absolute; left: 0; right: 0; top: 50%; height: 3px; margin-top: -1.5px;
+  background: repeating-linear-gradient(90deg, #f2e5a4 0 20px, transparent 20px 44px);
+}
+.road.v .lane {
+  position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; margin-left: -1.5px;
+  background: repeating-linear-gradient(180deg, #f2e5a4 0 20px, transparent 20px 44px);
+}
+
+/* --- box primitive: footprint --w x --d, height --h at translate3d --- */
+.b { position: absolute; transform-style: preserve-3d; }
+.b > i { position: absolute; left: 0; top: 0; transform-origin: 0 0; display: block; }
+.b > .top { width: var(--w); height: var(--d); transform: translateZ(var(--h)); background: var(--ct, #fff); }
+.b > .fs  { width: var(--w); height: var(--h); transform: translate3d(0, var(--d), 0) rotateX(90deg); background: var(--cs, #eef3f8); }
+.b > .fe  { width: var(--h); height: var(--d); transform: translate3d(var(--w), 0, 0) rotateY(-90deg); background: var(--ce, #c3d4e3); }
+.b > .top { box-shadow: inset 0 0 0 3px rgba(255,255,255,0.35); }
+
+/* windows: glass base + wall-colored mullion grid */
+.b.win > .fs {
+  background-color: var(--wc, #b9cfe4);
+  background-image:
+    repeating-linear-gradient(0deg, var(--cs, #eef3f8) 0 5px, transparent 5px 15px),
+    repeating-linear-gradient(90deg, var(--cs, #eef3f8) 0 6px, transparent 6px 19px);
+}
+.b.win > .fe {
+  background-color: var(--wc2, var(--wc, #a9c2d9));
+  background-image:
+    repeating-linear-gradient(0deg, var(--ce, #c3d4e3) 0 5px, transparent 5px 15px),
+    repeating-linear-gradient(90deg, var(--ce, #c3d4e3) 0 6px, transparent 6px 19px);
+}
+/* soft ground shadow */
+.b.sh::before {
+  content: ''; position: absolute; left: 6px; top: 6px;
+  width: var(--w); height: var(--d);
+  background: rgba(9, 52, 122, 0.14); filter: blur(7px); border-radius: 8px;
+}
+
+.roofsign {
+  position: absolute; display: flex; align-items: center; justify-content: center;
+  font-weight: 900; color: #fff; letter-spacing: 0;
+}
+
+/* ground decals (flat on the ground plane) */
+.decal { position: absolute; display: flex; align-items: center; justify-content: center; }
+
+/* trees */
+.tree { position: absolute; transform-style: preserve-3d; }
+
+/* cars */
+.car { position: absolute; transform-style: preserve-3d; }
+
+@keyframes driveE { from { transform: translate3d(-880px, 0, 0); } to { transform: translate3d(840px, 0, 0); } }
+@keyframes driveW { from { transform: translate3d(840px, 0, 0); }  to { transform: translate3d(-880px, 0, 0); } }
+@keyframes driveS { from { transform: translate3d(0, -880px, 0); } to { transform: translate3d(0, 840px, 0); } }
+@keyframes driveN { from { transform: translate3d(0, 840px, 0); }  to { transform: translate3d(0, -880px, 0); } }
+
+/* fx overlays (2D, inside camera space) */
+.fx { position: absolute; pointer-events: none; }
+.coin {
+  position: absolute; width: 24px; height: 24px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffd97a, #f2b234 58%, #d99a1f);
+  border: 2px solid #c8890f; color: #7c5304;
+  font: 800 13px/20px var(--font); text-align: center;
+  animation: rise 2.8s ease-out infinite;
+}
+.heartfx {
+  position: absolute; font-size: 24px; color: #ef4351;
+  animation: rise 3.2s ease-out infinite;
+  text-shadow: 0 2px 6px rgba(220, 44, 60, 0.3);
+}
+@keyframes rise {
+  0%   { transform: translateY(0) scale(0.6); opacity: 0; }
+  22%  { opacity: 1; }
+  100% { transform: translateY(-96px) scale(1.05); opacity: 0; }
+}
+.cloud { position: absolute; filter: blur(2px); opacity: 0.92; }
+.cloud i { position: absolute; background: #fff; border-radius: 100px; display: block; }
+@keyframes drift { from { transform: translateX(-70px); } to { transform: translateX(110px); } }
+
+/* ============================================================
+   SLIDES
+   ============================================================ */
+.slides { position: absolute; inset: 0; pointer-events: none; }
 .slide {
-  position: absolute;
-  inset: 0;
-  padding: 60px 96px 86px;
-  display: none;
-  flex-direction: column;
-  background:
-    radial-gradient(1500px 950px at 78% -12%, var(--ink-3) 0%, var(--ink-2) 42%, var(--ink-1) 78%, var(--ink-0) 100%);
-  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
+  position: absolute; inset: 0; display: none;
+  padding: 44px 56px 92px;
+  align-items: center;
 }
 .slide.active { display: flex; }
-.slide.anim-stage { display: flex; }
+.slide > * { pointer-events: auto; }
 
-/* ---------- Editorial signatures ---------- */
-.ghost-num {
-  position: absolute;
-  top: 6px;
-  right: 60px;
-  font-family: "Poppins", sans-serif;
-  font-size: 216px;
-  font-weight: 700;
-  line-height: 1;
-  color: rgba(142, 202, 230, 0.055);
-  letter-spacing: -0.04em;
-  pointer-events: none;
-  user-select: none;
+.panel {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 1px solid rgba(219, 231, 240, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(6, 38, 84, 0.18), 0 2px 8px rgba(6, 38, 84, 0.08);
+  padding: 34px 38px;
 }
+.slide.active .panel { animation: panelIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both; }
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.pos-left  { width: 620px; margin-right: auto; }
+.pos-right { width: 620px; margin-left: auto; }
+.pos-wide  { width: 1120px; margin: 0 auto; }
 
-.slide-eyebrow {
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: #7EC8E3;
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-.slide-eyebrow .idx {
-  font-family: "Poppins", sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: var(--faint);
+/* staggered reveal */
+.slide.active .rv { animation: rvIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.slide.active .rv:nth-of-type(1) { animation-delay: 0.30s; }
+.slide.active .rv:nth-of-type(2) { animation-delay: 0.42s; }
+.slide.active .rv:nth-of-type(3) { animation-delay: 0.54s; }
+.slide.active .rv:nth-of-type(4) { animation-delay: 0.66s; }
+.slide.active .rv:nth-of-type(5) { animation-delay: 0.78s; }
+.slide.active .rv:nth-of-type(6) { animation-delay: 0.90s; }
+@keyframes rvIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.slide-title {
-  font-size: 52px;
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.24;
-  color: var(--white);
-  max-width: 1020px;
+/* typography */
+.district {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--blue-d); background: var(--wash);
+  border: 1px solid #cfe7f5; border-radius: 100px;
+  padding: 6px 14px; margin-bottom: 14px;
 }
-.slide-title .hl { color: var(--ice); }
-
-.slide-subtitle {
-  font-size: 17px;
-  font-weight: 400;
-  color: var(--muted);
-  margin-top: 14px;
-  line-height: 1.6;
+.district::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--heart);
 }
-
-.slide-header { margin-bottom: 20px; position: relative; z-index: 2; }
-.header-rule {
-  height: 1px;
-  background: linear-gradient(90deg, var(--hair-strong), var(--hair) 60%, transparent);
-  margin-top: 26px;
+.h1 {
+  font-size: 33px; font-weight: 900; line-height: 1.28;
+  letter-spacing: -0.035em; word-break: keep-all; color: var(--ink);
+  text-wrap: balance; margin-bottom: 10px;
 }
-
-.slide-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 0;
-  position: relative;
-  z-index: 2;
+.h1 .hl { color: var(--blue); }
+.h1 .hl-w { color: var(--heart); }
+.sub {
+  font-size: 16px; font-weight: 400; color: var(--ink-2);
+  line-height: 1.6; word-break: keep-all; margin-bottom: 20px;
+}
+.note {
+  font-size: 12px; color: var(--ink-3); line-height: 1.55;
+  word-break: keep-all; margin-top: 14px;
 }
 
-/* takeaway — editorial closing line */
-.takeaway {
-  margin-top: 30px;
-  text-align: center;
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--muted);
-  line-height: 1.6;
-}
-.takeaway strong { color: var(--ice); font-weight: 700; }
-.takeaway::before {
-  content: "";
-  display: block;
-  width: 44px;
-  height: 2px;
-  background: var(--sky);
-  border-radius: 2px;
-  margin: 0 auto 16px;
-}
-.takeaway .sub {
-  display: block;
-  margin-top: 7px;
-  font-size: 13.5px;
-  font-weight: 400;
-  color: var(--faint);
-}
+svg.ic { width: 22px; height: 22px; stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+svg.ic.fill { fill: currentColor; stroke: none; }
 
-/* soundwave brand motif */
-.wave-mark {
-  position: absolute;
-  right: 88px;
-  bottom: 78px;
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  opacity: 0.1;
-  pointer-events: none;
-  z-index: 1;
-}
-.wave-mark span { width: 15px; border-radius: 8px; background: var(--ice); }
-.wave-mark span:nth-child(1), .wave-mark span:nth-child(5) { height: 36px; }
-.wave-mark span:nth-child(2), .wave-mark span:nth-child(4) { height: 66px; }
-.wave-mark span:nth-child(3) { height: 96px; background: #FFFFFF; }
-
-/* hearts */
-.heart-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #FFF4EF;
-  border: 1px solid #F8C4AC;
-  color: #C74A17;
-  border-radius: 999px;
-  padding: 4px 12px;
-  font-size: 13px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.heart-pill i { font-size: 11px; color: var(--heart-deep); }
-.heart-pill.dk {
-  background: rgba(241, 99, 42, 0.13);
-  border-color: rgba(255, 138, 92, 0.42);
-  color: #FFB08E;
-}
-.heart-pill.dk i { color: var(--heart); }
-
-/* white product card (mockups only — the product glows in the dark) */
-.product-card {
-  background: #FFFFFF;
-  border-radius: 18px;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(142, 202, 230, 0.22);
-  color: #111827;
-}
-
-/* ---------- Animations ---------- */
-@keyframes fadeInUp   { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeInLeft { from { opacity: 0; transform: translateX(-26px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes fadeInRight{ from { opacity: 0; transform: translateX(26px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes scaleIn    { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-@keyframes spinSlow   { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-.a-up, .a-left, .a-right, .a-scale { opacity: 0; }
-.slide.active .a-up    { animation: fadeInUp 0.7s ease forwards; }
-.slide.active .a-left  { animation: fadeInLeft 0.7s ease forwards; }
-.slide.active .a-right { animation: fadeInRight 0.7s ease forwards; }
-.slide.active .a-scale { animation: scaleIn 0.6s ease forwards; }
-.d1 { animation-delay: 0.10s !important; }
-.d2 { animation-delay: 0.20s !important; }
-.d3 { animation-delay: 0.30s !important; }
-.d4 { animation-delay: 0.40s !important; }
-.d5 { animation-delay: 0.50s !important; }
-.d6 { animation-delay: 0.60s !important; }
-.d7 { animation-delay: 0.70s !important; }
-
-/* ============================================================
-   Slide 1 — Cover
-   ============================================================ */
-.cover-mast {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  margin-bottom: 8px;
-}
-.cover-mast svg { width: 42px; height: 42px; }
-.cover-mast .wm {
-  font-family: "Poppins", sans-serif;
-  font-size: 23px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-.cover-mast .wm .t { color: #FFFFFF; }
-.cover-mast .wm .l { color: var(--ice); }
-
-.cover-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-}
-.cover-eyebrow {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #7EC8E3;
-  margin-bottom: 30px;
-}
-.cover-headline {
-  font-size: 78px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.18;
-  color: var(--white);
-}
-.cover-headline .hl {
-  color: var(--ice);
-  position: relative;
-}
-.cover-headline .hl::after {
-  content: "";
-  position: absolute;
-  left: 2px;
-  right: 2px;
-  bottom: 6px;
-  height: 3px;
-  background: rgba(142, 202, 230, 0.5);
-  border-radius: 2px;
-}
-.cover-tagline {
-  font-family: "Noto Serif KR", Georgia, serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: rgba(201, 232, 245, 0.82);
-  margin-top: 34px;
-  letter-spacing: 0;
-}
-
-.cover-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid var(--hair);
-  padding-top: 22px;
-  position: relative;
-  z-index: 2;
-}
-.cover-foot .desc { font-size: 13.5px; color: var(--faint); letter-spacing: 0.02em; }
-.cover-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  border: 1px solid var(--hair-strong);
-  color: var(--ice-soft);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  border-radius: 999px;
-  padding: 10px 22px;
-  text-decoration: none;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-.cover-link i { font-size: 10.5px; color: var(--sky); }
-.cover-link:hover { background: rgba(142, 202, 230, 0.1); border-color: var(--ice); }
-
-.cover-orbit {
-  position: absolute;
-  width: 640px;
-  height: 640px;
-  border: 1.5px dashed rgba(142, 202, 230, 0.16);
-  border-radius: 50%;
-  right: -190px;
-  top: 50%;
-  margin-top: -320px;
-  animation: spinSlow 80s linear infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-.cover-orbit::before {
-  content: "";
-  position: absolute;
-  inset: 70px;
-  border: 1px dashed rgba(142, 202, 230, 0.1);
-  border-radius: 50%;
-}
-
-/* ============================================================
-   Slide 2 — Pain (editorial quote rows)
-   ============================================================ */
-.pain-list { max-width: 900px; }
-.pain-row {
-  display: grid;
-  grid-template-columns: 54px 1fr 300px;
-  gap: 26px;
-  align-items: center;
-  padding: 25px 0;
-  border-bottom: 1px solid var(--hair);
-}
-.pain-row:first-child { padding-top: 6px; }
-.pain-row i.qmark {
-  font-size: 26px;
-  color: rgba(142, 202, 230, 0.5);
-  justify-self: start;
-  margin-top: 2px;
-}
-.pain-quote {
-  font-size: 22.5px;
-  font-weight: 700;
-  line-height: 1.45;
-  color: var(--white);
-  letter-spacing: -0.02em;
-}
-.pain-diag {
-  font-size: 13.5px;
-  color: var(--muted);
-  line-height: 1.65;
-  border-left: 2px solid var(--hair-strong);
-  padding-left: 18px;
-}
-
-/* ============================================================
-   Slide 3 — Shift (statement)
-   ============================================================ */
-.shift-wrap { max-width: 980px; }
-.shift-line {
-  display: flex;
-  align-items: baseline;
-  gap: 18px;
-  font-size: 20px;
-  color: var(--muted);
-  line-height: 1.6;
-  padding: 13px 0;
-}
-.shift-line .tick { width: 22px; height: 2px; background: var(--hair-strong); border-radius: 2px; flex-shrink: 0; align-self: center; }
-.shift-pivot {
-  font-family: "Noto Serif KR", Georgia, serif;
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 1.5;
-  color: var(--white);
-  margin: 26px 0;
-  padding: 30px 0;
-  border-top: 1px solid var(--hair-strong);
-  border-bottom: 1px solid var(--hair-strong);
-}
-.shift-pivot em { font-style: normal; color: var(--ice); }
-.shift-close {
-  font-size: 20px;
-  color: var(--muted);
-  padding: 13px 0 0;
-}
-.shift-close strong { color: var(--ice-soft); font-weight: 600; }
-
-/* ============================================================
-   Slide 4 — Market (giant numerals)
-   ============================================================ */
-.stats-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  margin: 6px 0 30px;
-}
-.stat-col { padding: 10px 40px 4px; border-left: 1px solid var(--hair); }
-.stat-col:first-child { border-left: none; padding-left: 0; }
-.stat-big {
-  font-family: "Poppins", "Pretendard Variable", sans-serif;
-  font-size: 84px;
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 1;
-  background: linear-gradient(160deg, #FFFFFF 20%, var(--ice) 90%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.stat-big small {
-  font-family: "Pretendard Variable", sans-serif;
-  font-size: 27px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.stat-cap { margin-top: 13px; font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-.market-rows { border-top: 1px solid var(--hair-strong); max-width: 1088px; }
-.market-row {
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 30px;
-  padding: 15px 4px;
-  border-bottom: 1px solid var(--hair);
-  align-items: baseline;
-}
-.market-row .svc { font-size: 15.5px; font-weight: 700; color: var(--white); }
-.market-row .svc small { display: block; font-size: 11px; font-weight: 500; color: var(--faint); margin-top: 2px; }
-.market-row .desc { font-size: 14px; color: var(--muted); }
-
-.market-note {
-  margin-top: 22px;
-  text-align: center;
-  font-size: 15.5px;
-  color: var(--muted);
-}
-.market-note strong { color: var(--ice-soft); }
-.stat-source {
-  margin-top: 10px;
-  text-align: right;
-  font-size: 10px;
-  color: var(--faint);
-  letter-spacing: 0.01em;
-}
-
-/* ============================================================
-   Slide 5 — Gap (dark ghost vs white light panel)
-   ============================================================ */
-.gap-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  max-width: 1060px;
-  margin: 0 auto;
-  width: 100%;
-}
-.gap-panel { border-radius: 20px; padding: 28px 32px; }
-.gap-panel.neg {
-  background: var(--panel);
-  border: 1px solid var(--panel-edge);
-}
-.gap-panel.pos {
-  background: #FFFFFF;
-  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(142, 202, 230, 0.25);
-}
-.gap-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 17.5px;
-  font-weight: 800;
-  padding-bottom: 16px;
-  margin-bottom: 6px;
-}
-.gap-panel.neg .gap-head { color: var(--faint); border-bottom: 1px solid var(--panel-edge); }
-.gap-panel.pos .gap-head { color: var(--navy); border-bottom: 1px solid #E5EDF4; }
-.gap-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 13px 0;
-  font-size: 15px;
-  line-height: 1.55;
-}
-.gap-panel.neg .gap-item { color: var(--muted); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
-.gap-panel.neg .gap-item:last-child { border-bottom: none; }
-.gap-panel.neg .gap-item i { color: var(--faint); margin-top: 4px; font-size: 13px; }
-.gap-panel.pos .gap-item { color: #1F2937; border-bottom: 1px solid #F0F4F8; }
-.gap-panel.pos .gap-item:last-child { border-bottom: none; }
-.gap-panel.pos .gap-item i { color: var(--sky); margin-top: 4px; font-size: 13px; }
-.gap-panel.pos .gap-item strong { color: var(--navy); font-weight: 700; }
-
-/* ============================================================
-   Slide 6 — Experience (solution list + phone)
-   ============================================================ */
-.exp-wrap {
-  display: flex;
-  gap: 60px;
-  align-items: center;
-  width: 100%;
-}
-.exp-left { flex: 1; min-width: 0; }
-.sol-list { border-top: 1px solid var(--hair-strong); }
-.sol-row {
-  display: grid;
-  grid-template-columns: 1fr 30px 1fr;
-  align-items: center;
-  gap: 8px;
-  padding: 14.5px 2px;
-  border-bottom: 1px solid var(--hair);
-}
-.sol-q { font-size: 14.5px; color: var(--faint); display: flex; align-items: center; gap: 11px; }
-.sol-q i { font-size: 14px; width: 18px; text-align: center; }
-.sol-row .arr { color: var(--sky); font-size: 13px; text-align: center; }
-.sol-a { font-size: 15.5px; font-weight: 600; color: var(--white); display: flex; align-items: center; gap: 11px; }
-.sol-a i { font-size: 15px; color: var(--ice); width: 20px; text-align: center; }
-
-.diff-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
-.diff-chip {
-  background: var(--panel);
-  border: 1px solid var(--panel-edge);
-  border-radius: 14px;
-  padding: 16px 18px;
-}
-.diff-chip .dc-top { display: flex; align-items: center; gap: 9px; margin-bottom: 7px; }
-.diff-chip .dc-top i { color: var(--ice); font-size: 14px; }
-.diff-chip h4 { font-size: 14.5px; font-weight: 700; color: var(--white); }
-.diff-chip .tag {
-  display: inline-block;
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #7EC8E3;
-  margin-bottom: 6px;
-}
-.diff-chip p { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
-
-/* ---------- Phone mockup (white product on dark) ---------- */
-.phone {
-  width: 292px;
-  flex-shrink: 0;
-  background: #0B1E38;
-  border-radius: 40px;
-  padding: 7px;
-  box-shadow: 0 34px 80px rgba(0, 0, 0, 0.6), 0 0 0 1.5px rgba(142, 202, 230, 0.3);
-  zoom: 0.85;
-}
-.phone-screen {
-  background: #F7F9FB;
-  border-radius: 33px;
-  height: 566px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  color: #111827;
-}
-.pm-status {
-  display: flex; align-items: center; justify-content: space-between;
-  background: #FFFFFF;
-  padding: 10px 18px 2px;
-  font-size: 10px; font-weight: 700; color: #0F172A;
-}
-.pm-status-icons { display: flex; gap: 5px; font-size: 8.5px; color: #0F172A; }
-.pm-hdr {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px 10px;
-  background: #FFFFFF;
-  border-bottom: 1px solid #F0F1F3;
-}
-.pm-hdr i { color: #9CA3AF; font-size: 13px; }
-.pm-logo { font-family: "Poppins", sans-serif; font-size: 15px; font-weight: 600; }
-.pm-logo .t { color: var(--navy); }
-.pm-logo .l { color: var(--sky); }
-.pm-scroll { flex: 1; overflow: hidden; padding: 12px 12px 0; }
-.pm-profile { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
-.pm-avatar {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--navy), var(--sky));
-  color: #fff; font-size: 13px; font-weight: 700;
+.icbox {
+  width: 44px; height: 44px; border-radius: 13px; flex: none;
   display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+  background: var(--wash); color: var(--blue-d);
 }
-.pm-name { font-size: 12.5px; font-weight: 700; color: #0F172A; }
-.pm-handle { font-size: 10.5px; color: #9CA3AF; }
-.pm-badge {
-  margin-left: auto;
-  font-size: 9px; font-weight: 700;
-  color: #2284B8;
-  border: 1px solid var(--sky);
-  border-radius: 999px;
-  padding: 2px 7px;
-}
-.pm-comment {
-  background: #E6F4FB;
-  border-left: 3px solid var(--navy);
-  border-radius: 8px;
-  padding: 9px 11px;
-  font-size: 11px;
-  line-height: 1.55;
-  color: #062654;
-  margin-bottom: 10px;
-}
-.pm-video {
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  height: 108px;
-  background: linear-gradient(135deg, #0C7F84, #24B3A3);
-  margin-bottom: 10px;
-}
-.sea-thumb { position: absolute; inset: 0; width: 100%; height: 100%; }
-.pm-play {
-  position: absolute; left: 50%; top: 42%;
-  transform: translate(-50%, -50%);
-  width: 38px; height: 38px; border-radius: 50%;
-  background: rgba(255,255,255,0.95);
-  display: flex; align-items: center; justify-content: center;
-}
-.pm-play i { color: var(--navy); font-size: 13px; margin-left: 2px; }
-.pm-video-meta {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  padding: 18px 10px 8px;
-  background: linear-gradient(transparent, rgba(4, 20, 45, 0.85));
-  color: #fff;
-}
-.pm-duration {
-  font-size: 8.5px; font-weight: 700;
-  background: rgba(0,0,0,0.55);
-  border-radius: 4px; padding: 2px 5px;
-  display: inline-block; margin-bottom: 3px;
-}
-.pm-video-title { font-size: 10.5px; font-weight: 600; line-height: 1.4; }
-.pm-q-card {
-  background: #FFFFFF;
-  border: 1px solid #E5E7EB;
-  border-radius: 12px;
-  padding: 10px 11px;
-  margin-bottom: 10px;
-  box-shadow: 0 1px 6px rgba(9, 52, 122, 0.05);
-}
-.pm-q-head { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
-.pm-q-avatar {
-  width: 22px; height: 22px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--heart-deep), #F59E0B);
-  color: #fff; font-size: 9.5px; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-}
-.pm-q-name { font-size: 10.5px; font-weight: 700; color: #0F172A; }
-.pm-fan-tag {
-  font-size: 8.5px; color: #9CA3AF;
-  border: 1px solid #E5E7EB; border-radius: 999px; padding: 1px 6px;
-}
-.pm-price {
-  margin-left: auto;
-  display: inline-flex; align-items: center; gap: 3px;
-  background: #FFF4EF; border: 1px solid #F8C4AC;
-  color: #C74A17;
-  border-radius: 999px; padding: 2px 8px;
-  font-size: 9.5px; font-weight: 800;
-}
-.pm-price i { font-size: 8px; color: var(--heart-deep); }
-.pm-q-text { font-size: 11px; line-height: 1.55; color: #111827; margin-bottom: 8px; }
-.pm-answer {
-  border-left: 3px solid var(--sky);
-  background: #FBFDFE;
-  border-radius: 8px;
-  padding: 8px 10px;
-}
-.pm-answer-label {
-  display: flex; align-items: center; gap: 5px;
-  font-size: 9.5px; font-weight: 700; color: #2284B8;
-  margin-bottom: 4px;
-}
-.pm-answer-text { font-size: 10.5px; line-height: 1.55; color: #6B7280; font-style: italic; }
-.pm-earn {
-  display: flex; align-items: center; gap: 8px;
-  background: #E6F4FB;
-  border-radius: 10px;
-  padding: 8px 10px;
-  font-size: 10px; font-weight: 600;
-  color: #062654;
-  line-height: 1.45;
-}
-.pm-earn i {
-  width: 24px; height: 24px; border-radius: 7px;
-  background: var(--navy); color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; flex-shrink: 0;
-}
-.pm-earn strong { color: #0169A4; }
-.pm-input {
-  display: flex; align-items: center; gap: 8px;
-  background: #FFFFFF;
-  border-top: 1px solid #F0F1F3;
-  padding: 10px 14px 14px;
-}
-.pm-input span {
-  flex: 1;
-  background: #F6F6F5;
-  border-radius: 999px;
-  padding: 7px 12px;
-  font-size: 10px; color: #9CA3AF;
-}
-.pm-input i { color: var(--navy); font-size: 14px; }
+.icbox.warm { background: var(--heart-soft); color: var(--heart); }
+.icbox.deep { background: var(--navy); color: #fff; }
 
-/* ============================================================
-   Slide 7 — Fan psychology (ticket)
-   ============================================================ */
-.psy-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 34px;
-  max-width: 1080px;
-  margin: 0 auto;
-  width: 100%;
-  align-items: stretch;
+.chip-heart {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-weight: 800; color: #dc2c3c;
+  font-variant-numeric: tabular-nums;
+  background: #fdf1f2; border: 1px solid #f6cdd2;
+  border-radius: 100px; padding: 3px 11px; font-size: 13px;
 }
-.psy-neg { padding: 6px 8px; }
-.psy-neg .gap-head { color: var(--faint); border-bottom: 1px solid var(--panel-edge); font-size: 16.5px; font-weight: 800; }
-.psy-neg .gap-item { color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.06); }
-.psy-neg .gap-item:last-child { border-bottom: none; }
-.psy-neg .gap-item i { color: var(--faint); margin-top: 4px; font-size: 13px; }
+.chip-heart svg { width: 13px; height: 13px; fill: currentColor; stroke: none; }
 
-.ticket {
-  position: relative;
-  background: rgba(142, 202, 230, 0.07);
-  border: 1px solid rgba(142, 202, 230, 0.3);
-  border-radius: 18px;
-  padding: 24px 28px 24px 46px;
+.foot-strip {
+  margin-top: 20px; padding: 14px 20px;
+  background: var(--wash); border: 1px solid #cfe7f5; border-radius: 12px;
+  font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.55;
+  word-break: keep-all; text-align: center;
 }
-.ticket::before {
-  content: "";
-  position: absolute;
-  left: 22px;
-  top: 18px;
-  bottom: 18px;
-  border-left: 2px dashed rgba(142, 202, 230, 0.4);
-}
-.ticket .notch {
-  position: absolute;
-  left: 14px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--ink-2);
-  border: 1px solid rgba(142, 202, 230, 0.3);
-}
-.ticket .notch.top { top: -10px; }
-.ticket .notch.bot { bottom: -10px; }
-.ticket .gap-head { color: var(--ice); border-bottom: 1px solid rgba(142, 202, 230, 0.22); font-size: 16.5px; font-weight: 800; }
-.ticket .gap-item { color: rgba(233, 244, 250, 0.92); border-bottom: 1px solid rgba(142, 202, 230, 0.12); }
-.ticket .gap-item:last-child { border-bottom: none; }
-.ticket .gap-item i { color: var(--ice); margin-top: 4px; font-size: 13px; }
-.ticket .gap-item strong { color: var(--ice); font-weight: 700; }
+.foot-strip .em { color: var(--blue-d); }
 
-/* ============================================================
-   Slide 8 — System (inbox + numbered list)
-   ============================================================ */
-.sys-wrap {
-  display: grid;
-  grid-template-columns: 486px 1fr;
-  gap: 46px;
-  width: 100%;
-  align-items: center;
-}
-.inbox-card { padding: 22px 22px 16px; }
-.inbox-head {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 15px; font-weight: 800; color: #0F172A;
-  margin-bottom: 14px;
-}
-.inbox-head i { color: var(--navy); }
-.inbox-filters { display: flex; gap: 8px; margin-bottom: 16px; }
-.chip {
-  font-size: 11.5px; font-weight: 600;
-  color: #6B7280;
-  border: 1px solid #E5E7EB;
-  border-radius: 999px;
-  padding: 5px 13px;
-  background: #fff;
-}
-.chip.on { background: var(--navy); color: #fff; border-color: var(--navy); }
-.inbox-item {
-  display: flex; align-items: center; gap: 12px;
-  border: 1px solid #F0F1F3;
-  border-left: 3px solid var(--sky);
-  border-radius: 12px;
-  padding: 11px 14px;
-  margin-bottom: 9px;
-  background: #fff;
-}
-.inbox-item.urgent { border-left-color: var(--navy); border-left-width: 4px; background: #F8FBFE; }
-.due-tag {
-  font-size: 10.5px; font-weight: 700;
-  border-radius: 6px; padding: 3px 8px;
-  white-space: nowrap; flex-shrink: 0;
-  background: #F6F6F5; color: #6B7280;
-}
-.inbox-item.urgent .due-tag { background: #E6F4FB; color: var(--navy); font-weight: 800; }
-.inbox-q { flex: 1; font-size: 13px; color: #111827; line-height: 1.45; min-width: 0; }
-.type-tag {
-  font-size: 9.5px; font-weight: 700;
-  color: var(--navy); background: #E6F4FB;
-  border: 1px solid #C7DCEF;
-  border-radius: 999px; padding: 2px 8px;
-  white-space: nowrap; flex-shrink: 0;
-  display: inline-flex; align-items: center; gap: 4px;
-}
-.type-tag i { font-size: 8px; }
-.inbox-foot {
-  display: flex; align-items: center; gap: 7px;
-  font-size: 11.5px; color: #9CA3AF;
-  margin-top: 4px; padding: 6px 2px 0;
-  border-top: 1px dashed #E5E7EB;
-}
-.inbox-foot i { color: #2284B8; }
-
-.sys-list { border-top: 1px solid var(--hair-strong); }
-.sys-item {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 14px;
-  padding: 16px 2px;
-  border-bottom: 1px solid var(--hair);
-  align-items: baseline;
-}
-.sys-num {
-  font-family: "Poppins", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  color: rgba(142, 202, 230, 0.55);
-  letter-spacing: 0.02em;
-}
-.sys-item h4 { font-size: 16.5px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
-.sys-item h4 strong { color: var(--ice); }
-.sys-item p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
-.sys-item p b { color: rgba(233, 244, 250, 0.9); font-weight: 600; }
-
-/* ============================================================
-   Slide 9 — Scenario (proof + giant number)
-   ============================================================ */
-.sce-wrap {
-  display: grid;
-  grid-template-columns: 440px 1fr;
-  gap: 44px;
-  width: 100%;
-  align-items: start;
-}
-.curator-post { padding: 19px 22px; border-left: 4px solid var(--sky); margin-bottom: 14px; }
-.cp-head { display: flex; align-items: center; gap: 11px; margin-bottom: 11px; }
-.cp-avatar {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--navy), var(--sky));
-  color: #fff; font-size: 15px; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-}
-.cp-name { font-size: 14.5px; font-weight: 700; color: #0F172A; }
-.cp-sub { font-size: 11.5px; color: #9CA3AF; margin-top: 1px; }
-.cp-tag {
-  margin-left: auto;
-  font-size: 10px; font-weight: 700;
-  color: #2284B8; background: #E6F4FB;
-  border-radius: 999px; padding: 4px 10px;
-}
-.cp-body { font-size: 13.5px; line-height: 1.65; color: #111827; }
-.mini-video {
-  display: flex; align-items: center; gap: 13px;
-  padding: 11px 14px;
-}
-.mini-thumb {
-  width: 92px; height: 54px; border-radius: 8px;
-  background: linear-gradient(135deg, #0C7F84, #24B3A3);
-  position: relative; flex-shrink: 0;
-  overflow: hidden;
-}
-.mini-play {
-  position: absolute; left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  width: 22px; height: 22px; border-radius: 50%;
+/* ===== S1 cover ===== */
+.cover-panel {
+  width: 660px; margin-right: auto;
   background: rgba(255, 255, 255, 0.95);
+}
+.brand-row { display: flex; align-items: center; gap: 13px; margin-bottom: 24px; }
+.brand-mark { width: 58px; height: 58px; flex: none; filter: drop-shadow(0 6px 14px rgba(9, 52, 122, 0.25)); }
+.brand-word {
+  font-size: 42px; font-weight: 700; letter-spacing: -0.025em; color: var(--navy);
+}
+.brand-word .lu { color: var(--sky); }
+.cover-title {
+  font-size: 36px; font-weight: 900; line-height: 1.3;
+  letter-spacing: -0.04em; word-break: keep-all; text-wrap: balance;
+  margin-bottom: 22px;
+}
+.cover-title .hl { color: var(--blue); }
+.cover-points { display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; }
+.cover-points .msg { padding: 12px 16px; }
+.cover-points .msg p { font-size: 14.5px; }
+.cover-points .msg p b { color: var(--navy); }
+.beta-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--navy); color: #fff;
+  border-radius: 100px; padding: 9px 20px;
+  font-size: 13.5px; font-weight: 700; letter-spacing: 0.03em;
+}
+.beta-tag i {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* ===== card grids ===== */
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px; box-shadow: 0 1px 5px rgba(6, 38, 84, 0.05);
+}
+.card h4 { font-size: 15.5px; font-weight: 800; line-height: 1.45; margin: 12px 0 8px; word-break: keep-all; }
+.card p { font-size: 13px; color: var(--ink-2); line-height: 1.6; word-break: keep-all; }
+
+/* ===== message list (S3) ===== */
+.msg-list { display: flex; flex-direction: column; gap: 10px; }
+.msg {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--paper); border: 1px solid var(--line);
+  border-left: 3px solid var(--blue);
+  border-radius: 12px; padding: 13px 18px;
+}
+.msg p { font-size: 15px; font-weight: 500; line-height: 1.55; word-break: keep-all; }
+.msg .icbox { width: 38px; height: 38px; border-radius: 11px; }
+.msg .icbox svg { width: 19px; height: 19px; }
+
+/* ===== stats (S4) ===== */
+.stat-row { display: flex; gap: 12px; margin-bottom: 16px; }
+.stat {
+  flex: 1; background: var(--paper); border: 1px solid var(--line);
+  border-bottom: 3px solid var(--blue); border-radius: 12px;
+  padding: 13px 14px; text-align: center;
+}
+.stat b {
+  display: block; font-size: 25px; font-weight: 900; color: var(--navy);
+  letter-spacing: -0.02em; font-variant-numeric: tabular-nums;
+}
+.stat span { font-size: 11.5px; color: var(--ink-2); line-height: 1.4; display: block; margin-top: 3px; word-break: keep-all; }
+
+.ctable {
+  width: 100%; border: 1px solid var(--line); border-radius: 13px; overflow: hidden;
+  background: var(--paper); font-size: 13px;
+}
+.ctable .tr { display: grid; grid-template-columns: 1.1fr 2.6fr; border-bottom: 1px solid var(--line); }
+.ctable .tr:last-child { border-bottom: none; }
+.ctable .th {
+  background: var(--navy); color: rgba(255, 255, 255, 0.9);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 9px 18px;
+}
+.ctable .td { padding: 11px 18px; color: var(--ink-2); line-height: 1.5; word-break: keep-all; }
+.ctable .td.name { font-weight: 800; color: var(--ink); }
+.ctable .td.name small { display: block; font-weight: 500; color: var(--ink-3); font-size: 11px; margin-top: 1px; }
+
+/* ===== compare (S5, S7) ===== */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cmp {
+  border-radius: 14px; padding: 20px 22px; border: 1px solid var(--line);
+  background: var(--paper);
+}
+.cmp.neg { background: #f6f8fa; }
+.cmp.pos { border-color: #bfe0f2; background: linear-gradient(180deg, #f4fafe, #eaf5fc); }
+.cmp-title { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 800; margin-bottom: 13px; }
+.cmp.neg .cmp-title { color: var(--ink-3); }
+.cmp.pos .cmp-title { color: var(--blue-d); }
+.cmp-item { display: flex; gap: 9px; align-items: flex-start; padding: 7px 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); word-break: keep-all; }
+.cmp.pos .cmp-item { color: var(--ink); font-weight: 500; }
+.cmp-item svg { width: 16px; height: 16px; margin-top: 2px; }
+.cmp.neg .cmp-item svg { color: #b3bfcc; }
+.cmp.pos .cmp-item svg { color: var(--good); }
+
+/* ===== solution rows (S6) ===== */
+.sol-wrap { display: flex; gap: 26px; align-items: flex-start; }
+.sol-col { flex: 1; display: flex; flex-direction: column; gap: 9px; }
+.sol {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
+  padding: 10px 14px; font-size: 13px;
+}
+.sol .from { flex: 0 0 128px; color: var(--ink-3); display: flex; gap: 7px; align-items: center; word-break: keep-all; }
+.sol .arrow { color: var(--heart); flex: none; display: flex; }
+.sol .arrow svg { width: 15px; height: 15px; }
+.sol .to { flex: 1; font-weight: 700; color: var(--ink); display: flex; gap: 7px; align-items: center; word-break: keep-all; }
+.sol .from svg, .sol .to svg { width: 16px; height: 16px; flex: none; }
+.sol .from svg { color: var(--ink-3); }
+.sol .to svg { color: var(--blue); }
+
+/* ===== phone mockup — mirrors the real post-detail screen ===== */
+.phone {
+  flex: none; width: 274px; background: #0a1e3e;
+  border-radius: 34px; padding: 10px;
+  box-shadow: 0 24px 48px rgba(6, 38, 84, 0.35);
+}
+.phone-scr {
+  background: #fff; border-radius: 25px; overflow: hidden;
+  display: flex; flex-direction: column; height: 508px;
+}
+.pm-hdr {
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 12px; border-bottom: 1px solid #eef1f5; flex: none;
+}
+.pm-hdr .back { color: var(--ink); font-size: 12px; font-weight: 700; }
+.pm-hdr .t { font-size: 12px; font-weight: 800; color: var(--ink); }
+.pm-hdr .join {
+  margin-left: auto; background: var(--navy); color: #fff;
+  font-size: 9px; font-weight: 700; padding: 3.5px 10px; border-radius: 100px;
+}
+.pm-scroll { flex: 1; overflow: hidden; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+.pm-cur { display: flex; align-items: center; gap: 7px; }
+.pm-cur .ava {
+  width: 24px; height: 24px; border-radius: 50%; flex: none;
+  background: linear-gradient(135deg, var(--sky), var(--blue));
+  color: #fff; font-size: 10px; font-weight: 800;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 1px 5px rgba(4, 40, 45, 0.35);
 }
-.mini-play i { color: var(--navy); font-size: 8px; margin-left: 1px; }
-.mini-video-info .mv-src { font-size: 10.5px; font-weight: 700; color: #B91C1C; letter-spacing: 0.03em; }
-.mini-video-info .mv-src i { margin-right: 4px; }
-.mini-video-info .mv-title { font-size: 12.5px; font-weight: 600; color: #0F172A; margin-top: 3px; line-height: 1.4; }
-
-.qa-rows { border-top: 1px solid var(--hair-strong); }
-.qa-row {
-  display: grid;
-  grid-template-columns: 36px 1fr auto;
-  gap: 15px;
-  align-items: center;
-  padding: 13px 2px;
-  border-bottom: 1px solid var(--hair);
+.pm-cur .nm { font-size: 10.5px; font-weight: 800; color: var(--ink); }
+.pm-cur .dt { font-size: 8.5px; color: var(--ink-3); }
+.pm-cur .sub {
+  margin-left: auto; background: var(--navy); color: #fff;
+  border-radius: 100px; padding: 3px 10px; font-size: 8.5px; font-weight: 700;
 }
-.qa-avatar {
-  width: 32px; height: 32px; border-radius: 50%;
-  font-size: 12px; font-weight: 700; color: #fff;
+.pm-headline { font-size: 12.5px; font-weight: 800; color: var(--ink); line-height: 1.35; word-break: keep-all; }
+.pm-comment { font-size: 9.5px; color: var(--ink-2); line-height: 1.55; word-break: keep-all; }
+.pm-thumb {
+  height: 74px; border-radius: 10px; position: relative; overflow: hidden; flex: none;
+  background: linear-gradient(120deg, #0d3f8f 0%, #2284b8 60%, #3399cc 100%);
   display: flex; align-items: center; justify-content: center;
 }
-.qa-row p { font-size: 13px; line-height: 1.55; color: var(--muted); }
-.earn-block {
-  margin-top: 24px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 20px;
+.pm-thumb .play {
+  width: 26px; height: 26px; border-radius: 50%; background: rgba(0, 0, 0, 0.62);
+  display: flex; align-items: center; justify-content: center;
 }
-.earn-label { font-size: 14px; color: var(--muted); line-height: 1.6; padding-bottom: 10px; }
-.earn-label b { color: rgba(233, 244, 250, 0.9); font-weight: 600; }
-.earn-big {
-  font-family: "Poppins", "Pretendard Variable", sans-serif;
-  font-size: 66px;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  text-align: right;
-  background: linear-gradient(160deg, #FFFFFF 15%, var(--ice) 85%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  white-space: nowrap;
+.pm-thumb .play svg { width: 10px; height: 10px; fill: #fff; margin-left: 1px; }
+.pm-dur {
+  position: absolute; right: 6px; bottom: 5px; background: rgba(0, 0, 0, 0.7);
+  color: #fff; font-size: 8px; font-weight: 600; border-radius: 4px; padding: 1px 5px;
+  font-variant-numeric: tabular-nums;
 }
-.earn-big small { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
-.sce-note {
-  margin-top: 14px;
-  text-align: right;
-  font-size: 11.5px;
-  color: var(--faint);
+.pm-yt { display: flex; gap: 6px; align-items: center; }
+.pm-yt .yb {
+  background: #111; color: #fff; font-size: 7px; font-weight: 800;
+  padding: 2px 6px; border-radius: 4px; letter-spacing: 0.07em; flex: none;
 }
+.pm-yt .t { font-size: 8.5px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
+.pm-ai {
+  background: #f2f7fd; border: 1px solid #dfeaf6; border-radius: 10px; padding: 7px 9px;
+}
+.pm-ai .h { display: flex; gap: 5px; align-items: center; font-size: 9px; font-weight: 800; color: var(--navy); }
+.pm-ai .h svg { width: 10px; height: 10px; }
+.pm-ai .row { display: flex; gap: 5px; align-items: flex-start; font-size: 8px; color: var(--ink-2); line-height: 1.4; margin-top: 4px; }
+.pm-ai .ts {
+  background: #fff; border: 1px solid #dfeaf6; border-radius: 4px;
+  font-weight: 700; color: var(--navy); padding: 0 4px; font-size: 7.5px; flex: none;
+  font-variant-numeric: tabular-nums;
+}
+.pm-tabs2 { display: flex; gap: 13px; border-bottom: 1px solid #eef1f5; }
+.pm-tabs2 span { padding: 2px 1px 5px; font-size: 9px; color: var(--ink-3); font-weight: 600; }
+.pm-tabs2 .on { color: var(--ink); font-weight: 800; border-bottom: 2px solid var(--navy); }
+.pm-input {
+  display: flex; align-items: center; justify-content: space-between; gap: 6px;
+  background: #f3f6f9; border-radius: 100px; padding: 5px 6px 5px 10px;
+  color: var(--ink-3); font-size: 8.5px;
+}
+.pm-input .send {
+  width: 18px; height: 18px; border-radius: 50%; background: var(--navy);
+  color: #fff; display: flex; align-items: center; justify-content: center; flex: none;
+  font-size: 8px;
+}
+.pm-chips { display: flex; gap: 5px; }
+.pm-chips span {
+  border: 1px solid #e2e8ee; border-radius: 100px; padding: 2.5px 8px;
+  font-size: 8px; font-weight: 700; color: var(--ink-2);
+  display: flex; gap: 3px; align-items: center;
+}
+.pm-chips .hl-chip { color: #dc2c3c; border-color: #f6cdd2; background: #fdf1f2; }
+.pm-chips .pv-chip { color: #6d4fc4; border-color: #e0d6f5; background: #f7f3fd; }
+.pm-q { background: #fffafa; border: 1px solid #f6cdd2; border-radius: 11px; padding: 8px 9px; }
+.pm-q .row { display: flex; align-items: center; gap: 5px; margin-bottom: 4px; }
+.pm-q .ava {
+  width: 17px; height: 17px; border-radius: 50%; flex: none;
+  background: linear-gradient(135deg, #ffb26b, var(--heart));
+  color: #fff; font-size: 8px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.pm-q .nm { font-size: 9px; font-weight: 800; color: var(--ink); }
+.pm-q .badge {
+  margin-left: auto; font-size: 8.5px; font-weight: 800; color: #dc2c3c;
+  font-variant-numeric: tabular-nums;
+}
+.pm-q .txt { font-size: 9px; line-height: 1.5; color: var(--ink); word-break: keep-all; }
+.pm-ans { margin-top: 6px; background: #f4f8fd; border-radius: 8px; padding: 6px 8px; }
+.pm-ans .lbl { font-size: 8px; font-weight: 800; color: var(--blue-d); margin-bottom: 2px; display: flex; align-items: center; gap: 4px; }
+.pm-ans .lbl svg { width: 9px; height: 9px; }
+.pm-ans .txt { font-size: 8.5px; line-height: 1.5; color: var(--ink-2); word-break: keep-all; }
+.pm-private {
+  background: #f6f2fd; border: 1px solid #e3d9f7; border-radius: 11px; padding: 8px 9px;
+}
+.pm-private .row { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+.pm-private .pv {
+  font-size: 8px; font-weight: 800; color: #6d4fc4;
+  background: #fff; border: 1px solid #e3d9f7; border-radius: 100px; padding: 1.5px 7px;
+}
+.pm-private .amt { font-size: 8.5px; font-weight: 800; color: #dc2c3c; font-variant-numeric: tabular-nums; }
+.pm-private .dt { margin-left: auto; font-size: 8px; color: var(--ink-3); }
+.pm-private .txt { font-size: 8.5px; color: #7a6fa0; line-height: 1.45; word-break: keep-all; }
+
+/* ===== queue board (S8) ===== */
+.queue-wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 18px; align-items: start; }
+.qboard { display: flex; flex-direction: column; gap: 8px; }
+.qitem {
+  display: grid; grid-template-columns: 26px 78px 1fr auto; gap: 10px; align-items: center;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 11px;
+  padding: 10px 14px; font-size: 13px;
+}
+.qitem.gold { border-color: #f3d9a5; background: linear-gradient(180deg, #fffdf6, #fff8e8); }
+.qitem.silver { border-color: #dbe4ee; background: #fbfcfe; }
+.qitem .rank {
+  width: 24px; height: 24px; border-radius: 50%; font-size: 12px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--paper-2); color: var(--ink-3);
+}
+.qitem.gold .rank { background: var(--gold); color: #6b4703; }
+.qitem.silver .rank { background: #dde6ef; color: #5d7188; }
+.qitem .amt {
+  display: flex; gap: 4px; align-items: center; font-weight: 800; color: #dc2c3c;
+  font-variant-numeric: tabular-nums; font-size: 13.5px;
+}
+.qitem .amt svg { width: 12px; height: 12px; fill: currentColor; }
+.qitem .q { color: var(--ink-2); word-break: keep-all; line-height: 1.4; font-size: 12.5px; }
+.qitem .tag {
+  font-size: 10px; font-weight: 700; border-radius: 100px; padding: 3px 9px; white-space: nowrap;
+}
+.qitem.gold .tag { background: #fdeece; color: #8a5c05; }
+.qitem.silver .tag { background: #e8eef5; color: #5d7188; }
+.qexp { display: flex; flex-direction: column; gap: 10px; }
+.qexp-item { display: flex; gap: 11px; align-items: flex-start; }
+.qexp-item .n {
+  width: 22px; height: 22px; border-radius: 50%; flex: none; margin-top: 1px;
+  background: var(--navy); color: #fff; font-size: 11.5px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.qexp-item p { font-size: 13px; color: var(--ink-2); line-height: 1.5; word-break: keep-all; }
+.qexp-item p b { color: var(--ink); display: block; font-size: 13.5px; margin-bottom: 1px; }
+
+/* ===== proof (S9) ===== */
+.proof-wrap { display: grid; grid-template-columns: 1fr 1.06fr; gap: 18px; align-items: start; }
+.insight-card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.insight-card .head { display: flex; align-items: center; gap: 9px; padding: 12px 15px 9px; }
+.insight-card .ava {
+  width: 32px; height: 32px; border-radius: 50%; flex: none;
+  background: linear-gradient(135deg, var(--sky), var(--navy));
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800;
+}
+.insight-card .who b { display: block; font-size: 13px; }
+.insight-card .who span { font-size: 11px; color: var(--ink-3); }
+.insight-card .badge {
+  margin-left: auto; font-size: 10px; font-weight: 700; color: var(--blue-d);
+  background: var(--wash); border-radius: 100px; padding: 3px 9px; white-space: nowrap;
+}
+.insight-card .thumb {
+  margin: 0 15px; height: 92px; border-radius: 10px; position: relative;
+  background: linear-gradient(120deg, #0d3f8f, #2284b8 55%, #57b0d8);
+  display: flex; align-items: center; justify-content: center;
+}
+.insight-card .thumb .play {
+  width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.92);
+  display: flex; align-items: center; justify-content: center;
+}
+.insight-card .thumb .play svg { width: 13px; height: 13px; fill: var(--heart); margin-left: 2px; }
+.insight-card .thumb .t {
+  position: absolute; left: 10px; bottom: 8px; right: 60px;
+  color: rgba(255,255,255,0.95); font-size: 11px; font-weight: 700; line-height: 1.35;
+  word-break: keep-all;
+}
+.insight-card .comment { padding: 11px 15px 14px; font-size: 13px; line-height: 1.6; color: var(--ink-2); word-break: keep-all; }
+.insight-card .comment b { color: var(--ink); }
+.fanq-list { display: flex; flex-direction: column; gap: 9px; }
+.fanq { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 11px 14px; }
+.fanq .row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; }
+.fanq .who { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 800; }
+.fanq .ava {
+  width: 22px; height: 22px; border-radius: 50%; font-size: 10px; font-weight: 800; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+.fanq p { font-size: 12px; color: var(--ink-2); line-height: 1.55; word-break: keep-all; }
+.earn-box {
+  margin-top: 12px; display: flex; align-items: center; gap: 13px;
+  background: var(--navy); border-radius: 13px; padding: 15px 19px; color: #fff;
+}
+.earn-box svg { width: 26px; height: 26px; fill: var(--gold); flex: none; }
+.earn-box .main { font-size: 15px; font-weight: 700; line-height: 1.5; word-break: keep-all; }
+.earn-box .main b { color: #ffd27a; font-variant-numeric: tabular-nums; }
+
+/* ===== lock-in (S10) ===== */
+.lock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.lock-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px; text-align: left;
+}
+.lock-card .k {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--blue-d);
+  margin: 12px 0 5px;
+}
+.lock-card h4 { font-size: 16.5px; font-weight: 800; margin-bottom: 8px; word-break: keep-all; }
+.lock-card p { font-size: 12.5px; color: var(--ink-2); line-height: 1.6; word-break: keep-all; }
+
+/* ===== journey (S11) ===== */
+.journey { display: flex; align-items: stretch; gap: 0; }
+.jstep {
+  flex: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+  padding: 18px 16px; text-align: center; position: relative;
+}
+.jstep .n {
+  width: 26px; height: 26px; border-radius: 50%; margin: 0 auto 10px;
+  background: var(--navy); color: #fff; font-size: 13px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.jstep .icbox { margin: 0 auto 10px; }
+.jstep h4 { font-size: 14.5px; font-weight: 800; margin-bottom: 6px; word-break: keep-all; }
+.jstep p { font-size: 12px; color: var(--ink-2); line-height: 1.55; word-break: keep-all; }
+.jarrow {
+  flex: none; width: 34px; display: flex; align-items: center; justify-content: center;
+  color: var(--heart);
+}
+.jarrow svg { width: 18px; height: 18px; }
+
+/* ===== roles (S12) ===== */
+.roles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.role-card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+.role-card.pf { border-top: 3px solid var(--blue); }
+.role-card.cu { border-top: 3px solid var(--heart); }
+.role-title { display: flex; align-items: center; gap: 9px; font-size: 15.5px; font-weight: 800; margin-bottom: 14px; }
+.role-card.pf .role-title { color: var(--blue-d); }
+.role-card.cu .role-title { color: var(--heart); }
+.role-item { display: flex; gap: 11px; align-items: flex-start; padding: 7px 0; }
+.role-item .icbox { width: 36px; height: 36px; border-radius: 10px; }
+.role-item .icbox svg { width: 17px; height: 17px; }
+.role-item p { font-size: 13px; color: var(--ink); line-height: 1.5; word-break: keep-all; font-weight: 500; margin-top: 8px; }
+
+/* ===== beta (S13) ===== */
+.beta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 18px; }
+.beta-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 20px;
+}
+.beta-card .icbox { margin-bottom: 12px; }
+.beta-card h4 { font-size: 16px; font-weight: 800; line-height: 1.4; margin-bottom: 7px; word-break: keep-all; }
+.beta-card .s { font-size: 12.5px; font-weight: 600; color: var(--blue-d); margin-bottom: 7px; line-height: 1.5; word-break: keep-all; }
+.beta-card p { font-size: 12px; color: var(--ink-2); line-height: 1.55; word-break: keep-all; }
+.cta-row { display: flex; align-items: center; justify-content: center; gap: 18px; }
+.cta-btn {
+  background: linear-gradient(135deg, var(--heart), #e5531d);
+  color: #fff; border: none; border-radius: 100px;
+  font: 800 16px/1 var(--font); letter-spacing: -0.01em;
+  padding: 15px 34px; cursor: pointer;
+  box-shadow: 0 10px 26px rgba(241, 99, 42, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(241, 99, 42, 0.42); }
+.cta-meta { font-size: 13px; color: var(--ink-2); display: flex; align-items: center; gap: 7px; }
+.cta-meta b { color: var(--navy); }
+
+/* ===== closing (S14) ===== */
+.quote-box {
+  background: var(--navy); border-radius: 16px; color: #fff;
+  padding: 26px 34px; text-align: center; margin-bottom: 18px;
+  box-shadow: 0 14px 36px rgba(6, 38, 84, 0.3);
+}
+.quote-box p { font-size: 19px; font-weight: 700; line-height: 1.6; word-break: keep-all; }
+.quote-box .u { width: 54px; height: 3px; background: var(--gold); border-radius: 2px; margin: 14px auto 0; }
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
+.pr {
+  display: flex; gap: 11px; align-items: center;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 13px; padding: 14px 17px;
+}
+.pr svg { width: 22px; height: 22px; color: var(--blue); flex: none; }
+.pr h5 { font-size: 13.5px; font-weight: 800; letter-spacing: 0.02em; }
+.pr p { font-size: 11.5px; color: var(--ink-2); margin-top: 1px; word-break: keep-all; }
+.closing-line { text-align: center; font-size: 14px; color: var(--ink-2); word-break: keep-all; }
+.closing-line b { color: var(--navy); font-weight: 900; }
 
 /* ============================================================
-   Slide 10 — Journey (numbered editorial columns)
+   NAVIGATION
    ============================================================ */
-.journey-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 34px;
-  max-width: 1060px;
-  margin: 0 auto;
-  width: 100%;
+.progress {
+  position: absolute; top: 0; left: 0; height: 4px; z-index: 40;
+  background: linear-gradient(90deg, var(--blue), var(--heart));
+  border-radius: 0 3px 3px 0; transition: width 0.5s ease;
 }
-.j-col { border-top: 2px solid var(--hair-strong); padding-top: 20px; position: relative; }
-.j-num {
-  font-family: "Poppins", sans-serif;
-  font-size: 40px;
-  font-weight: 600;
-  color: rgba(142, 202, 230, 0.5);
-  letter-spacing: 0;
-  margin-bottom: 14px;
+.dots {
+  position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px; z-index: 40;
+  background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(6px);
+  border: 1px solid rgba(219, 231, 240, 0.9);
+  padding: 9px 14px; border-radius: 100px;
+  box-shadow: 0 6px 18px rgba(6, 38, 84, 0.12);
 }
-.j-col h4 { font-size: 19.5px; font-weight: 800; color: var(--white); margin-bottom: 10px; }
-.j-col p { font-size: 14px; color: var(--muted); line-height: 1.7; }
-.j-col p strong { color: var(--ice-soft); font-weight: 700; }
-.j-chip {
-  display: inline-block;
-  margin-top: 12px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ice-soft);
-  border: 1px solid var(--hair-strong);
-  border-radius: 999px;
-  padding: 5px 13px;
+.dot {
+  width: 9px; height: 9px; border-radius: 50%; border: none; padding: 0;
+  background: #c4d5e4; cursor: pointer; transition: all 0.25s ease;
 }
-
-/* ============================================================
-   Slide 11 — Roles (ledger)
-   ============================================================ */
-.roles-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  max-width: 1080px;
-  margin: 0 auto;
-  width: 100%;
-}
-.role-col .role-head {
-  display: flex; align-items: center; gap: 11px;
-  font-size: 18px; font-weight: 800; color: var(--white);
-  padding-bottom: 14px;
-  border-bottom: 2px solid var(--hair-strong);
-}
-.role-col .role-head i { color: var(--ice); font-size: 17px; }
-.role-head .wm-inline { font-family: "Poppins", sans-serif; font-weight: 600; }
-.role-head .wm-inline .t { color: #FFFFFF; }
-.role-head .wm-inline .l { color: var(--ice); }
-.role-item {
-  display: grid;
-  grid-template-columns: 34px 1fr;
-  gap: 12px;
-  padding: 15px 2px;
-  border-bottom: 1px solid var(--hair);
-  align-items: start;
-}
-.role-item i { color: var(--sky); font-size: 15px; margin-top: 3px; }
-.role-item h5 { font-size: 15.5px; font-weight: 700; color: var(--white); }
-.role-item p { font-size: 12.5px; color: var(--muted); margin-top: 4px; line-height: 1.55; }
-
-/* ============================================================
-   Slide 12 — Why now (numbered rows + CTA)
-   ============================================================ */
-.why-rows { border-top: 1px solid var(--hair-strong); max-width: 1060px; margin: 0 auto; width: 100%; }
-.why-row {
-  display: grid;
-  grid-template-columns: 70px 300px 1fr;
-  gap: 26px;
-  align-items: center;
-  padding: 21px 4px;
-  border-bottom: 1px solid var(--hair);
-}
-.why-num {
-  font-family: "Poppins", sans-serif;
-  font-size: 32px;
-  font-weight: 600;
-  color: rgba(142, 202, 230, 0.5);
-}
-.why-row h4 { font-size: 19px; font-weight: 800; color: var(--white); }
-.why-row .tag { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em; color: #7EC8E3; margin-top: 5px; }
-.why-row p { font-size: 14px; color: var(--muted); line-height: 1.65; }
-
-.cta-row { text-align: center; margin-top: 34px; }
-.cta-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 11px;
-  background: #FFFFFF;
-  color: var(--navy);
-  font-size: 16.5px;
-  font-weight: 700;
-  border-radius: 999px;
-  padding: 14px 38px;
-  text-decoration: none;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(142, 202, 230, 0.25);
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-.cta-button:hover { transform: scale(1.04); background: #E6F4FB; }
-.cta-button i { color: var(--sky); }
-.cta-meta { margin-top: 15px; font-size: 13px; color: var(--faint); }
-.cta-meta i { color: var(--sky); margin-right: 6px; }
-.cta-meta a { color: var(--ice-soft); font-weight: 600; text-decoration: none; }
-.cta-meta a:hover { text-decoration: underline; }
-
-/* ============================================================
-   Slide 13 — Closing
-   ============================================================ */
-.closing-body { text-align: center; max-width: 900px; margin: 0 auto; }
-.mission {
-  font-family: "Noto Serif KR", Georgia, serif;
-  font-size: 29px;
-  font-weight: 700;
-  line-height: 1.65;
-  color: var(--white);
-}
-.mission strong { color: var(--ice); }
-.mission-rule {
-  width: 54px; height: 2px;
-  background: var(--sky);
-  border-radius: 2px;
-  margin: 26px auto;
-}
-.principles {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 34px;
-  margin-bottom: 34px;
-}
-.principle { display: flex; align-items: baseline; gap: 10px; }
-.principle i { color: var(--ice); font-size: 14px; }
-.principle .en {
-  font-family: "Poppins", sans-serif;
-  font-size: 14.5px;
-  font-weight: 600;
-  color: var(--white);
-  letter-spacing: 0.03em;
-}
-.principle .ko { font-size: 13px; color: var(--muted); }
-.principle-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--hair-strong); }
-.closing-line {
-  margin-top: 26px;
-  font-size: 15.5px;
-  color: var(--muted);
-}
-.closing-line .wm-inline { font-family: "Poppins", sans-serif; font-weight: 600; font-size: 16.5px; }
-.closing-line .wm-inline .t { color: #FFFFFF; }
-.closing-line .wm-inline .l { color: var(--ice); }
-
-/* ============================================================
-   Navigation chrome
-   ============================================================ */
-.progress-bar {
-  position: absolute;
-  top: 0; left: 0;
-  height: 2.5px;
-  background: linear-gradient(90deg, var(--sky), var(--ice));
-  z-index: 60;
-  transition: width 0.4s ease;
-}
-.nav-ticks {
-  position: absolute;
-  bottom: 30px; left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 60;
-  align-items: center;
-}
-.nav-tick {
-  width: 14px; height: 3px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  border: none;
-  padding: 0;
-}
-.nav-tick:hover { background: var(--ice); }
-.nav-tick.active { background: var(--ice); width: 30px; }
-.nav-arrows {
-  position: absolute;
-  bottom: 20px; right: 28px;
-  display: flex;
-  gap: 10px;
-  z-index: 60;
-}
-.nav-arrow {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--ice-soft);
-  font-size: 13px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.dot:hover { background: var(--sky); }
+.dot.on { background: var(--heart); width: 24px; border-radius: 100px; }
+.nav-btns { position: absolute; bottom: 22px; right: 26px; display: flex; gap: 8px; align-items: center; z-index: 40; }
+.nav-btn {
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(219, 231, 240, 0.9);
+  background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(6px);
+  color: var(--navy); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 18px rgba(6, 38, 84, 0.12);
   transition: all 0.2s ease;
 }
-.nav-arrow:hover { background: var(--ice); color: var(--ink-2); border-color: var(--ice); }
-.page-number {
-  position: absolute;
-  bottom: 31px; left: 32px;
-  font-family: "Poppins", sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--faint);
-  z-index: 60;
+.nav-btn:hover { background: var(--navy); color: #fff; }
+.nav-btn svg { width: 17px; height: 17px; }
+.pageno {
+  position: absolute; bottom: 30px; left: 26px; z-index: 40;
+  font-size: 13px; font-weight: 700; color: var(--navy);
+  background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(6px);
+  border: 1px solid rgba(219, 231, 240, 0.9);
+  padding: 7px 14px; border-radius: 100px;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 6px 18px rgba(6, 38, 84, 0.12);
 }
-.page-number strong { color: var(--ice); font-weight: 600; }
-.keyboard-hint {
-  position: absolute;
-  bottom: 70px; right: 28px;
-  font-size: 11px;
-  color: var(--faint);
-  background: rgba(4, 16, 31, 0.75);
-  border: 1px solid var(--hair);
-  border-radius: 8px;
-  padding: 5px 10px;
-  z-index: 60;
-  transition: opacity 1s ease;
+.pageno .cur { color: var(--heart); }
+.brandbar {
+  position: absolute; top: 18px; left: 26px;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(6px);
+  border: 1px solid rgba(219, 231, 240, 0.9);
+  padding: 7px 14px 7px 10px; border-radius: 100px;
+  box-shadow: 0 6px 18px rgba(6, 38, 84, 0.1);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.brandbar.bb-hidden { opacity: 0; }
+.brandbar svg { width: 20px; height: 20px; }
+.brandbar .wm { font-size: 13.5px; font-weight: 700; letter-spacing: -0.02em; color: var(--navy); }
+.brandbar .wm .lu { color: var(--sky); }
+.brandbar .doc { font-size: 11px; color: var(--ink-3); font-weight: 600; padding-left: 9px; border-left: 1px solid var(--line); }
+.hint {
+  position: absolute; top: 20px; right: 26px; z-index: 40;
+  font-size: 12px; color: var(--ink-2);
+  background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(6px);
+  border: 1px solid rgba(219, 231, 240, 0.9);
+  padding: 7px 13px; border-radius: 100px;
+  transition: opacity 0.8s ease;
+  box-shadow: 0 6px 18px rgba(6, 38, 84, 0.1);
+}
+.hint kbd {
+  font-family: var(--font); font-size: 11px; font-weight: 700; color: var(--navy);
+  background: var(--wash); border-radius: 5px; padding: 1px 6px; margin: 0 1px;
 }
 
-/* ============================================================
-   Print — one slide per page
-   ============================================================ */
-@media print {
-  html, body { width: auto; height: auto; overflow: visible; background: #fff; }
-  .presentation { position: static; width: 1280px; height: auto; transform: none !important; }
-  .slide {
-    display: flex !important;
-    position: relative;
-    opacity: 1 !important;
-    transform: none !important;
-    width: 1280px;
-    height: 720px;
-    page-break-after: always;
-    break-after: page;
+@media (prefers-reduced-motion: reduce) {
+  .cloud, .coin, .heartfx, .beta-tag i { animation: none !important; }
+  .car { animation-play-state: paused !important; }
+  .camera { transition: none; }
+  .slide.active .panel, .slide.active .rv, .slide.active .rv:nth-of-type(n) {
+    animation-duration: 0.01s !important; animation-delay: 0s !important;
   }
-  .slide:last-of-type { page-break-after: avoid; break-after: avoid; }
-  .progress-bar, .nav-ticks, .nav-arrows, .nav-arrow, .page-number, .keyboard-hint { display: none !important; }
-  .a-up, .a-left, .a-right, .a-scale { opacity: 1 !important; }
-  * { animation: none !important; transition: none !important; }
-  .slide, .slide * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
-@page { size: 1280px 720px; margin: 0; }
 </style>
-</head>
-<body>
 
-<div class="presentation" id="presentation">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- official TubeLuLu symbol: double speech bubble + sound-wave bars -->
+    <symbol id="tl-symbol" viewBox="0 0 120 120">
+      <path d="M30 18 H92 A14 14 0 0 1 106 32 V78 A14 14 0 0 1 92 92 H62 L44 108 V92 H30 A14 14 0 0 1 16 78 V32 A14 14 0 0 1 30 18 Z" fill="#3399CC"/>
+      <path d="M22 10 H78 A14 14 0 0 1 92 24 V66 A14 14 0 0 1 78 80 H54 L38 96 V80 H22 A14 14 0 0 1 8 66 V24 A14 14 0 0 1 22 10 Z" fill="#09347A"/>
+      <rect x="22.5" y="36" width="7" height="12" rx="3.5" fill="#FFFFFF"/>
+      <rect x="34.5" y="31" width="7" height="22" rx="3.5" fill="#FFFFFF"/>
+      <rect x="46.5" y="26" width="7" height="32" rx="3.5" fill="#3399CC"/>
+      <rect x="58.5" y="31" width="7" height="22" rx="3.5" fill="#FFFFFF"/>
+      <rect x="70.5" y="36" width="7" height="12" rx="3.5" fill="#FFFFFF"/>
+    </symbol>
+    <!-- white variant for dark surfaces (HQ rooftop) -->
+    <symbol id="tl-symbol-w" viewBox="0 0 120 120">
+      <path d="M30 18 H92 A14 14 0 0 1 106 32 V78 A14 14 0 0 1 92 92 H62 L44 108 V92 H30 A14 14 0 0 1 16 78 V32 A14 14 0 0 1 30 18 Z" fill="#3399CC"/>
+      <path d="M22 10 H78 A14 14 0 0 1 92 24 V66 A14 14 0 0 1 78 80 H54 L38 96 V80 H22 A14 14 0 0 1 8 66 V24 A14 14 0 0 1 22 10 Z" fill="#FFFFFF"/>
+      <rect x="22.5" y="36" width="7" height="12" rx="3.5" fill="#09347A"/>
+      <rect x="34.5" y="31" width="7" height="22" rx="3.5" fill="#09347A"/>
+      <rect x="46.5" y="26" width="7" height="32" rx="3.5" fill="#3399CC"/>
+      <rect x="58.5" y="31" width="7" height="22" rx="3.5" fill="#09347A"/>
+      <rect x="70.5" y="36" width="7" height="12" rx="3.5" fill="#09347A"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5 C5.4 15 3.2 10.6 5.2 7.6 C7 4.9 10.4 5.4 12 8.2 C13.6 5.4 17 4.9 18.8 7.6 C20.8 10.6 18.6 15 12 20.5 Z"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3.5 20.5 H20.5 M4.5 16 L9.5 10.5 L13 13.5 L19.5 6"/><path d="M15.5 6 H19.5 V10"/></symbol>
+    <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M4 13.5 L6.5 5.5 H17.5 L20 13.5 M4 13.5 V18.5 H20 V13.5 M4 13.5 H8.5 L10 16 H14 L15.5 13.5 H20"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6.5" width="12.5" height="11" rx="2.5"/><path d="M15.5 12.5 L21 9 V15.5 L15.5 12"/></symbol>
+    <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="7.5" y="3" width="9" height="18" rx="2.5"/><path d="M11 17.5 H13"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5 C3.5 15.8 6 14 9 14 C12 14 14.5 15.8 14.5 19.5"/><circle cx="16.8" cy="7.6" r="2.4"/><path d="M17.5 13.6 C19.5 14.2 20.8 15.9 20.8 18.5"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8 H17 M13.5 4 L17.5 8 L13.5 12"/><path d="M20 16 H7 M10.5 12.5 L6.5 16.5 L10.5 20.5"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5.5 H20 V16 H12.5 L8 20 V16 H4 Z"/><path d="M8 9.5 H16 M8 12.5 H13"/></symbol>
+    <symbol id="i-crown" viewBox="0 0 24 24"><path d="M4.5 17.5 L5.5 8 L9.8 12 L12 6 L14.2 12 L18.5 8 L19.5 17.5 Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 L10 17.5 L19 6.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.5 12 H19 M13.5 6 L19.5 12 L13.5 18"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5 L8 12 L15 19"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5 L16 12 L9 19"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7.5 4 H16.5 V9.5 C16.5 12.3 14.5 14.3 12 14.3 C9.5 14.3 7.5 12.3 7.5 9.5 Z"/><path d="M7.5 6 H4.5 C4.5 9 5.8 10.8 8 11.2 M16.5 6 H19.5 C19.5 9 18.2 10.8 16 11.2"/><path d="M12 14.5 V17.5 M8.5 20.5 H15.5 M10 17.5 H14"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 L19.5 6 V11.5 C19.5 16 16.5 19.3 12 21 C7.5 19.3 4.5 16 4.5 11.5 V6 Z"/><path d="M8.5 12 L11 14.5 L15.5 9.5"/></symbol>
+    <symbol id="i-gem" viewBox="0 0 24 24"><path d="M7 4.5 H17 L21 9.5 L12 20 L3 9.5 Z M3 9.5 H21 M9.5 9.5 L12 4.5 L14.5 9.5 L12 20 Z"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19.5 C5 9.5 12 4.5 20 4.5 C20 14.5 13 19.5 6.8 19.5 Z"/><path d="M5 19.5 C8 14 11.5 10.5 15.5 8"/></symbol>
+    <symbol id="i-sort" viewBox="0 0 24 24"><path d="M4.5 7 H19.5 M7 12 H17 M9.5 17 H14.5"/></symbol>
+    <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><circle cx="8.5" cy="11" r="2"/><path d="M5.7 15.8 C6.2 14.3 7.3 13.6 8.5 13.6 C9.7 13.6 10.8 14.3 11.3 15.8 M14 9.5 H18.5 M14 12.5 H18.5 M14 15.5 H16.8"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3.5 7 L12 13.5 L20.5 7"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14 C11 15.2 13 15.3 14.2 14.1 L17.6 10.7 C18.9 9.4 18.9 7.4 17.6 6.1 C16.3 4.8 14.3 4.8 13 6.1 L11.5 7.6"/><path d="M14 10 C13 8.8 11 8.7 9.8 9.9 L6.4 13.3 C5.1 14.6 5.1 16.6 6.4 17.9 C7.7 19.2 9.7 19.2 11 17.9 L12.5 16.4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5 V12 L15.5 14"/></symbol>
+    <symbol id="i-cam-off" viewBox="0 0 24 24"><rect x="3" y="6.5" width="12.5" height="11" rx="2.5"/><path d="M15.5 12.5 L21 9 V15.5 L15.5 12 M4 4 L20 20"/></symbol>
+    <symbol id="i-question" viewBox="0 0 24 24"><path d="M8.5 8.7 C8.8 6.8 10.2 5.5 12.1 5.5 C14.2 5.5 15.7 7 15.7 8.8 C15.7 11.8 12 11.6 12 14.5"/><path d="M12 18.4 H12.02"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3 L13.8 9.2 L20 11 L13.8 12.8 L12 19 L10.2 12.8 L4 11 L10.2 9.2 Z"/></symbol>
+  </defs>
+</svg>
 
-  <!-- ======================= Slide 1 · Cover ======================= -->
-  <section class="slide active" id="slide-1">
-    <div class="cover-orbit"></div>
-    <div class="cover-mast a-up">
-      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TubeLuLu 심볼">
-        <path d="M30 18 H92 A14 14 0 0 1 106 32 V78 A14 14 0 0 1 92 92 H62 L44 108 V92 H30 A14 14 0 0 1 16 78 V32 A14 14 0 0 1 30 18 Z" fill="#3399CC"/>
-        <path d="M22 10 H78 A14 14 0 0 1 92 24 V66 A14 14 0 0 1 78 80 H54 L38 96 V80 H22 A14 14 0 0 1 8 66 V24 A14 14 0 0 1 22 10 Z" fill="#8ECAE6"/>
-        <rect x="22.5" y="36" width="7" height="12" rx="3.5" fill="#04101F"/>
-        <rect x="34.5" y="31" width="7" height="22" rx="3.5" fill="#04101F"/>
-        <rect x="46.5" y="26" width="7" height="32" rx="3.5" fill="#FFFFFF"/>
-        <rect x="58.5" y="31" width="7" height="22" rx="3.5" fill="#04101F"/>
-        <rect x="70.5" y="36" width="7" height="12" rx="3.5" fill="#04101F"/>
-      </svg>
-      <span class="wm"><span class="t">Tube</span><span class="l">LuLu</span></span>
-    </div>
-    <div class="cover-body">
-      <div class="cover-eyebrow a-up d1">Service Introduction</div>
-      <h1 class="cover-headline a-up d2">당신의 <span class="hl">해석</span>이 빛나는<br>프리미엄 큐레이션 플랫폼</h1>
-      <p class="cover-tagline a-up d3">신뢰하는 해석을 구독하고, 깊이 읽고, 직접 묻는 곳</p>
-    </div>
-    <div class="cover-foot a-up d4">
-      <span class="desc">큐레이터의 해석을 먼저 읽는 서비스</span>
-      <a class="cover-link" href="https://tubelulu.com" target="_blank" rel="noopener">tubelulu.com<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-    </div>
-  </section>
+<div class="stage" id="stage">
 
-  <!-- ======================= Slide 2 · Pain ======================= -->
-  <section class="slide" id="slide-2">
-    <div class="ghost-num">02</div>
-    <header class="slide-header">
-      <div class="slide-eyebrow"><span class="idx">02</span>The Pain</div>
-      <h2 class="slide-title">이런 <span class="hl">고민</span>, 해보셨나요?</h2>
-      <div class="header-rule"></div>
-    </header>
-    <div class="slide-body">
-      <div class="pain-list">
-        <div class="pain-row a-up d1">
-          <i class="fa-solid fa-quote-left qmark"></i>
-          <p class="pain-quote">팔로워는 수만 명인데<br>수익은 커피값도 안 나옴</p>
-          <p class="pain-diag">광고·협찬에 의존할 뿐, 스스로 만드는 수익 구조가 없습니다</p>
+  <!-- ================= ISOMETRIC CITY ================= -->
+  <div class="scene">
+    <div class="camera" id="cam">
+      <div class="world">
+        <div class="ground"></div>
+
+        <!-- blocks: roads at x/y = -540, -26, 420 (52 wide, ±26 around center) -->
+        <!-- col boundaries: -820..-566, -514..-52, 0..394, 446..820 -->
+        <div class="block" style="left:-806px; top:-806px; width:226px; height:226px;"></div>
+        <div class="block" style="left:-502px; top:-806px; width:438px; height:226px;"></div>
+        <div class="block" style="left:12px;   top:-806px; width:370px; height:226px;"></div>
+        <div class="block green" style="left:458px; top:-806px; width:350px; height:226px;"></div>
+
+        <div class="block" style="left:-806px; top:-502px; width:226px; height:438px;"></div>
+        <div class="block" style="left:-502px; top:-502px; width:438px; height:438px;"></div>
+        <div class="block" style="left:12px;   top:-502px; width:370px; height:438px;"></div>
+        <div class="block green" style="left:458px; top:-502px; width:350px; height:438px;"></div>
+
+        <div class="block" style="left:-806px; top:12px; width:226px; height:370px;"></div>
+        <div class="block" style="left:-502px; top:12px; width:438px; height:370px;"></div>
+        <div class="block plaza" style="left:12px; top:12px; width:370px; height:370px;"></div>
+        <div class="block" style="left:458px; top:12px; width:350px; height:370px;"></div>
+
+        <div class="block" style="left:-806px; top:458px; width:226px; height:350px;"></div>
+        <div class="block" style="left:-502px; top:458px; width:438px; height:350px;"></div>
+        <div class="block" style="left:12px;   top:458px; width:370px; height:350px;"></div>
+        <div class="block" style="left:458px;  top:458px; width:350px; height:350px;"></div>
+
+        <!-- roads -->
+        <div class="road h" style="top:-566px"><div class="lane"></div></div>
+        <div class="road h" style="top:-52px"><div class="lane"></div></div>
+        <div class="road h" style="top:394px"><div class="lane"></div></div>
+        <div class="road v" style="left:-566px"><div class="lane"></div></div>
+        <div class="road v" style="left:-52px"><div class="lane"></div></div>
+        <div class="road v" style="left:394px"><div class="lane"></div></div>
+
+        <!-- ===== LANDMARK: TubeLuLu HQ (center-north block) ===== -->
+        <div class="b win sh" style="--w:140px; --d:140px; --h:265px; --ct:#0d3f8f; --cs:#1a4fa8; --ce:#09347a; --wc:#7fb4e8; --wc2:#5c94cc; transform: translate3d(-250px,-250px,0)">
+          <i class="fs"></i><i class="fe"></i><i class="top"></i>
+          <div class="roofsign" style="width:140px; height:140px; transform: translateZ(266px) rotateZ(-45deg);">
+            <svg viewBox="0 0 120 120" style="width:76px;height:76px"><use href="#tl-symbol-w"/></svg>
+          </div>
         </div>
-        <div class="pain-row a-up d2">
-          <i class="fa-solid fa-quote-left qmark"></i>
-          <p class="pain-quote">DM은 하루에 수백 개,<br>답하고 싶어도 지쳐서 못함</p>
-          <p class="pain-diag">팬들과 소통하고 싶지만 스팸으로 가득한 DM 속에서 진심은 묻혀버립니다</p>
+        <!-- HQ podium -->
+        <div class="b sh" style="--w:190px; --d:80px; --h:44px; --ct:#e8f1f8; --cs:#ffffff; --ce:#c7d8e6; transform: translate3d(-275px,-90px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- ===== MARKET district: tall towers (north) ===== -->
+        <div class="b win sh" style="--w:95px; --d:95px; --h:225px; --ct:#eef4f9; --cs:#ffffff; --ce:#c9d9e7; --wc:#b6cfe6; transform: translate3d(80px,-760px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:85px; --d:115px; --h:170px; --ct:#2284b8; --cs:#3399cc; --ce:#1b6f9c; --wc:#a8dcf2; transform: translate3d(230px,-720px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:110px; --d:85px; --h:130px; --ct:#e2edf6; --cs:#f6fafd; --ce:#bfd2e2; --wc:#b0c9df; transform: translate3d(70px,-620px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:90px; --d:90px; --h:195px; --ct:#e8f1f8; --cs:#fbfdfe; --ce:#c4d6e5; --wc:#b6cfe6; transform: translate3d(255px,-580px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:120px; --d:95px; --h:105px; --ct:#d9e6f0; --cs:#eef5fa; --ce:#b3c8da; --wc:#a5c1d9; transform: translate3d(90px,-460px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:100px; --d:100px; --h:245px; --ct:#f1f6fa; --cs:#ffffff; --ce:#ccdbe8; --wc:#bcd3e8; transform: translate3d(240px,-420px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- NW towers -->
+        <div class="b win sh" style="--w:100px; --d:90px; --h:185px; --ct:#eaf2f8; --cs:#fdfeff; --ce:#c6d7e5; --wc:#b6cfe6; transform: translate3d(-420px,-740px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:80px; --d:110px; --h:140px; --ct:#e1ecf5; --cs:#f5fafc; --ce:#bed1e0; --wc:#adc7dd; transform: translate3d(-260px,-690px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:105px; --d:80px; --h:120px; --ct:#dfeaf3; --cs:#f2f8fc; --ce:#b7cbdd; --wc:#a9c3da; transform: translate3d(-450px,-580px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:90px; --d:90px; --h:160px; --ct:#e6f0f7; --cs:#fafcfe; --ce:#c3d5e4; --wc:#b3cce2; transform: translate3d(-290px,-480px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- far NW corner: small filler -->
+        <div class="b win sh" style="--w:90px; --d:90px; --h:95px; --ct:#e4eef6; --cs:#f7fbfd; --ce:#c0d3e2; --wc:#b0c9df; transform: translate3d(-760px,-760px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:80px; --d:100px; --h:135px; --ct:#eaf2f8; --cs:#feffff; --ce:#c6d7e5; --wc:#b6cfe6; transform: translate3d(-770px,-620px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- ===== PARK (NE, green blocks) ===== -->
+        <div class="tree" style="transform: translate3d(540px,-700px,0)">
+          <div class="b" style="--w:11px; --d:11px; --h:16px; --ct:#8a6a4d; --cs:#9c7a58; --ce:#7a5c42;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+          <div class="b" style="--w:46px; --d:46px; --h:44px; --ct:#69b578; --cs:#7cc48a; --ce:#4f9a60; transform: translate3d(-17px,-17px,16px);"><i class="fs" style="border-radius:14px"></i><i class="fe" style="border-radius:14px"></i><i class="top" style="border-radius:14px"></i></div>
         </div>
-        <div class="pain-row a-up d3">
-          <i class="fa-solid fa-quote-left qmark"></i>
-          <p class="pain-quote">유튜브나 방송 시작?<br>영상 만드는 게 너무 부담</p>
-          <p class="pain-diag">영상 제작과 라이브 스트리밍은 진입 장벽이 높습니다</p>
+        <div class="tree" style="transform: translate3d(660px,-640px,0)">
+          <div class="b" style="--w:10px; --d:10px; --h:13px; --ct:#8a6a4d; --cs:#9c7a58; --ce:#7a5c42;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+          <div class="b" style="--w:38px; --d:38px; --h:36px; --ct:#5aa96b; --cs:#6db87c; --ce:#458f55; transform: translate3d(-14px,-14px,13px);"><i class="fs" style="border-radius:11px"></i><i class="fe" style="border-radius:11px"></i><i class="top" style="border-radius:11px"></i></div>
+        </div>
+        <div class="tree" style="transform: translate3d(560px,-360px,0)">
+          <div class="b" style="--w:10px; --d:10px; --h:14px; --ct:#8a6a4d; --cs:#9c7a58; --ce:#7a5c42;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+          <div class="b" style="--w:42px; --d:42px; --h:40px; --ct:#63b173; --cs:#76c084; --ce:#4a955b; transform: translate3d(-16px,-16px,14px);"><i class="fs" style="border-radius:12px"></i><i class="fe" style="border-radius:12px"></i><i class="top" style="border-radius:12px"></i></div>
+        </div>
+        <div class="tree" style="transform: translate3d(680px,-260px,0)">
+          <div class="b" style="--w:10px; --d:10px; --h:13px; --ct:#8a6a4d; --cs:#9c7a58; --ce:#7a5c42;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+          <div class="b" style="--w:36px; --d:36px; --h:34px; --ct:#5aa96b; --cs:#6db87c; --ce:#458f55; transform: translate3d(-13px,-13px,13px);"><i class="fs" style="border-radius:10px"></i><i class="fe" style="border-radius:10px"></i><i class="top" style="border-radius:10px"></i></div>
+        </div>
+        <!-- pavilion in park -->
+        <div class="b sh" style="--w:70px; --d:70px; --h:36px; --ct:#f7e9c8; --cs:#fdf4dd; --ce:#dcc99c; transform: translate3d(590px,-540px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- ===== BANK district (east, gold) ===== -->
+        <div class="b sh" style="--w:120px; --d:105px; --h:86px; --ct:#f7cf62; --cs:#ffe289; --ce:#dcaf3c; transform: translate3d(520px,100px,0)" id="bank">
+          <i class="fs"></i><i class="fe"></i><i class="top"></i>
+          <div class="roofsign" style="width:120px; height:105px; transform: translateZ(87px) rotateZ(-45deg); color:#7c5304; font-size:46px;">₩</div>
+        </div>
+        <div class="b win sh" style="--w:90px; --d:90px; --h:150px; --ct:#eef4f9; --cs:#ffffff; --ce:#c9d9e7; --wc:#b6cfe6; transform: translate3d(680px,60px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:100px; --d:85px; --h:120px; --ct:#e2edf6; --cs:#f6fafd; --ce:#bfd2e2; --wc:#b0c9df; transform: translate3d(560px,260px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- ===== HEART PLAZA (center-south plaza block) ===== -->
+        <div class="decal" style="left:60px; top:60px; width:280px; height:280px;">
+          <svg viewBox="0 0 24 24" style="width:190px;height:190px;fill:rgba(241,99,42,0.24); transform:rotate(-45deg)"><path d="M12 20.5 C5.4 15 3.2 10.6 5.2 7.6 C7 4.9 10.4 5.4 12 8.2 C13.6 5.4 17 4.9 18.8 7.6 C20.8 10.6 18.6 15 12 20.5 Z"/></svg>
+        </div>
+        <div class="b sh" style="--w:56px; --d:56px; --h:30px; --ct:#f1632a; --cs:#ff7f47; --ce:#d14e1b; transform: translate3d(280px,300px,0)">
+          <i class="fs"></i><i class="fe"></i><i class="top"></i>
+        </div>
+        <!-- plaza kiosks -->
+        <div class="b sh" style="--w:44px; --d:44px; --h:26px; --ct:#ffffff; --cs:#f6fafd; --ce:#ccdbe8; transform: translate3d(60px,320px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- ===== OLD TOWN (SW, muted grey) ===== -->
+        <div class="b win sh" style="--w:85px; --d:85px; --h:70px; --ct:#ccd2da; --cs:#dde2e8; --ce:#b2bac5; --wc:#9aa5b3; transform: translate3d(-760px,120px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:75px; --d:95px; --h:92px; --ct:#c5ccd5; --cs:#d6dce3; --ce:#aab3bf; --wc:#939fae; transform: translate3d(-740px,280px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:90px; --d:80px; --h:58px; --ct:#d2d8df; --cs:#e2e7ec; --ce:#b8c0ca; --wc:#a2adba; transform: translate3d(-760px,540px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:80px; --d:85px; --h:80px; --ct:#c9cfd8; --cs:#dadfe6; --ce:#aeb7c2; --wc:#97a3b1; transform: translate3d(-750px,680px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <!-- antenna on old town roof -->
+        <div class="b" style="--w:5px; --d:5px; --h:56px; --ct:#8b95a2; --cs:#9aa4b0; --ce:#7c8794; transform: translate3d(-722px,158px,70px)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- ===== STATION (south-center, long flat) ===== -->
+        <div class="b win sh" style="--w:230px; --d:90px; --h:52px; --ct:#e8f1f8; --cs:#ffffff; --ce:#c7d8e6; --wc:#b6cfe6; transform: translate3d(-380px,520px,0)">
+          <i class="fs"></i><i class="fe"></i><i class="top"></i>
+          <div class="roofsign" style="width:230px; height:90px; transform: translateZ(53px) rotateZ(-45deg); color:#09347a; font-size:26px; letter-spacing:0.2em;">STATION</div>
+        </div>
+        <div class="b sh" style="--w:70px; --d:70px; --h:88px; --ct:#dfeaf3; --cs:#f2f8fc; --ce:#b7cbdd; transform: translate3d(-160px,540px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- ===== CITY HALL (south-east of center) ===== -->
+        <div class="b sh" style="--w:150px; --d:110px; --h:64px; --ct:#f0f5f9; --cs:#ffffff; --ce:#ccdbe8; transform: translate3d(120px,560px,0)">
+          <i class="fs"></i><i class="fe"></i><i class="top"></i>
+        </div>
+        <div class="b sh" style="--w:60px; --d:60px; --h:96px; --ct:#e8f1f8; --cs:#fbfdfe; --ce:#c4d6e5; transform: translate3d(165px,585px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <!-- flag -->
+        <div class="b" style="--w:4px; --d:4px; --h:44px; --ct:#8b95a2; --cs:#9aa4b0; --ce:#7c8794; transform: translate3d(193px,613px,96px)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- SE filler towers -->
+        <div class="b win sh" style="--w:100px; --d:110px; --h:175px; --ct:#edf4f9; --cs:#ffffff; --ce:#cadbe8; --wc:#bad1e6; transform: translate3d(520px,540px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:90px; --d:85px; --h:115px; --ct:#e0ebf4; --cs:#f4f9fc; --ce:#bccfdf; --wc:#accade; transform: translate3d(680px,600px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- W filler -->
+        <div class="b win sh" style="--w:95px; --d:100px; --h:145px; --ct:#e6f0f7; --cs:#fafcfe; --ce:#c3d5e4; --wc:#b3cce2; transform: translate3d(-460px,80px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        <div class="b win sh" style="--w:85px; --d:85px; --h:105px; --ct:#e4eef6; --cs:#f7fbfd; --ce:#c0d3e2; --wc:#b0c9df; transform: translate3d(-300px,140px,0)"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+
+        <!-- ===== CARS ===== -->
+        <div class="car" style="top:-46px; animation: driveE 15s linear -3s infinite;">
+          <div class="b" style="--w:30px; --d:15px; --h:11px; --ct:#e5484d; --cs:#f26166; --ce:#b93a3f;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        </div>
+        <div class="car" style="top:-21px; animation: driveW 18s linear -9s infinite;">
+          <div class="b" style="--w:30px; --d:15px; --h:11px; --ct:#f2b234; --cs:#ffcb5c; --ce:#cf9322;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        </div>
+        <div class="car" style="top:400px; animation: driveE 21s linear -14s infinite;">
+          <div class="b" style="--w:46px; --d:16px; --h:14px; --ct:#3399cc; --cs:#57aeda; --ce:#2284b8;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        </div>
+        <div class="car" style="top:-560px; animation: driveW 17s linear -5s infinite;">
+          <div class="b" style="--w:30px; --d:15px; --h:11px; --ct:#ffffff; --cs:#f2f6fa; --ce:#c9d6e2;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        </div>
+        <div class="car" style="left:-46px; animation: driveS 19s linear -7s infinite;">
+          <div class="b" style="--w:15px; --d:30px; --h:11px; --ct:#007dc3; --cs:#2196d6; --ce:#0169a4;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        </div>
+        <div class="car" style="left:-21px; animation: driveN 16s linear -11s infinite;">
+          <div class="b" style="--w:15px; --d:30px; --h:11px; --ct:#f1632a; --cs:#ff7f47; --ce:#d14e1b;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        </div>
+        <div class="car" style="left:400px; animation: driveS 22s linear -2s infinite;">
+          <div class="b" style="--w:15px; --d:30px; --h:11px; --ct:#ffffff; --cs:#f2f6fa; --ce:#c9d6e2;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
+        </div>
+        <div class="car" style="left:-540px; animation: driveN 20s linear -13s infinite;">
+          <div class="b" style="--w:15px; --d:30px; --h:11px; --ct:#e5484d; --cs:#f26166; --ce:#b93a3f;"><i class="fs"></i><i class="fe"></i><i class="top"></i></div>
         </div>
       </div>
-      <div class="takeaway a-up d5">당신의 영향력은 충분합니다. 다만, 그 영향력을 발휘할 <strong>구조</strong>가 없었을 뿐입니다.</div>
-    </div>
-    <div class="wave-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-  </section>
 
-  <!-- ======================= Slide 3 · Shift ======================= -->
-  <section class="slide" id="slide-3">
-    <div class="ghost-num">03</div>
-    <header class="slide-header">
-      <div class="slide-eyebrow"><span class="idx">03</span>The Shift</div>
-      <h2 class="slide-title">지금도 당신의 이미지는 계속 <span class="hl">소비</span>되고 있습니다</h2>
-      <div class="header-rule"></div>
-    </header>
-    <div class="slide-body">
-      <div class="shift-wrap">
-        <div class="shift-line a-up d1"><span class="tick"></span>SNS에 올리는 모든 콘텐츠가 당신의 이미지를 소비합니다</div>
-        <div class="shift-line a-up d2"><span class="tick"></span>팔로워들은 이미 당신의 취향·관점·라이프스타일을 '읽고' 있습니다</div>
-        <p class="shift-pivot a-up d3">TubeLuLu는 <em>'이미지 소비'</em>를<br><em>'관계 기반 가치'</em>로 바꿉니다</p>
-        <div class="shift-close a-up d4">무료로 소모되던 관심·시간·마음이 <strong>비로소 가치가 됩니다</strong></div>
+      <!-- 2D fx in camera space (positions set by JS via worldToScreen) -->
+      <div class="fx" id="fx-coins"></div>
+      <div class="fx" id="fx-hearts"></div>
+
+      <div class="cloud" style="left:-520px; top:-430px; animation: drift 26s ease-in-out infinite alternate;">
+        <i style="width:96px; height:34px; left:0; top:12px; border-radius:20px;"></i>
+        <i style="width:46px; height:32px; left:18px; top:-6px;"></i>
+        <i style="width:36px; height:26px; left:52px; top:2px;"></i>
+      </div>
+      <div class="cloud" style="left:300px; top:-390px; animation: drift 32s ease-in-out infinite alternate-reverse;">
+        <i style="width:112px; height:38px; left:0; top:12px; border-radius:22px;"></i>
+        <i style="width:52px; height:36px; left:24px; top:-8px;"></i>
+      </div>
+      <div class="cloud" style="left:-140px; top:330px; animation: drift 29s ease-in-out infinite alternate; opacity:0.75;">
+        <i style="width:84px; height:30px; left:0; top:10px; border-radius:18px;"></i>
+        <i style="width:40px; height:28px; left:16px; top:-5px;"></i>
       </div>
     </div>
-    <div class="wave-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-  </section>
-
-  <!-- ======================= Slide 4 · Market ======================= -->
-  <section class="slide" id="slide-4">
-    <div class="ghost-num">04</div>
-    <header class="slide-header">
-      <div class="slide-eyebrow"><span class="idx">04</span>The Market</div>
-      <h2 class="slide-title">팬 후원은 이미 <span class="hl">거대한 시장</span>이 되었습니다</h2>
-      <div class="header-rule"></div>
-    </header>
-    <div class="slide-body">
-      <div class="stats-row">
-        <div class="stat-col a-up d1">
-          <div class="stat-big">5.5<small>조 원</small></div>
-          <div class="stat-cap">국내 크리에이터 미디어 산업 규모 (2024)</div>
-        </div>
-        <div class="stat-col a-up d2">
-          <div class="stat-big">56<small>조 원</small></div>
-          <div class="stat-cap">글로벌 인플루언서 마케팅 시장 (2026년 전망)</div>
-        </div>
-        <div class="stat-col a-up d3">
-          <div class="stat-big">23.0<small>%</small></div>
-          <div class="stat-cap">국내 인플루언서 마케팅 플랫폼 연평균 성장률</div>
-        </div>
-      </div>
-      <div class="market-rows a-up d4">
-        <div class="market-row">
-          <div class="svc">YouTube 슈퍼챗 · SOOP 별풍선<small>SOOP = 구 아프리카TV</small></div>
-          <div class="desc">라이브 방송 중 팬이 크리에이터·스트리머에게 실시간 유료 후원</div>
-        </div>
-        <div class="market-row">
-          <div class="svc">Patreon</div>
-          <div class="desc">팬이 크리에이터를 구독하며 독점 콘텐츠를 후원</div>
-        </div>
-      </div>
-      <div class="market-note a-up d5">이 수치는 전망이 아니라, <strong>이미 집계된 현실</strong>입니다.</div>
-      <p class="stat-source a-up d6">출처: 방송미디어통신위원회·한국전파진흥협회 「디지털 크리에이터 미디어 산업 실태조사」(2025) · Mordor Intelligence(2026–2031) · CoherentMI 한국 인플루언서 마케팅 플랫폼 시장 전망(2025–2032)</p>
-    </div>
-  </section>
-
-  <!-- ======================= Slide 5 · Gap ======================= -->
-  <section class="slide" id="slide-5">
-    <div class="ghost-num">05</div>
-    <header class="slide-header">
-      <div class="slide-eyebrow"><span class="idx">05</span>The Gap</div>
-      <h2 class="slide-title">비방송형 인플루언서는 <span class="hl">진입할 수 없었습니다</span></h2>
-      <div class="header-rule"></div>
-    </header>
-    <div class="slide-body">
-      <div class="gap-wrap">
-        <div class="gap-panel neg a-left d1">
-          <div class="gap-head"><i class="fa-solid fa-circle-xmark"></i>기존 플랫폼에서는</div>
-          <div class="gap-item"><i class="fa-solid fa-xmark"></i>방송·라이브 없이는 팬에게 후원받을 방법이 없음</div>
-          <div class="gap-item"><i class="fa-solid fa-xmark"></i>영상 제작 역량이 없으면 수익 창출 불가</div>
-          <div class="gap-item"><i class="fa-solid fa-xmark"></i>전업 크리에이터로 전환해야만 참여 가능</div>
-        </div>
-        <div class="gap-panel pos a-right d2">
-          <div class="gap-head"><i class="fa-solid fa-circle-check"></i>TubeLuLu에서는</div>
-          <div class="gap-item"><i class="fa-solid fa-check"></i><span><strong>팔로워만 있으면</strong> 즉시 시작할 수 있음</span></div>
-          <div class="gap-item"><i class="fa-solid fa-check"></i><span>팬과의 <strong>소통 자체</strong>가 수익이 됨</span></div>
-          <div class="gap-item"><i class="fa-solid fa-check"></i><span>본업을 유지하며 <strong>내 리듬에 맞게</strong> 운영</span></div>
-        </div>
-      </div>
-      <div class="takeaway a-up d4">TubeLuLu는 그 문턱을 걷어낸 <strong>비동기 큐레이션 플랫폼</strong>입니다.<span class="sub">팬이 언제든 질문을 남기면, 당신의 리듬에 맞춰 답하면 됩니다.</span></div>
-    </div>
-  </section>
-
-  <!-- ======================= Slide 6 · Experience ======================= -->
-  <section class="slide" id="slide-6">
-    <div class="ghost-num">06</div>
-    <header class="slide-header">
-      <div class="slide-eyebrow"><span class="idx">06</span>The Experience</div>
-      <h2 class="slide-title">기능은 덜어내고, <span class="hl">소통</span>만 남겼습니다</h2>
-      <div class="header-rule"></div>
-    </header>
-    <div class="slide-body">
-      <div class="exp-wrap">
-        <div class="exp-left">
-          <div class="sol-list">
-            <div class="sol-row a-left d1">
-              <div class="sol-q"><i class="fa-solid fa-video-slash"></i>영상 제작이 부담된다면</div>
-              <i class="fa-solid fa-arrow-right arr"></i>
-              <div class="sol-a"><i class="fa-brands fa-youtube"></i>유튜브 링크 + 코멘트면 충분</div>
-            </div>
-            <div class="sol-row a-left d2">
-              <div class="sol-q"><i class="fa-solid fa-envelope-open-text"></i>쏟아지는 DM에 지쳤다면</div>
-              <i class="fa-solid fa-arrow-right arr"></i>
-              <div class="sol-a"><i class="fa-solid fa-comments"></i>댓글 기반, 선택적 소통</div>
-            </div>
-            <div class="sol-row a-left d3">
-              <div class="sol-q"><i class="fa-solid fa-circle-question"></i>수익화가 막막하다면</div>
-              <i class="fa-solid fa-arrow-right arr"></i>
-              <div class="sol-a"><i class="fa-solid fa-coins"></i>유료 질문이 곧 수익</div>
-            </div>
-            <div class="sol-row a-left d4">
-              <div class="sol-q"><i class="fa-solid fa-user-slash"></i>브랜드 이미지가 걱정된다면</div>
-              <i class="fa-solid fa-arrow-right arr"></i>
-              <div class="sol-a"><i class="fa-solid fa-crown"></i>품격 있는 큐레이터 포지션</div>
-            </div>
-          </div>
-          <div class="diff-row">
-            <div class="diff-chip a-up d5">
-              <div class="dc-top"><i class="fa-solid fa-mobile-screen-button"></i><h4>비방송형 SNS 특화</h4></div>
-              <span class="tag">No Camera · No Live</span>
-              <p>영상·라이브 없이 SNS 활동만으로 수익 구조가 만들어집니다</p>
-            </div>
-            <div class="diff-chip a-up d6">
-              <div class="dc-top"><i class="fa-solid fa-wand-magic-sparkles"></i><h4>AI 큐레이션 어시스트</h4></div>
-              <span class="tag">Link → Post 자동 완성</span>
-              <p>링크만 붙여넣으면 영상 정보와 자막 기반 AI 요약이 자동으로 채워집니다</p>
-            </div>
-          </div>
-        </div>
-        <div class="phone a-scale d3">
-          <div class="phone-screen">
-            <div class="pm-status" aria-hidden="true"><span>9:41</span><span class="pm-status-icons"><i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-full"></i></span></div>
-            <div class="pm-hdr">
-              <i class="fa-solid fa-chevron-left"></i>
-              <span class="pm-logo"><span class="t">Tube</span><span class="l">LuLu</span></span>
-              <i class="fa-solid fa-ellipsis"></i>
-            </div>
-            <div class="pm-scroll">
-              <div class="pm-profile">
-                <div class="pm-avatar">서</div>
-                <div>
-                  <div class="pm-name">여행 큐레이터 서린</div>
-                  <div class="pm-handle">@seorin</div>
-                </div>
-                <span class="pm-badge">큐레이터</span>
-              </div>
-              <div class="pm-comment">"여러분은 여행 계획할 때 즉흥형인가요, 계획형인가요?"</div>
-              <div class="pm-video">
-                <svg class="sea-thumb" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                  <defs>
-                    <linearGradient id="sea-sky-a" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0" stop-color="#E9F7FC"/>
-                      <stop offset="1" stop-color="#C6EBF5"/>
-                    </linearGradient>
-                    <linearGradient id="sea-water-a" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0" stop-color="#6FDACD"/>
-                      <stop offset="0.42" stop-color="#24B3A3"/>
-                      <stop offset="1" stop-color="#0B7B81"/>
-                    </linearGradient>
-                  </defs>
-                  <rect width="320" height="70" fill="url(#sea-sky-a)"/>
-                  <circle cx="256" cy="30" r="20" fill="#FFF9EA" opacity="0.45"/>
-                  <circle cx="256" cy="30" r="12" fill="#FFFDF4"/>
-                  <path d="M14 70 C34 54 58 54 76 70 Z" fill="#6FA9BE" opacity="0.75"/>
-                  <path d="M82 70 C92 62 104 62 112 70 Z" fill="#8CBECF" opacity="0.6"/>
-                  <rect y="70" width="320" height="110" fill="url(#sea-water-a)"/>
-                  <ellipse cx="256" cy="86" rx="44" ry="6" fill="#FFFFFF" opacity="0.28"/>
-                  <ellipse cx="256" cy="100" rx="28" ry="4" fill="#FFFFFF" opacity="0.2"/>
-                  <ellipse cx="256" cy="112" rx="16" ry="3" fill="#FFFFFF" opacity="0.14"/>
-                  <path d="M0 90 Q40 86 80 90 T160 90 T240 90 T320 90" stroke="#9BEDE1" stroke-width="1.6" fill="none" opacity="0.45"/>
-                  <path d="M0 110 Q50 105 100 110 T200 110 T320 109" stroke="#AFF2E8" stroke-width="2" fill="none" opacity="0.4"/>
-                  <path d="M0 132 Q60 127 120 132 T240 131 T320 130" stroke="#BDF5EC" stroke-width="2.2" fill="none" opacity="0.35"/>
-                  <path d="M0 180 V152 Q80 144 160 152 T320 150 V180 Z" fill="#4BD8C6" opacity="0.5"/>
-                  <path d="M0 164 Q60 158 120 164 T240 163 T320 162" stroke="#FFFFFF" stroke-width="3" fill="none" opacity="0.55" stroke-linecap="round"/>
-                  <path d="M34 174 Q84 170 134 174 T234 173" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.45" stroke-linecap="round"/>
-                </svg>
-                <div class="pm-play"><i class="fa-solid fa-play"></i></div>
-                <div class="pm-video-meta">
-                  <span class="pm-duration">08:24</span>
-                  <div class="pm-video-title">국내에서 가장 아름다운 에메랄드빛 바다 TOP 3</div>
-                </div>
-              </div>
-              <div class="pm-q-card">
-                <div class="pm-q-head">
-                  <div class="pm-q-avatar">안</div>
-                  <span class="pm-q-name">안나</span>
-                  <span class="pm-fan-tag">팬</span>
-                  <span class="pm-price"><i class="fa-solid fa-heart"></i>300하트</span>
-                </div>
-                <div class="pm-q-text">언니~ 저는 완전 즉흥형이에요! 언니는 어디로 여행 가고 싶으세요?</div>
-                <div class="pm-answer">
-                  <div class="pm-answer-label"><i class="fa-solid fa-circle-check"></i>서린님의 답변</div>
-                  <div class="pm-answer-text">소중한 가족들과 부산 산복도로 모노레일 타보고 싶어요! 안나님도 꼭 다녀오세요.</div>
-                </div>
-              </div>
-              <div class="pm-earn"><i class="fa-solid fa-chart-line"></i><span>답변하면 질문에 담긴 하트가 <strong>수익으로 적립</strong>됩니다</span></div>
-            </div>
-            <div class="pm-input">
-              <span>질문을 남기거나 의견을 공유하세요...</span>
-              <i class="fa-solid fa-paper-plane"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================= Slide 7 · Fan psychology ======================= -->
-  <section class="slide" id="slide-7">
-    <div class="ghost-num">07</div>
-    <header class="slide-header">
-      <div class="slide-eyebrow"><span class="idx">07</span>Fan Psychology</div>
-      <h2 class="slide-title">팬이 구매하는 것은 당신과 <span class="hl">연결되는 티켓</span>입니다</h2>
-      <p class="slide-subtitle">읽히지 않는 수천 건의 DM보다, 단 한 번의 확실한 답장이 팬에게 더 깊이 닿습니다</p>
-      <div class="header-rule"></div>
-    </header>
-    <div class="slide-body">
-      <div class="psy-wrap">
-        <div class="psy-neg a-left d1">
-          <div class="gap-head"><i class="fa-solid fa-circle-xmark"></i>무료 DM</div>
-          <div class="gap-item"><i class="fa-solid fa-heart-crack"></i>내가 보낸 메시지, 읽기는 했을까?</div>
-          <div class="gap-item"><i class="fa-solid fa-comment"></i>가볍고 정제되지 않은 인사와 질문</div>
-          <div class="gap-item"><i class="fa-solid fa-hourglass-half"></i>기약 없는 기다림</div>
-        </div>
-        <div class="ticket a-right d2">
-          <span class="notch top"></span>
-          <span class="notch bot"></span>
-          <div class="gap-head"><i class="fa-solid fa-ticket"></i>TubeLuLu 유료 질문</div>
-          <div class="gap-item"><i class="fa-solid fa-face-smile-beam"></i><span>나만을 위한 특별한 답장 — <strong>존중받는 경험</strong></span></div>
-          <div class="gap-item"><i class="fa-solid fa-pen-fancy"></i><span>비용을 지불한 만큼 신중하고 정중한 질문</span></div>
-          <div class="gap-item"><i class="fa-solid fa-check-double"></i><span><strong>답변 보장</strong> — 72시간 내 미응답 시 전액 자동 환불</span></div>
-        </div>
-      </div>
-      <div class="takeaway a-up d4">결제는 팬에게 장벽이 아니라, <strong>'답변의 확신'</strong>을 얻고 당신에게 닿는 가장 합리적인 방법입니다.</div>
-    </div>
-  </section>
-
-  <!-- ======================= Slide 8 · System ======================= -->
-  <section class="slide" id="slide-8">
-    <div class="ghost-num">08</div>
-    <header class="slide-header">
-      <div class="slide-eyebrow"><span class="idx">08</span>The System</div>
-      <h2 class="slide-title">당신은 <span class="hl">답변만</span> 하세요, 나머지는 시스템이 정리합니다</h2>
-      <div class="header-rule"></div>
-    </header>
-    <div class="slide-body">
-      <div class="sys-wrap">
-        <div class="product-card inbox-card a-left d1">
-          <div class="inbox-head"><i class="fa-solid fa-inbox"></i>스튜디오 · 질문 인박스</div>
-          <div class="inbox-filters">
-            <span class="chip on">전체</span>
-            <span class="chip">~50하트</span>
-            <span class="chip">50~300</span>
-            <span class="chip">300+</span>
-          </div>
-          <div class="inbox-item urgent a-up d2">
-            <span class="due-tag">마감 3시간 전</span>
-            <span class="inbox-q">유럽 한 달 살기 루트 조언 부탁드려요</span>
-            <span class="heart-pill"><i class="fa-solid fa-heart"></i>300</span>
-          </div>
-          <div class="inbox-item urgent a-up d3">
-            <span class="due-tag">마감 9시간 전</span>
-            <span class="inbox-q">혼자 여행할 때 안전 팁이 궁금해요</span>
-            <span class="heart-pill"><i class="fa-solid fa-heart"></i>100</span>
-          </div>
-          <div class="inbox-item a-up d4">
-            <span class="due-tag">마감 2일 전</span>
-            <span class="inbox-q">다음 달 부산 코스, 1:1로 봐주실 수 있나요?</span>
-            <span class="type-tag"><i class="fa-solid fa-lock"></i>프라이빗</span>
-            <span class="heart-pill"><i class="fa-solid fa-heart"></i>500</span>
-          </div>
-          <div class="inbox-item a-up d5">
-            <span class="due-tag">마감 3일 전</span>
-            <span class="inbox-q">영상에 나온 그 카페 위치 알려주세요!</span>
-            <span class="heart-pill"><i class="fa-solid fa-heart"></i>50</span>
-          </div>
-          <div class="inbox-foot"><i class="fa-solid fa-rotate-left"></i>72시간 내 미응답 시 자동 전액 환불</div>
-        </div>
-        <div>
-          <div class="sys-list">
-            <div class="sys-item a-right d2">
-              <div class="sys-num">01</div>
-              <div>
-                <h4><strong>두 가지</strong> 유료 질문</h4>
-                <p>포스트에 노출되는 <b>공개 하이라이트</b>와 1:1 <b>프라이빗 문의</b> — 팬이 원하는 방식으로 다가옵니다</p>
-              </div>
-            </div>
-            <div class="sys-item a-right d3">
-              <div class="sys-num">02</div>
-              <div>
-                <h4>우선순위 인박스</h4>
-                <p>마감이 임박한 질문부터 자동 정렬하고, 금액대 필터로 원하는 질문만 골라볼 수 있습니다</p>
-              </div>
-            </div>
-            <div class="sys-item a-right d4">
-              <div class="sys-num">03</div>
-              <div>
-                <h4><strong>72시간</strong> 안심 장치</h4>
-                <p>답하지 못한 질문은 팬에게 자동 전액 환불 — 부담 없이 내 리듬대로 응답할 수 있습니다</p>
-              </div>
-            </div>
-            <div class="sys-item a-right d5">
-              <div class="sys-num">04</div>
-              <div>
-                <h4>정성의 선순환</h4>
-                <p>정성 어린 답변을 경험한 팬은 더 높은 가치로 화답합니다</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="takeaway a-up d6"><strong>시스템이 정리하고, 당신은 응답하고, 팬이 가치를 결정합니다.</strong></div>
-    </div>
-  </section>
-
-  <!-- ======================= Slide 9 · Scenario ======================= -->
-  <section class="slide" id="slide-9">
-    <div class="ghost-num">09</div>
-    <header class="slide-header">
-      <div class="slide-eyebrow"><span class="idx">09</span>The Scenario</div>
-      <h2 class="slide-title">하루 <span class="hl">답변 3건</span>이 만드는 월 수익</h2>
-      <div class="header-rule"></div>
-    </header>
-    <div class="slide-body">
-      <div class="sce-wrap">
-        <div>
-          <div class="product-card curator-post a-left d1">
-            <div class="cp-head">
-              <div class="cp-avatar">서</div>
-              <div>
-                <div class="cp-name">여행 큐레이터 서린</div>
-                <div class="cp-sub">@seorin · TubeLuLu 큐레이터 포스트</div>
-              </div>
-              <span class="cp-tag">큐레이터 코멘트</span>
-            </div>
-            <p class="cp-body">"같은 코스를 봐도 어디를 갔는지보다 <b>왜 그 길을 택했는지</b>가 더 궁금해지더라고요. 여러분은 여행 계획할 때 즉흥형인가요, 계획형인가요?"</p>
-          </div>
-          <div class="product-card mini-video a-left d2">
-            <div class="mini-thumb">
-              <svg class="sea-thumb" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                <defs>
-                  <linearGradient id="sea-sky-b" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#E9F7FC"/>
-                    <stop offset="1" stop-color="#C6EBF5"/>
-                  </linearGradient>
-                  <linearGradient id="sea-water-b" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#6FDACD"/>
-                    <stop offset="0.42" stop-color="#24B3A3"/>
-                    <stop offset="1" stop-color="#0B7B81"/>
-                  </linearGradient>
-                </defs>
-                <rect width="320" height="70" fill="url(#sea-sky-b)"/>
-                <circle cx="256" cy="30" r="20" fill="#FFF9EA" opacity="0.45"/>
-                <circle cx="256" cy="30" r="12" fill="#FFFDF4"/>
-                <path d="M14 70 C34 54 58 54 76 70 Z" fill="#6FA9BE" opacity="0.75"/>
-                <path d="M82 70 C92 62 104 62 112 70 Z" fill="#8CBECF" opacity="0.6"/>
-                <rect y="70" width="320" height="110" fill="url(#sea-water-b)"/>
-                <ellipse cx="256" cy="86" rx="44" ry="6" fill="#FFFFFF" opacity="0.28"/>
-                <ellipse cx="256" cy="100" rx="28" ry="4" fill="#FFFFFF" opacity="0.2"/>
-                <path d="M0 96 Q40 92 80 96 T160 96 T240 96 T320 96" stroke="#9BEDE1" stroke-width="2.4" fill="none" opacity="0.45"/>
-                <path d="M0 126 Q50 121 100 126 T200 126 T320 125" stroke="#AFF2E8" stroke-width="2.8" fill="none" opacity="0.4"/>
-                <path d="M0 180 V152 Q80 144 160 152 T320 150 V180 Z" fill="#4BD8C6" opacity="0.5"/>
-                <path d="M0 164 Q60 158 120 164 T240 163 T320 162" stroke="#FFFFFF" stroke-width="3.4" fill="none" opacity="0.55" stroke-linecap="round"/>
-              </svg>
-              <span class="mini-play"><i class="fa-solid fa-play"></i></span>
-            </div>
-            <div class="mini-video-info">
-              <div class="mv-src"><i class="fa-brands fa-youtube"></i>YouTube</div>
-              <div class="mv-title">국내에서 가장 아름다운 에메랄드빛 바다 TOP 3</div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="qa-rows">
-            <div class="qa-row a-right d1">
-              <div class="qa-avatar" style="background: linear-gradient(135deg, #F1632A, #F59E0B);">안</div>
-              <p>언니 저 완전 즉흥파예요! 어제도 갑자기 버스 타고 경주 다녀왔어요 ㅋㅋ 예상치 못한 일이 생기면 어떻게 대처해요?</p>
-              <span class="heart-pill dk"><i class="fa-solid fa-heart"></i>100하트</span>
-            </div>
-            <div class="qa-row a-right d2">
-              <div class="qa-avatar" style="background: linear-gradient(135deg, #09347A, #3399CC);">지</div>
-              <p>'왜 그 길을 택했는지'가 너무 공감됐어요 😭 저는 계획형인데 사실 이유 없는 루트가 더 많더라구요. 의미 있는 선택, 어떻게 하는 거예요?</p>
-              <span class="heart-pill dk"><i class="fa-solid fa-heart"></i>150하트</span>
-            </div>
-            <div class="qa-row a-right d3">
-              <div class="qa-avatar" style="background: linear-gradient(135deg, #2284B8, #35A3D6);">유</div>
-              <p>저는 혼자 여행 다니면서 즉흥형으로 변했어요. 가장 기억에 남는 즉흥 순간 있으세요? :)</p>
-              <span class="heart-pill dk"><i class="fa-solid fa-heart"></i>250하트</span>
-            </div>
-          </div>
-          <div class="earn-block a-up d4">
-            <div class="earn-label">하루 질문 3건에 답하면<br><b>정산 후 월 수익</b></div>
-            <div class="earn-big">약 100<small>만 원</small></div>
-          </div>
-          <div class="sce-note a-up d5">1하트 ≈ 100원 · 하루 3건 답변, 하루 30분 활동 기준의 예시 시나리오이며, 정산율은 큐레이터 등급에 따라 적용됩니다</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================= Slide 10 · Journey ======================= -->
-  <section class="slide" id="slide-10">
-    <div class="ghost-num">10</div>
-    <header class="slide-header">
-      <div class="slide-eyebrow"><span class="idx">10</span>The Journey</div>
-      <h2 class="slide-title">당신의 팔로워를 TubeLuLu로 <span class="hl">초대하세요</span></h2>
-      <p class="slide-subtitle">팔로워에서 구독자로, 구독자에서 후원 팬으로</p>
-      <div class="header-rule"></div>
-    </header>
-    <div class="slide-body">
-      <div class="journey-wrap">
-        <div class="j-col a-up d1">
-          <div class="j-num">01</div>
-          <h4>큐레이터 온보딩</h4>
-          <p>가입 후 큐레이터로 지원하세요. <strong>승인제</strong>로 운영되어 품격 있는 큐레이터 커뮤니티가 유지됩니다</p>
-        </div>
-        <div class="j-col a-up d2">
-          <div class="j-num">02</div>
-          <h4>개인 링크 공유</h4>
-          <p>나만의 핸들로 만들어지는 프로필 링크를 인스타그램 바이오·스토리에 공유하세요</p>
-          <span class="j-chip">tubelulu.com/curators/내핸들</span>
-        </div>
-        <div class="j-col a-up d3">
-          <div class="j-num">03</div>
-          <h4>팔로워 → 팬 전환</h4>
-          <p><strong>무료 구독</strong>으로 부담 없이 유입되고, 유료 질문으로 관계가 깊어집니다. 새로운 팬을 찾을 필요가 없습니다</p>
-        </div>
-      </div>
-      <div class="takeaway a-up d5">이미 당신을 좋아하는 사람들이 있습니다. <strong>그들을 초대하기만 하면 됩니다.</strong></div>
-    </div>
-    <div class="wave-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-  </section>
-
-  <!-- ======================= Slide 11 · Roles ======================= -->
-  <section class="slide" id="slide-11">
-    <div class="ghost-num">11</div>
-    <header class="slide-header">
-      <div class="slide-eyebrow"><span class="idx">11</span>Peace of Mind</div>
-      <h2 class="slide-title">운영은 맡기고, <span class="hl">'관계'</span>에만 집중하세요</h2>
-      <p class="slide-subtitle">그 밖의 모든 일은 TubeLuLu가 맡습니다</p>
-      <div class="header-rule"></div>
-    </header>
-    <div class="slide-body">
-      <div class="roles-wrap">
-        <div class="role-col a-left d1">
-          <div class="role-head"><i class="fa-solid fa-gears"></i><span><span class="wm-inline"><span class="t">Tube</span><span class="l">LuLu</span></span>가 하는 일</span></div>
-          <div class="role-item">
-            <i class="fa-solid fa-credit-card"></i>
-            <div>
-              <h5>결제·정산 시스템 운영</h5>
-              <p>하트 충전부터 현금 정산까지 안전하게 처리합니다</p>
-            </div>
-          </div>
-          <div class="role-item">
-            <i class="fa-solid fa-rotate-left"></i>
-            <div>
-              <h5>만료·환불 자동 처리와 알림 관리</h5>
-              <p>미응답 질문 환불과 새 질문 알림을 시스템이 챙깁니다</p>
-            </div>
-          </div>
-          <div class="role-item">
-            <i class="fa-solid fa-shield-halved"></i>
-            <div>
-              <h5>AI 큐레이션 지원과 이미지 보호</h5>
-              <p>영상 정보·요약 자동화, 신고·차단 시스템으로 품격을 지킵니다</p>
-            </div>
-          </div>
-        </div>
-        <div class="role-col a-right d2">
-          <div class="role-head"><i class="fa-solid fa-circle-user"></i>당신이 하는 일</div>
-          <div class="role-item">
-            <i class="fa-solid fa-comments"></i>
-            <div>
-              <h5>유료 질문에 정성 어린 답변</h5>
-              <p>내 리듬에 맞춰, 진심을 담아 응답하세요</p>
-            </div>
-          </div>
-          <div class="role-item">
-            <i class="fa-solid fa-ranking-star"></i>
-            <div>
-              <h5>후원 팬을 기억하는 꾸준한 소통</h5>
-              <p>팬랭킹으로 나를 아끼는 팬을 한눈에 확인하세요</p>
-            </div>
-          </div>
-          <div class="role-item">
-            <i class="fa-solid fa-handshake"></i>
-            <div>
-              <h5>신뢰가 쌓이는 관계</h5>
-              <p>좋은 답변이 다음 질문으로 이어집니다</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================= Slide 12 · Why now ======================= -->
-  <section class="slide" id="slide-12">
-    <div class="ghost-num">12</div>
-    <header class="slide-header">
-      <div class="slide-eyebrow"><span class="idx">12</span>Why Now</div>
-      <h2 class="slide-title">지금 시작할 <span class="hl">세 가지 이유</span></h2>
-      <div class="header-rule"></div>
-    </header>
-    <div class="slide-body">
-      <div class="why-rows">
-        <div class="why-row a-up d1">
-          <div class="why-num">01</div>
-          <div>
-            <h4>웹·앱 전면 제공</h4>
-            <span class="tag">tubelulu.com</span>
-          </div>
-          <p>App Store와 Google Play, 웹 어디서든 만날 수 있습니다. 가입부터 정산까지 전 과정을 지원합니다</p>
-        </div>
-        <div class="why-row a-up d2">
-          <div class="why-num">02</div>
-          <div>
-            <h4>팬랭킹 &amp; 시즌 DM</h4>
-            <span class="tag">월간 TOP 3 팬</span>
-          </div>
-          <p>매월 팬랭킹 상위 3명에게 7일간의 프라이빗 DM이 열립니다 — 가장 가까운 팬을 향한 예우입니다</p>
-        </div>
-        <div class="why-row a-up d3">
-          <div class="why-num">03</div>
-          <div>
-            <h4>한층 정교해진 큐레이션</h4>
-            <span class="tag">AI 요약 · 멀티 영상</span>
-          </div>
-          <p>자막 기반 AI 요약, 여러 영상을 묶는 포스트, 저장 라이브러리까지 — 큐레이션이 더 쉬워졌습니다</p>
-        </div>
-      </div>
-      <div class="cta-row">
-        <a class="cta-button a-scale d5" href="https://tubelulu.com" target="_blank" rel="noopener">tubelulu.com에서 시작하기<i class="fa-solid fa-arrow-right"></i></a>
-        <div class="cta-meta a-up d6"><i class="fa-solid fa-envelope"></i>문의: <a href="mailto:momo@teamlulu.ai?subject=TubeLuLu%20%ED%81%90%EB%A0%88%EC%9D%B4%ED%84%B0%20%EC%A7%80%EC%9B%90%20%EB%AC%B8%EC%9D%98">momo@teamlulu.ai</a></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================= Slide 13 · Closing ======================= -->
-  <section class="slide" id="slide-13">
-    <div class="ghost-num">13</div>
-    <header class="slide-header" style="text-align:center;">
-      <div class="slide-eyebrow" style="justify-content:center;"><span class="idx">13</span>Closing</div>
-      <h2 class="slide-title" style="max-width:none;">TubeLuLu와 함께, <span class="hl">지금 시작하세요</span></h2>
-    </header>
-    <div class="slide-body">
-      <div class="closing-body">
-        <p class="mission a-up d1">비공식적이고 불투명한 소통을,<br><strong>안전하고 투명한 온라인 수익</strong>으로 전환합니다</p>
-        <div class="mission-rule a-up d2"></div>
-        <div class="principles a-up d3">
-          <span class="principle"><i class="fa-solid fa-shield-halved"></i><span class="en">Safety</span><span class="ko">안전한 거래 구조</span></span>
-          <span class="principle-dot"></span>
-          <span class="principle"><i class="fa-solid fa-gem"></i><span class="en">Dignity</span><span class="ko">품격 있는 소통</span></span>
-          <span class="principle-dot"></span>
-          <span class="principle"><i class="fa-solid fa-leaf"></i><span class="en">Sustainability</span><span class="ko">지속 가능한 수익</span></span>
-        </div>
-        <a class="cta-button a-scale d4" href="https://tubelulu.com" target="_blank" rel="noopener">tubelulu.com에서 시작하기<i class="fa-solid fa-arrow-right"></i></a>
-        <div class="cta-meta a-up d5"><i class="fa-solid fa-envelope"></i>문의: <a href="mailto:momo@teamlulu.ai?subject=TubeLuLu%20%ED%81%90%EB%A0%88%EC%9D%B4%ED%84%B0%20%EC%A7%80%EC%9B%90%20%EB%AC%B8%EC%9D%98">momo@teamlulu.ai</a></div>
-        <p class="closing-line a-up d6"><span class="wm-inline"><span class="t">Tube</span><span class="l">LuLu</span></span> — 당신의 해석이 빛나는 프리미엄 큐레이션 플랫폼</p>
-      </div>
-    </div>
-    <div class="wave-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-  </section>
-
-  <!-- ======================= Navigation chrome ======================= -->
-  <div class="progress-bar" id="progressBar"></div>
-  <div class="nav-ticks" id="navTicks"></div>
-  <div class="nav-arrows">
-    <button class="nav-arrow" id="prevBtn" aria-label="이전 슬라이드"><i class="fa-solid fa-chevron-left"></i></button>
-    <button class="nav-arrow" id="nextBtn" aria-label="다음 슬라이드"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
-  <div class="page-number" id="pageNumber"><strong>01</strong> / 13</div>
-  <div class="keyboard-hint" id="keyboardHint"><i class="fa-solid fa-keyboard"></i> ← → 또는 스와이프로 이동</div>
+
+  <!-- brand lockup — sits below slide panels so wide panels can cover it -->
+  <div class="brandbar">
+    <svg viewBox="0 0 120 120"><use href="#tl-symbol"/></svg>
+    <span class="wm">Tube<span class="lu">LuLu</span></span>
+    <span class="doc">큐레이터 파트너 제안서</span>
+  </div>
+
+  <!-- ================= SLIDES ================= -->
+  <div class="slides" id="slides">
+
+    <!-- S1 표지 -->
+    <section class="slide active" id="s1" data-cam="-80,-80,1,290,40">
+      <div class="panel cover-panel">
+        <div class="district">SERVICE INTRODUCTION · 큐레이터 파트너 제안</div>
+        <div class="brand-row">
+          <svg class="brand-mark" viewBox="0 0 120 120"><use href="#tl-symbol"/></svg>
+          <div class="brand-word">Tube<span class="lu">LuLu</span></div>
+        </div>
+        <div class="cover-title">큐레이터의 해석을 먼저 읽는<br><span class="hl">유튜브 큐레이션</span> 플랫폼</div>
+        <div class="cover-points">
+          <div class="msg">
+            <div class="icbox"><svg class="ic"><use href="#i-link"/></svg></div>
+            <p>유튜브 링크에 코멘트를 얹어 <b>'인사이트'</b>를 발행하고</p>
+          </div>
+          <div class="msg">
+            <div class="icbox warm"><svg class="ic fill"><use href="#i-heart"/></svg></div>
+            <p>팬은 <b>하트를 걸어 질문</b>하고 — 하이라이트 · 프라이빗</p>
+          </div>
+          <div class="msg">
+            <div class="icbox deep"><svg class="ic"><use href="#i-chat"/></svg></div>
+            <p><b>답변하면 걸린 하트가 전액 적립</b>됩니다</p>
+          </div>
+        </div>
+        <span class="beta-tag"><i></i>Closed Beta — 큐레이터 파트너 모집 중</span>
+      </div>
+    </section>
+
+    <!-- S2 고민 -->
+    <section class="slide" id="s2" data-cam="-720,400,1.35,-330,-40">
+      <div class="panel pos-right" style="width:660px">
+        <div class="district">02 · 인플루언서의 현실</div>
+        <div class="h1">이런 <span class="hl">고민</span>, 해보셨나요?</div>
+        <div class="msg-list">
+          <div class="msg rv">
+            <div class="icbox"><svg class="ic"><use href="#i-chart"/></svg></div>
+            <p>팔로워는 수만 명인데, 광고·협찬 말고는 수익 구조가 없다</p>
+          </div>
+          <div class="msg rv">
+            <div class="icbox"><svg class="ic"><use href="#i-inbox"/></svg></div>
+            <p>DM은 하루 수백 개 — 답하고 싶어도 스팸에 묻혀 진심을 놓친다</p>
+          </div>
+          <div class="msg rv">
+            <div class="icbox"><svg class="ic"><use href="#i-video"/></svg></div>
+            <p>유튜브·라이브 방송? 영상 제작의 진입 장벽이 너무 높다</p>
+          </div>
+        </div>
+        <div class="foot-strip rv">당신의 영향력은 이미 충분합니다. <span class="em">그 영향력을 발휘할 구조가 없었을 뿐입니다.</span></div>
+      </div>
+    </section>
+
+    <!-- S3 전환 선언 -->
+    <section class="slide" id="s3" data-cam="-26,-26,1.15,-300,-20">
+      <div class="panel pos-right" style="width:680px">
+        <div class="district">03 · TubeLuLu의 제안</div>
+        <div class="h1">지금도 당신의 이미지는 계속 <span class="hl-w">소비</span>되고 있습니다</div>
+        <div class="msg-list">
+          <div class="msg rv">
+            <div class="icbox"><svg class="ic"><use href="#i-mobile"/></svg></div>
+            <p>SNS에 올리는 모든 콘텐츠가 당신의 이미지를 소비합니다</p>
+          </div>
+          <div class="msg rv">
+            <div class="icbox"><svg class="ic"><use href="#i-users"/></svg></div>
+            <p>팔로워들은 이미 당신의 취향·관점·라이프스타일을 '읽고' 있습니다</p>
+          </div>
+          <div class="msg rv">
+            <div class="icbox"><svg class="ic"><use href="#i-swap"/></svg></div>
+            <p>TubeLuLu는 '이미지 소비'를 <b>관계 기반 가치</b>로 바꿉니다</p>
+          </div>
+          <div class="msg rv">
+            <div class="icbox warm"><svg class="ic fill"><use href="#i-heart"/></svg></div>
+            <p>무료로 소모되던 관심과 시간이 <b>하트</b>가 되어 돌아옵니다</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S4 시장 -->
+    <section class="slide" id="s4" data-cam="170,-590,1.25,-330,110">
+      <div class="panel pos-right" style="width:690px">
+        <div class="district">04 · 시장</div>
+        <div class="h1">팬 후원은 이미 <span class="hl">거대한 시장</span>입니다</div>
+        <div class="sub" style="margin-bottom:14px">팬들은 자신이 좋아하는 크리에이터에게 기꺼이 비용을 지불하고 있습니다.</div>
+        <div class="stat-row">
+          <div class="stat rv"><b>5.5조원</b><span>국내 크리에이터 미디어<br>산업 규모 (2024)</span></div>
+          <div class="stat rv"><b>56조원</b><span>글로벌 인플루언서 마케팅<br>시장 (2026년 전망)</span></div>
+          <div class="stat rv"><b>23.0%</b><span>국내 인플루언서 마케팅<br>플랫폼 연평균 성장률</span></div>
+        </div>
+        <div class="ctable rv">
+          <div class="tr"><div class="th">서비스</div><div class="th">팬 후원 방식</div></div>
+          <div class="tr"><div class="td name">YouTube<small>슈퍼챗</small></div><div class="td">라이브 방송 중 팬이 크리에이터에게 실시간 유료 후원</div></div>
+          <div class="tr"><div class="td name">SOOP<small>별풍선 (구 아프리카TV)</small></div><div class="td">실시간 라이브 중 팬이 스트리머에게 유료 후원</div></div>
+          <div class="tr"><div class="td name">Patreon<small>구독형 후원</small></div><div class="td">팬이 크리에이터를 구독하며 독점 콘텐츠를 후원</div></div>
+        </div>
+        <div class="rv" style="margin-top:10px;font-size:10.5px;line-height:1.5;color:#8aa0b5;text-align:right">출처: 방송미디어통신위원회·한국전파진흥협회 「디지털 크리에이터 미디어 산업 실태조사」(2025) · Mordor Intelligence(2026–2031) · CoherentMI(2025–2032)</div>
+      </div>
+    </section>
+
+    <!-- S5 기회 (진입 장벽) -->
+    <section class="slide" id="s5" data-cam="-26,-26,1,0,0">
+      <div class="panel pos-wide">
+        <div class="district">05 · 기회</div>
+        <div class="h1">비방송형 인플루언서는 이 시장에 <span class="hl-w">진입할 수 없었습니다</span></div>
+        <div class="compare" style="margin-top:6px">
+          <div class="cmp neg rv">
+            <div class="cmp-title"><svg class="ic"><use href="#i-x"/></svg>기존 플랫폼에서는</div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-x"/></svg><span>방송·라이브 없이는 팬에게 후원받을 방법이 없음</span></div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-x"/></svg><span>영상 제작 역량이 없으면 수익 창출 불가</span></div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-x"/></svg><span>전업 크리에이터로 전환하지 않으면 참여에 한계</span></div>
+          </div>
+          <div class="cmp pos rv">
+            <div class="cmp-title"><svg class="ic"><use href="#i-check"/></svg>TubeLuLu에서는</div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-check"/></svg><span>팔로워만 있으면 즉시 큐레이터로 참여 가능</span></div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-check"/></svg><span>팬과의 질문·답변 소통이 그대로 수익이 됨</span></div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-check"/></svg><span>본업을 유지하며 내 리듬에 맞게 운영</span></div>
+          </div>
+        </div>
+        <div class="foot-strip rv">
+          TubeLuLu = 팬이 언제든 <span class="em">하트를 걸어 질문</span>을 남기고, 큐레이터가 <span class="em">자신의 리듬으로 72시간 안에</span> 답하는 비동기 소통 플랫폼
+        </div>
+      </div>
+    </section>
+
+    <!-- S6 서비스 화면 -->
+    <section class="slide" id="s6" data-cam="-180,-180,1.5,340,180">
+      <div class="panel pos-wide" style="width:1150px; padding:24px 32px;">
+        <div class="district" style="margin-bottom:10px">06 · 서비스 구조</div>
+        <div class="h1" style="font-size:26px; margin-bottom:12px">복잡한 기능 없이, 팬들과 <span class="hl">소통</span>하세요</div>
+        <div class="sol-wrap">
+          <div class="sol-col">
+            <div class="sol rv">
+              <span class="from"><svg class="ic"><use href="#i-cam-off"/></svg>영상 제작 부담</span>
+              <span class="arrow"><svg class="ic"><use href="#i-arrow"/></svg></span>
+              <span class="to"><svg class="ic"><use href="#i-link"/></svg>유튜브 링크에 내 코멘트를 얹은 '인사이트' 발행</span>
+            </div>
+            <div class="sol rv">
+              <span class="from"><svg class="ic"><use href="#i-inbox"/></svg>DM 지옥</span>
+              <span class="arrow"><svg class="ic"><use href="#i-arrow"/></svg></span>
+              <span class="to"><svg class="ic"><use href="#i-chat"/></svg>질문 기반, 내가 고르는 선택적 소통</span>
+            </div>
+            <div class="sol rv">
+              <span class="from"><svg class="ic"><use href="#i-question"/></svg>막막한 수익화</span>
+              <span class="arrow"><svg class="ic"><use href="#i-arrow"/></svg></span>
+              <span class="to"><svg class="ic fill" style="color:var(--heart)"><use href="#i-heart"/></svg>하트 걸린 질문에 답하면 전액 적립</span>
+            </div>
+            <div class="sol rv">
+              <span class="from"><svg class="ic"><use href="#i-video"/></svg>긴 영상 정리</span>
+              <span class="arrow"><svg class="ic"><use href="#i-arrow"/></svg></span>
+              <span class="to"><svg class="ic"><use href="#i-spark"/></svg>AI 영상 요약 · 타임라인이 자동 생성</span>
+            </div>
+            <div class="sol rv">
+              <span class="from"><svg class="ic"><use href="#i-users"/></svg>브랜드 관리</span>
+              <span class="arrow"><svg class="ic"><use href="#i-arrow"/></svg></span>
+              <span class="to"><svg class="ic"><use href="#i-crown"/></svg>'큐레이터'라는 지적 이미지 구축</span>
+            </div>
+            <div class="compare rv" style="margin-top:8px; gap:12px">
+              <div class="cmp pos" style="padding:14px 16px">
+                <div class="cmp-title" style="font-size:13.5px; margin-bottom:6px"><svg class="ic"><use href="#i-cam-off"/></svg>No Camera · No Live</div>
+                <p style="font-size:12px; color:var(--ink-2); line-height:1.55; word-break:keep-all">영상·라이브 없이 SNS 활동의 연장선에서 수익 구조에 연결됩니다</p>
+              </div>
+              <div class="cmp pos" style="padding:14px 16px">
+                <div class="cmp-title" style="font-size:13.5px; margin-bottom:6px"><svg class="ic fill" style="color:var(--heart)"><use href="#i-heart"/></svg>유료 질문 메커니즘</div>
+                <p style="font-size:12px; color:var(--ink-2); line-height:1.55; word-break:keep-all">하트를 지불한 질문은 더 진지합니다. 응답할 가치가 있는 대화만 남습니다</p>
+              </div>
+            </div>
+          </div>
+          <div class="phone rv">
+            <div class="phone-scr">
+              <div class="pm-hdr">
+                <span class="back">←</span><span class="t">인사이트</span>
+                <span class="join">구독</span>
+              </div>
+              <div class="pm-scroll">
+                <div class="pm-cur">
+                  <span class="ava">민</span>
+                  <span class="nm">여행하는 민지</span>
+                  <span class="dt">7월 7일</span>
+                </div>
+                <div class="pm-headline">국내 에메랄드빛 바다, 어디까지 가봤나요?</div>
+                <div class="pm-comment">같은 코스라도 왜 그 길을 택했는지가 더 궁금해지는 영상이에요.</div>
+                <div class="pm-thumb">
+                  <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5.5 L19 12 L8 18.5 Z"/></svg></div>
+                  <span class="pm-dur">08:24</span>
+                </div>
+                <div class="pm-yt"><span class="yb">YOUTUBE</span><span class="t">국내 에메랄드빛 바다 TOP 3</span></div>
+                <div class="pm-tabs2"><span class="on">전체</span><span>하이라이트</span><span>프라이빗</span></div>
+                <div class="pm-input"><span>질문을 남기거나 의견을 나눠보세요...</span><span class="send">➤</span></div>
+                <div class="pm-chips">
+                  <span>질문</span>
+                  <span class="hl-chip">♥ 하이라이트</span>
+                  <span class="pv-chip">🔒 프라이빗</span>
+                </div>
+                <div class="pm-q">
+                  <div class="row">
+                    <span class="ava">안</span><span class="nm">안나</span>
+                    <span class="badge">하이라이트 · ❤️ 100</span>
+                  </div>
+                  <div class="txt">언니~ 저는 완전 즉흥형이에요! 다음엔 어디로 가고 싶으세요?</div>
+                  <div class="pm-ans">
+                    <div class="lbl"><svg class="ic"><use href="#i-check"/></svg>큐레이터의 답변</div>
+                    <div class="txt">"가족들과 부산 산복도로 모노레일 타보고 싶어요. 안나님도 꼭 다녀오세요!"</div>
+                  </div>
+                </div>
+                <div class="pm-private">
+                  <div class="row">
+                    <span class="pv">🔒 프라이빗</span><span class="amt">❤️ 300</span><span class="dt">17시간전</span>
+                  </div>
+                  <div class="txt">프라이빗 질문입니다. 작성자와 큐레이터만 내용을 볼 수 있습니다.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S7 팬 심리 -->
+    <section class="slide" id="s7" data-cam="200,320,1.45,-330,-60">
+      <div class="panel pos-right" style="width:680px">
+        <div class="district">07 · 팬 경험</div>
+        <div class="h1">팬이 사는 것은 당신과 <span class="hl-w">연결되는 티켓</span>입니다</div>
+        <div class="sub" style="margin-bottom:14px">읽히지 않는 수천 개의 DM보다, 단 한 번의 확실한 답변.</div>
+        <div class="compare">
+          <div class="cmp neg rv">
+            <div class="cmp-title"><svg class="ic"><use href="#i-x"/></svg>무료 DM</div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-mail"/></svg><span>내가 보낸 메시지, 읽기는 했을까?</span></div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-chat"/></svg><span>가볍고 정제되지 않은 인사와 질문</span></div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-clock"/></svg><span>기약 없는 기다림</span></div>
+          </div>
+          <div class="cmp pos rv">
+            <div class="cmp-title"><svg class="ic fill" style="color:var(--heart)"><use href="#i-heart"/></svg>TubeLuLu 하트 질문</div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-check"/></svg><span>나만을 위한 답변 — 존중받는 경험</span></div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-check"/></svg><span>하트를 건 만큼 신중하고 정중한 질문</span></div>
+            <div class="cmp-item"><svg class="ic"><use href="#i-check"/></svg><span>72시간 내 미답변 시 <b>전액 자동 환불</b> — 확실한 약속</span></div>
+          </div>
+        </div>
+        <div class="foot-strip rv">결제는 팬에게 장벽이 아니라 <span class="em">'답변의 확신'이라는 리워드</span> — 당신에게 확실히 닿는 가장 합리적인 방법입니다.</div>
+      </div>
+    </section>
+
+    <!-- S8 우선순위 큐 -->
+    <section class="slide" id="s8" data-cam="-26,-26,1.05,0,0">
+      <div class="panel pos-wide" style="width:1130px">
+        <div class="district">08 · 우선순위 시스템</div>
+        <div class="h1">당신은 <span class="hl">답변만</span> 하세요 — 가치는 팬들이 결정합니다</div>
+        <div class="queue-wrap" style="margin-top:8px">
+          <div class="qboard">
+            <div class="qitem gold rv">
+              <span class="rank">1</span>
+              <span class="amt"><svg viewBox="0 0 24 24"><path d="M12 20.5 C5.4 15 3.2 10.6 5.2 7.6 C7 4.9 10.4 5.4 12 8.2 C13.6 5.4 17 4.9 18.8 7.6 C20.8 10.6 18.6 15 12 20.5 Z"/></svg>500</span>
+              <span class="q">유럽 한 달 살기 루트, 조언 부탁드려요</span>
+              <span class="tag">프라이빗 · 정성 답변</span>
+            </div>
+            <div class="qitem gold rv">
+              <span class="rank">2</span>
+              <span class="amt"><svg viewBox="0 0 24 24"><path d="M12 20.5 C5.4 15 3.2 10.6 5.2 7.6 C7 4.9 10.4 5.4 12 8.2 C13.6 5.4 17 4.9 18.8 7.6 C20.8 10.6 18.6 15 12 20.5 Z"/></svg>300</span>
+              <span class="q">혼자 여행할 때 안전 팁이 궁금해요</span>
+              <span class="tag">프라이빗 · 정성 답변</span>
+            </div>
+            <div class="qitem silver rv">
+              <span class="rank">3</span>
+              <span class="amt"><svg viewBox="0 0 24 24"><path d="M12 20.5 C5.4 15 3.2 10.6 5.2 7.6 C7 4.9 10.4 5.4 12 8.2 C13.6 5.4 17 4.9 18.8 7.6 C20.8 10.6 18.6 15 12 20.5 Z"/></svg>100</span>
+              <span class="q">현지인처럼 여행하는 법?</span>
+              <span class="tag">하이라이트</span>
+            </div>
+            <div class="qitem silver rv">
+              <span class="rank">4</span>
+              <span class="amt"><svg viewBox="0 0 24 24"><path d="M12 20.5 C5.4 15 3.2 10.6 5.2 7.6 C7 4.9 10.4 5.4 12 8.2 C13.6 5.4 17 4.9 18.8 7.6 C20.8 10.6 18.6 15 12 20.5 Z"/></svg>50</span>
+              <span class="q">짐 싸는 노하우 궁금해요</span>
+              <span class="tag">하이라이트</span>
+            </div>
+            <div class="qitem rv">
+              <span class="rank">5</span>
+              <span class="amt"><svg viewBox="0 0 24 24"><path d="M12 20.5 C5.4 15 3.2 10.6 5.2 7.6 C7 4.9 10.4 5.4 12 8.2 C13.6 5.4 17 4.9 18.8 7.6 C20.8 10.6 18.6 15 12 20.5 Z"/></svg>10</span>
+              <span class="q">그 카페 위치 알려주세요</span>
+              <span class="tag" style="background:var(--paper-2); color:var(--ink-3)">하이라이트</span>
+            </div>
+          </div>
+          <div class="qexp">
+            <div class="qexp-item rv"><span class="n">1</span><p><b>자동 정렬</b>하트가 높을수록 질문이 상단에 자동 배치됩니다</p></div>
+            <div class="qexp-item rv"><span class="n">2</span><p><b>우선순위</b>높은 하트의 질문에 우선 답하며, 자연스럽게 더 정성을 담게 됩니다</p></div>
+            <div class="qexp-item rv"><span class="n">3</span><p><b>경쟁의 선순환</b>정성 어린 답변을 본 팬들은 다음에 더 높은 가치를 겁니다</p></div>
+            <div class="qexp-item rv"><span class="n">4</span><p><b>72시간 자동 환불</b>미답변 질문은 72시간 후 자동 환불 — 운영 부담이 없습니다</p></div>
+            <div class="foot-strip rv" style="margin-top:6px; text-align:left; font-size:13px">
+              <span class="em">시스템이 정렬하고, 당신은 응답하고, 팬이 가치를 결정합니다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S9 수익 시나리오 -->
+    <section class="slide" id="s9" data-cam="580,150,1.5,-350,-30">
+      <div class="panel pos-right" style="width:720px">
+        <div class="district">09 · 수익 시나리오</div>
+        <div class="h1">하루 <span class="hl">답변 3건</span>이 만드는 월 수익</div>
+        <div class="proof-wrap" style="margin-top:6px">
+          <div class="insight-card rv">
+            <div class="head">
+              <span class="ava">민</span>
+              <div class="who"><b>여행하는 민지</b><span>@minji_wanders</span></div>
+              <span class="badge">인사이트</span>
+            </div>
+            <div class="thumb">
+              <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5.5 L19 12 L8 18.5 Z"/></svg></div>
+              <span class="t">국내 에메랄드빛 바다 TOP 3</span>
+            </div>
+            <div class="comment">"어디를 갔는지보다 <b>왜 그 길을 택했는지</b>가 더 궁금해지더라고요. 여러분은 여행 계획할 때 즉흥형인가요, 계획형인가요?"</div>
+          </div>
+          <div>
+            <div class="fanq-list">
+              <div class="fanq rv">
+                <div class="row">
+                  <span class="who"><span class="ava" style="background:linear-gradient(135deg,#57b0d8,#007dc3)">팬1</span>즉흥파 안나</span>
+                  <span class="chip-heart"><svg viewBox="0 0 24 24"><path d="M12 20.5 C5.4 15 3.2 10.6 5.2 7.6 C7 4.9 10.4 5.4 12 8.2 C13.6 5.4 17 4.9 18.8 7.6 C20.8 10.6 18.6 15 12 20.5 Z"/></svg>50</span>
+                </div>
+                <p>어제도 갑자기 버스 타고 경주 다녀왔어요 ㅋㅋ 예상 못 한 일이 생기면 어떻게 대처하세요?</p>
+              </div>
+              <div class="fanq rv">
+                <div class="row">
+                  <span class="who"><span class="ava" style="background:linear-gradient(135deg,#ffb26b,#f1632a)">팬2</span>계획형 소연</span>
+                  <span class="chip-heart"><svg viewBox="0 0 24 24"><path d="M12 20.5 C5.4 15 3.2 10.6 5.2 7.6 C7 4.9 10.4 5.4 12 8.2 C13.6 5.4 17 4.9 18.8 7.6 C20.8 10.6 18.6 15 12 20.5 Z"/></svg>100</span>
+                </div>
+                <p>'왜 그 길을 택했는지'가 너무 공감됐어요. 의미 있는 선택은 어떻게 하는 건가요?</p>
+              </div>
+              <div class="fanq rv">
+                <div class="row">
+                  <span class="who"><span class="ava" style="background:linear-gradient(135deg,#9db8f0,#09347a)">팬3</span>혼행러 지우</span>
+                  <span class="chip-heart"><svg viewBox="0 0 24 24"><path d="M12 20.5 C5.4 15 3.2 10.6 5.2 7.6 C7 4.9 10.4 5.4 12 8.2 C13.6 5.4 17 4.9 18.8 7.6 C20.8 10.6 18.6 15 12 20.5 Z"/></svg>200</span>
+                </div>
+                <p>혼자 여행 다니며 즉흥형으로 변했어요. 가장 기억에 남는 즉흥 순간이 있나요? (프라이빗)</p>
+              </div>
+            </div>
+            <div class="earn-box rv">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+              <div class="main">하루 3건 답변 = <b>❤️ 350</b> → 한 달 <b>10,500하트, 약 100만원 상당</b></div>
+            </div>
+          </div>
+        </div>
+        <p class="note rv">* 1하트 ≈ 100원 등가 기준의 예시 시나리오입니다. 하루 3건은 부담 없는 수준이고, 프라이빗 비중이 높아질수록 수익은 그 이상이 됩니다. 실제 정산은 큐레이터 등급별 정산율(60~80%)과 파트너 계약 조건에 따릅니다.</p>
+      </div>
+    </section>
+
+    <!-- S10 팬 락인 -->
+    <section class="slide" id="s10" data-cam="600,-500,1.3,-340,60">
+      <div class="panel pos-right" style="width:700px">
+        <div class="district">10 · 팬 관계</div>
+        <div class="h1">답변받은 팬은 <span class="hl">다시 찾아옵니다</span></div>
+        <div class="lock-grid" style="margin-top:8px; grid-template-columns: 1fr 1fr;">
+          <div class="lock-card rv">
+            <div class="icbox"><svg class="ic"><use href="#i-trophy"/></svg></div>
+            <div class="k">FAN RANKING</div>
+            <h4>월간 시즌 팬 랭킹</h4>
+            <p>답변을 받을수록 그 큐레이터의 팬 랭킹이 올라가고, 매달 시즌이 리셋됩니다. 열심인 팬이 눈에 보이니, 큐레이터도 단골을 기억하고 챙길 수 있습니다.</p>
+          </div>
+          <div class="lock-card rv">
+            <div class="icbox warm"><svg class="ic"><use href="#i-mail"/></svg></div>
+            <div class="k">DM WINDOW</div>
+            <h4>기간제 DM 창</h4>
+            <p>유료 질문에 참여한 팬에게만 1~30일 기간의 DM 창을 열어줄 수 있습니다. 상시 개방이 아니라 큐레이터가 원할 때, 원하는 팬에게만 여는 채널입니다.</p>
+          </div>
+        </div>
+        <div class="foot-strip rv">답변 → 팬 랭킹 상승 → DM 창 — <span class="em">한 번의 답변이 재참여로 이어집니다.</span></div>
+      </div>
+    </section>
+
+    <!-- S11 온보딩 -->
+    <section class="slide" id="s11" data-cam="-300,560,1.35,0,-140">
+      <div class="panel pos-wide" style="width:1100px">
+        <div class="district">11 · 시작하기</div>
+        <div class="h1">가입부터 첫 인사이트까지, <span class="hl">10분</span>이면 충분합니다</div>
+        <div class="journey" style="margin-top:10px">
+          <div class="jstep rv">
+            <div class="n">1</div>
+            <div class="icbox"><svg class="ic"><use href="#i-id"/></svg></div>
+            <h4>간편 가입</h4>
+            <p>Google · Apple · Kakao · Naver 계정으로 1분 만에 가입</p>
+          </div>
+          <div class="jarrow"><svg class="ic"><use href="#i-arrow"/></svg></div>
+          <div class="jstep rv">
+            <div class="n">2</div>
+            <div class="icbox"><svg class="ic"><use href="#i-crown"/></svg></div>
+            <h4>큐레이터 전환</h4>
+            <p>큐레이터 신청 — 베타 파트너는 사전 승인 패스트트랙으로 바로 전환</p>
+          </div>
+          <div class="jarrow"><svg class="ic"><use href="#i-arrow"/></svg></div>
+          <div class="jstep rv">
+            <div class="n">3</div>
+            <div class="icbox"><svg class="ic"><use href="#i-link"/></svg></div>
+            <h4>첫 인사이트 발행</h4>
+            <p>좋아하는 유튜브 영상에 내 해석 한 편 — 영상 제작은 필요 없습니다</p>
+          </div>
+          <div class="jarrow"><svg class="ic"><use href="#i-arrow"/></svg></div>
+          <div class="jstep rv">
+            <div class="n">4</div>
+            <div class="icbox warm"><svg class="ic"><use href="#i-users"/></svg></div>
+            <h4>팔로워 초대</h4>
+            <p>SNS에 프로필 링크 공유 — 팔로워가 하트를 든 팬으로 바뀝니다</p>
+          </div>
+        </div>
+        <div class="foot-strip rv">"TubeLuLu에서 더 깊은 이야기를 시작합니다" — <span class="em">링크 한 줄이면 온보딩 끝.</span></div>
+      </div>
+    </section>
+
+    <!-- S12 역할 분담 -->
+    <section class="slide" id="s12" data-cam="180,600,1.4,-330,-120">
+      <div class="panel pos-right" style="width:700px">
+        <div class="district">12 · 역할 분담</div>
+        <div class="h1">당신은 '<span class="hl-w">관계</span>'에만 집중하세요<br><span style="font-size:22px; color:var(--ink-2); font-weight:700">나머지는 TubeLuLu가 담당합니다</span></div>
+        <div class="roles" style="margin-top:8px">
+          <div class="role-card pf rv">
+            <div class="role-title"><svg class="ic"><use href="#i-shield"/></svg>플랫폼(TubeLuLu)의 일</div>
+            <div class="role-item">
+              <div class="icbox"><svg class="ic"><use href="#i-sort"/></svg></div>
+              <p>하트 기준 질문 자동 정렬 + 72시간 미답변 자동 환불</p>
+            </div>
+            <div class="role-item">
+              <div class="icbox"><svg class="ic"><use href="#i-shield"/></svg></div>
+              <p>결제·환불·본인인증·모더레이션 운영</p>
+            </div>
+            <div class="role-item">
+              <div class="icbox"><svg class="ic"><use href="#i-inbox"/></svg></div>
+              <p>스튜디오 제공 — 질문 인박스 · 팬 CRM · 수익 내역 · 알림</p>
+            </div>
+          </div>
+          <div class="role-card cu rv">
+            <div class="role-title"><svg class="ic"><use href="#i-crown"/></svg>큐레이터(당신)의 일</div>
+            <div class="role-item">
+              <div class="icbox warm"><svg class="ic"><use href="#i-link"/></svg></div>
+              <p>유튜브 링크에 해석을 얹은 인사이트 발행</p>
+            </div>
+            <div class="role-item">
+              <div class="icbox warm"><svg class="ic"><use href="#i-chat"/></svg></div>
+              <p>하트 걸린 질문에 성의 있는 답변 (72시간 이내)</p>
+            </div>
+            <div class="role-item">
+              <div class="icbox warm"><svg class="ic fill"><use href="#i-heart"/></svg></div>
+              <p>팬 랭킹 · DM 창으로 단골 팬과의 관계 관리</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S13 베타 혜택 -->
+    <section class="slide" id="s13" data-cam="600,-450,1.15,-320,30">
+      <div class="panel pos-right" style="width:720px">
+        <div class="district">13 · 베타 파트너 혜택</div>
+        <div class="h1">지금 합류해야 하는 <span class="hl">3가지 이유</span></div>
+        <div class="beta-grid" style="margin-top:6px">
+          <div class="beta-card rv">
+            <div class="icbox"><svg class="ic"><use href="#i-spark"/></svg></div>
+            <h4>활동 지원금</h4>
+            <div class="s">클로즈드 베타 기간 한정 활동 지원</div>
+            <p>수익이 발생하기 전에도 안정적으로 활동을 시작할 수 있습니다</p>
+          </div>
+          <div class="beta-card rv">
+            <div class="icbox warm"><svg class="ic"><use href="#i-crown"/></svg></div>
+            <h4>골드 등급 패스트트랙</h4>
+            <div class="s">최고 정산율 80% 우선 적용</div>
+            <p>초기 파트너에게 최고 등급의 수익 배분율을 우선 적용합니다</p>
+          </div>
+          <div class="beta-card rv">
+            <div class="icbox deep"><svg class="ic"><use href="#i-chat"/></svg></div>
+            <h4>제품 설계 참여</h4>
+            <div class="s">피드백이 로드맵에 즉시 반영</div>
+            <p>내게 필요한 기능을 직접 제안하고 함께 만들어갑니다</p>
+          </div>
+        </div>
+        <div class="cta-row rv">
+          <button class="cta-btn" id="cta-join">베타 파트너로 참여하기</button>
+          <div class="cta-meta">문의 · <b>help@tubelulu.com</b> · tubelulu.com</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S14 마무리 -->
+    <section class="slide" id="s14" data-cam="-80,-80,0.82,0,30">
+      <div class="panel pos-wide" style="width:880px">
+        <div class="district" style="margin-bottom:10px">14 · 마무리</div>
+        <div class="h1" style="text-align:center; font-size:30px"><span class="hl">TubeLuLu</span>와 함께, 지금 시작하세요</div>
+        <div class="quote-box rv" style="margin-top:8px">
+          <p>비공식적이고 불투명한 소통을,<br>안전하고 투명한 온라인 수익으로 전환합니다</p>
+          <div class="u"></div>
+        </div>
+        <div class="principles">
+          <div class="pr rv">
+            <svg class="ic"><use href="#i-shield"/></svg>
+            <div><h5>Safety</h5><p>안전한 결제 · 자동 환불</p></div>
+          </div>
+          <div class="pr rv">
+            <svg class="ic"><use href="#i-gem"/></svg>
+            <div><h5>Dignity</h5><p>품격 있는 소통</p></div>
+          </div>
+          <div class="pr rv">
+            <svg class="ic"><use href="#i-leaf"/></svg>
+            <div><h5>Sustainability</h5><p>지속 가능한 수익</p></div>
+          </div>
+        </div>
+        <div class="closing-line rv"><b>TubeLuLu</b> · 주식회사 룰루닷에이아이 — help@tubelulu.com · tubelulu.com</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= NAV ================= -->
+  <div class="progress" id="progress"></div>
+  <div class="pageno"><span class="cur" id="pg-cur">1</span>&nbsp;/&nbsp;<span id="pg-total">14</span></div>
+  <div class="dots" id="dots"></div>
+  <div class="nav-btns">
+    <button class="nav-btn" id="btn-prev" aria-label="이전 슬라이드"><svg class="ic"><use href="#i-left"/></svg></button>
+    <button class="nav-btn" id="btn-next" aria-label="다음 슬라이드"><svg class="ic"><use href="#i-right"/></svg></button>
+  </div>
+  <div class="hint" id="hint"><kbd>←</kbd><kbd>→</kbd> 이동 · <kbd>Space</kbd> 다음</div>
 </div>
 
 <script>
 (function () {
-  var totalSlides = 13;
-  var current = 1;
-  var isAnimating = false;
+  'use strict';
 
-  var slideTitles = ['표지', '고민', '선언', '시장', '기회', '서비스', '팬 심리', '시스템', '수익', '팬 유입', '역할', '왜 지금', '마무리'];
+  /* ---------- isometric projection helpers ---------- */
+  var ISO_X = Math.SQRT1_2;              // 0.7071
+  var ISO_Y = Math.SQRT1_2 * 0.5;        // 0.3536 (rotateX 60deg → cos60 = .5)
+  var ISO_Z = Math.sin(Math.PI / 3);     // 0.8660
 
-  var presentation = document.getElementById('presentation');
-  var progressBar = document.getElementById('progressBar');
-  var pageNumber = document.getElementById('pageNumber');
-  var navTicks = document.getElementById('navTicks');
-  var keyboardHint = document.getElementById('keyboardHint');
-
-  function pad(n) { return (n < 10 ? '0' : '') + n; }
-
-  for (var i = 1; i <= totalSlides; i++) {
-    var tick = document.createElement('button');
-    tick.className = 'nav-tick' + (i === 1 ? ' active' : '');
-    tick.title = slideTitles[i - 1];
-    tick.setAttribute('aria-label', i + '. ' + slideTitles[i - 1]);
-    (function (n) {
-      tick.addEventListener('click', function () { goToSlide(n); });
-    })(i);
-    navTicks.appendChild(tick);
+  function worldToScreen(x, y, z) {
+    return {
+      x: ISO_X * (x - y),
+      y: ISO_Y * (x + y) - ISO_Z * (z || 0)
+    };
   }
 
-  function updateChrome() {
-    progressBar.style.width = (current / totalSlides * 100) + '%';
-    pageNumber.innerHTML = '<strong>' + pad(current) + '</strong> / ' + totalSlides;
-    var ticks = navTicks.children;
-    for (var i = 0; i < ticks.length; i++) {
-      ticks[i].classList.toggle('active', i + 1 === current);
-    }
+  /* ---------- ambient fx: coins above the bank, hearts above the plaza ---------- */
+  function spawnFx(containerId, cls, inner, spots) {
+    var host = document.getElementById(containerId);
+    spots.forEach(function (s, i) {
+      var p = worldToScreen(s[0], s[1], s[2]);
+      var el = document.createElement('div');
+      el.className = cls;
+      el.style.left = p.x + 'px';
+      el.style.top = p.y + 'px';
+      el.style.animationDelay = (i * 0.9) + 's';
+      el.innerHTML = inner;
+      host.appendChild(el);
+    });
+  }
+  spawnFx('fx-coins', 'coin', '₩', [[560, 140, 100], [610, 175, 96], [545, 190, 108]]);
+  spawnFx('fx-hearts', 'heartfx',
+    '<svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:currentColor"><path d="M12 20.5 C5.4 15 3.2 10.6 5.2 7.6 C7 4.9 10.4 5.4 12 8.2 C13.6 5.4 17 4.9 18.8 7.6 C20.8 10.6 18.6 15 12 20.5 Z"/></svg>',
+    [[290, 310, 46], [330, 345, 40], [265, 350, 52]]);
+
+  /* ---------- slides & camera ---------- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var cam = document.getElementById('cam');
+  var total = slides.length;
+  var cur = 0;
+  var busy = false;
+
+  var titles = ['소개', '고민', '제안', '시장', '기회', '서비스', '팬 경험', '우선순위', '수익', '팬 관계', '시작하기', '역할', '베타 혜택', '마무리'];
+
+  function camFor(slide) {
+    var raw = slide.getAttribute('data-cam').split(',').map(parseFloat);
+    var f = worldToScreen(raw[0], raw[1], 0);
+    var s = raw[2], ox = raw[3], oy = raw[4];
+    return 'translate(' + (ox - s * f.x) + 'px, ' + (oy - s * f.y) + 'px) scale(' + s + ')';
   }
 
-  function goToSlide(n) {
-    if (isAnimating || n === current || n < 1 || n > totalSlides) return;
-    isAnimating = true;
+  var dotsHost = document.getElementById('dots');
+  slides.forEach(function (sl, i) {
+    var d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' on' : '');
+    d.title = titles[i] || (i + 1);
+    d.setAttribute('aria-label', (i + 1) + '. ' + (titles[i] || ''));
+    d.addEventListener('click', function () { go(i); });
+    dotsHost.appendChild(d);
+  });
+  var dots = Array.prototype.slice.call(dotsHost.children);
+  var progress = document.getElementById('progress');
+  var pgCur = document.getElementById('pg-cur');
+  document.getElementById('pg-total').textContent = total;
 
-    var from = document.getElementById('slide-' + current);
-    var to = document.getElementById('slide-' + n);
-    var dir = n > current ? 1 : -1;
-
-    to.classList.add('anim-stage');
-    to.style.transition = 'none';
-    to.style.transform = 'translateX(' + (dir * 100) + '%)';
-    to.style.opacity = '0';
-
-    void to.offsetWidth;
-    to.style.transition = '';
-    to.classList.add('active');
-    to.style.transform = 'translateX(0)';
-    to.style.opacity = '1';
-
-    from.style.transform = 'translateX(' + (-dir * 100) + '%)';
-    from.style.opacity = '0';
-
-    current = n;
-    updateChrome();
-
-    setTimeout(function () {
-      from.classList.remove('active');
-      from.style.transform = '';
-      from.style.opacity = '';
-      to.classList.remove('anim-stage');
-      to.style.transform = '';
-      to.style.opacity = '';
-      isAnimating = false;
-    }, 520);
+  /* hide the brand lockup on slides whose panel would overlap it */
+  var brandbar = document.querySelector('.brandbar');
+  function updateBrandbar() {
+    if (!brandbar) return;
+    var panel = slides[cur].querySelector('.panel');
+    if (!panel) { brandbar.classList.remove('bb-hidden'); return; }
+    // offsetLeft/Top are unaffected by entrance-animation transforms
+    var pl = panel.offsetLeft, pt = panel.offsetTop;
+    var pr = pl + panel.offsetWidth, pb = pt + panel.offsetHeight;
+    var bl = brandbar.offsetLeft, bt = brandbar.offsetTop;
+    var br = bl + brandbar.offsetWidth, bb = bt + brandbar.offsetHeight;
+    var pad = 10; // breathing room
+    var overlap = pl < br + pad && pr > bl - pad && pt < bb + pad && pb > bt - pad;
+    brandbar.classList.toggle('bb-hidden', overlap);
   }
 
-  function next() { goToSlide(current + 1); }
-  function prev() { goToSlide(current - 1); }
+  function render() {
+    slides.forEach(function (sl, i) { sl.classList.toggle('active', i === cur); });
+    dots.forEach(function (d, i) { d.classList.toggle('on', i === cur); });
+    progress.style.width = ((cur + 1) / total * 100) + '%';
+    pgCur.textContent = cur + 1;
+    cam.style.transform = camFor(slides[cur]);
+    updateBrandbar();
+  }
 
-  document.getElementById('nextBtn').addEventListener('click', next);
-  document.getElementById('prevBtn').addEventListener('click', prev);
+  function go(n) {
+    if (busy || n === cur || n < 0 || n >= total) return;
+    busy = true;
+    cur = n;
+    render();
+    setTimeout(function () { busy = false; }, 300);
+  }
+
+  document.getElementById('btn-prev').addEventListener('click', function () { go(cur - 1); });
+  document.getElementById('btn-next').addEventListener('click', function () { go(cur + 1); });
 
   document.addEventListener('keydown', function (e) {
-    // let Space activate a focused button/link natively instead of hijacking it
-    if (e.key === ' ' && e.target && e.target.closest && e.target.closest('button, a')) return;
-    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
-    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
-    else if (e.key === 'Home') { e.preventDefault(); goToSlide(1); }
-    else if (e.key === 'End') { e.preventDefault(); goToSlide(totalSlides); }
+    if (e.target && e.target.closest && e.target.closest('button')) return;
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(cur + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(cur - 1); }
+    if (e.key === 'Home') { e.preventDefault(); go(0); }
+    if (e.key === 'End') { e.preventDefault(); go(total - 1); }
   });
 
-  var touchX = null, touchY = null, touchId = null;
+  var tx = 0, ty = 0;
   document.addEventListener('touchstart', function (e) {
-    touchX = e.changedTouches[0].clientX;
-    touchY = e.changedTouches[0].clientY;
-    touchId = e.changedTouches[0].identifier;
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY;
   }, { passive: true });
   document.addEventListener('touchend', function (e) {
-    if (touchX === null) return;
-    if (e.touches.length > 0) { touchX = touchY = touchId = null; return; }
-    var t = e.changedTouches[0];
-    if (touchId !== null && t.identifier !== touchId) { touchX = touchY = touchId = null; return; }
-    var dx = t.clientX - touchX;
-    var dy = t.clientY - touchY;
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
-      if (dx < 0) next(); else prev();
-    }
-    touchX = touchY = touchId = null;
+    var dx = e.changedTouches[0].clientX - tx;
+    var dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) { if (dx < 0) go(cur + 1); else go(cur - 1); }
   }, { passive: true });
 
-  function scalePresentation() {
-    var scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
-    presentation.style.transform = 'scale(' + scale + ')';
-    presentation.style.left = ((window.innerWidth - 1280 * scale) / 2) + 'px';
-    presentation.style.top = ((window.innerHeight - 720 * scale) / 2) + 'px';
+  setTimeout(function () {
+    var h = document.getElementById('hint');
+    if (h) { h.style.opacity = '0'; h.style.pointerEvents = 'none'; }
+  }, 5000);
+
+  var cta = document.getElementById('cta-join');
+  if (cta) cta.addEventListener('click', function () { go(total - 1); });
+
+  /* ---------- viewport scaling ---------- */
+  var stage = document.getElementById('stage');
+  function fit() {
+    var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+    stage.style.transform = 'scale(' + s + ')';
+    stage.style.left = ((window.innerWidth - 1280 * s) / 2) + 'px';
+    stage.style.top = ((window.innerHeight - 720 * s) / 2) + 'px';
   }
-  window.addEventListener('resize', scalePresentation);
-  window.addEventListener('load', scalePresentation);
-  scalePresentation();
+  window.addEventListener('resize', fit);
+  fit();
 
-  setTimeout(function () { keyboardHint.style.opacity = '0'; }, 4500);
-
-  document.querySelectorAll('i[class*="fa-"]').forEach(function (el) {
-    el.setAttribute('aria-hidden', 'true');
+  /* initial camera: pulled back, then settle onto slide 1 */
+  cam.style.transition = 'none';
+  cam.style.transform = 'translate(0px, 120px) scale(0.7)';
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      cam.style.transition = '';
+      render();
+    });
   });
-
-  updateChrome();
 })();
 </script>
+
 </body>
 </html>
