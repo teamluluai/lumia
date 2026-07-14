@@ -323,23 +323,28 @@ body {
   position: relative;
   z-index: 2;
 }
-.cover-pill {
-  margin-top: 40px;
+.cover-link {
+  margin-top: 42px;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: var(--navy);
-  color: #FFFFFF;
+  gap: 9px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--navy);
+  color: var(--navy);
   font-size: 15px;
   font-weight: 600;
+  letter-spacing: 0.01em;
   border-radius: 999px;
-  padding: 12px 26px;
+  padding: 11px 24px;
   width: fit-content;
+  text-decoration: none;
   position: relative;
   z-index: 2;
-  box-shadow: 0 8px 24px rgba(9, 52, 122, 0.25);
+  transition: background 0.2s ease, color 0.2s ease;
 }
-.cover-pill i { color: #9FD4EE; font-size: 13px; }
+.cover-link i { font-size: 11px; color: var(--sky-mid); transition: color 0.2s ease; }
+.cover-link:hover { background: var(--navy); color: #FFFFFF; }
+.cover-link:hover i { color: #9FD4EE; }
 
 /* ============================================================
    Slide 2 — Pain (3 cards)
@@ -1340,7 +1345,7 @@ body {
       <div class="cover-eyebrow a-up d2">Service Introduction</div>
       <h1 class="cover-message a-up d3">당신의 <span class="hl">해석</span>이 빛나는<br>프리미엄 큐레이션 플랫폼</h1>
       <p class="cover-tagline a-up d4">신뢰하는 해석을 구독하고, 깊이 읽고, 직접 묻는 곳</p>
-      <div class="cover-pill a-up d5"><i class="fa-solid fa-circle-check"></i>tubelulu.com · 정식 서비스 운영 중</div>
+      <a class="cover-link a-up d5" href="https://tubelulu.com" target="_blank" rel="noopener">tubelulu.com<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
     </div>
   </section>
 
